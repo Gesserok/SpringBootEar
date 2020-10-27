@@ -1,0 +1,123 @@
+import java.time.LocalDate
+import java.time.LocalTime
+import java.time.ZoneId
+import java.time.ZonedDateTime
+
+buildscript {
+	repositories {
+		mavenLocal()
+		mavenCentral()
+	}
+}
+
+plugins {
+	id 'ear'
+	id 'idea'
+//	id 'project-report'
+	id 'java'
+//	id 'java-library'
+//	id 'org.springframework.boot' version "${springBoot}"
+//	id 'io.spring.dependency-management' version "${dependencyManagement}"
+}
+
+group = 'ua.com.sbrf'
+version = '1.0.0'
+def codeRevision = '1.0'
+
+allprojects {
+	apply plugin: 'java'
+	apply plugin: 'idea'
+	apply plugin: 'project-report'
+
+
+
+	group = 'ua.com.sbrf'
+	version = '0.0.1-SNAPSHOT'
+	repositories {
+		mavenLocal()
+		mavenCentral()
+	}
+
+	sourceCompatibility = targetCompatibility = JavaVersion.VERSION_1_8
+	[compileJava, compileTestJava]*.options*.encoding = 'UTF-8'
+
+	tasks.withType(Jar) {
+		manifest {
+			attributes'Implementation-Title': project.name,
+					'Implementation-Version': project.version,
+					'Code-Revision': codeRevision,
+					'Build-Date': LocalDate.now(),
+					'Build-Time': LocalTime.now(),
+					'Built-By': System.properties['user.name'],
+					'Build-Timestamp': ZonedDateTime.now(ZoneId.of("Europe/Kiev")),
+					'Build-Jdk': "${System.properties['java.version']} ${System.properties['java.vendor']} ${System.properties['java.vm.version']}",
+					'Build-OS': "${System.properties['os.name']} ${System.properties['os.arch']} ${System.properties['os.version']}",
+					'Created-By': "Gradle ${gradle.gradleVersion}"
+		}
+	}
+
+	dependencies {
+
+		implementation 'org.springframework.boot:spring-boot-starter-actuator:2.3.4.RELEASE'
+		implementation ('org.springframework.boot:spring-boot-starter-web:2.3.4.RELEASE') {
+			exclude group:'org.springframework.boot', module:'spring-boot-starter-tomcat'
+		}
+
+	}
+
+	test {
+		useJUnitPlatform()
+		testLogging {
+			events "passed", "skipped", "failed"
+		}
+		failFast = true
+	}
+
+	clean { delete 'out'}
+
+
+//	plugins.withType(WarPlugin) {
+//		// Set default configuration as WAR archive if WAR plugin is used
+//		configurations {
+//			'archives' {
+//				extendsFrom = [archives]
+//			}
+//		}
+//	}
+
+}
+
+subprojects {
+}
+
+dependencies {
+
+	earlib 'org.springframework.boot:spring-boot-starter-actuator:2.3.4.RELEASE'
+	earlib ('org.springframework.boot:spring-boot-starter-web:2.3.4.RELEASE') {
+		exclude group:'org.springframework.boot', module:'spring-boot-starter-tomcat'
+	}
+//	earlib project(':library')
+//	earlib project(':application')
+
+	deploy project(path: ':application', configuration: 'archives')
+
+//	compileOnly('org.projectlombok:lombok:1.18.16')
+//	annotationProcessor('org.projectlombok:lombok:1.18.16')
+
+
+}
+
+
+ear {
+	appDirName 'src/main/app'
+	libDirName 'lib'
+	deploymentDescriptor {
+		version = "7"
+		applicationName = "multimodule"
+		initializeInOrder = true
+		displayName = "multimodule"
+		description = "multimodule spring boot app"
+		webModule("application.war", "web/ear")
+	}
+}
+

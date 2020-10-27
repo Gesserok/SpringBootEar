@@ -1,0 +1,4 @@
+ua/com/sbrf/multimodule/service/MyService.java
+ ua.com.sbrf.multimodule.service.MyService
+ua/com/sbrf/multimodule/service/ServiceProperties.java
+ ua.com.sbrf.multimodule.service.ServiceProperties

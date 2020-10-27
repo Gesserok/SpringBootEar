@@ -1,0 +1,12 @@
+Manifest-Version: 1.0
+Implementation-Title: gs-multi-module
+Build-Date: 2020-10-27
+Implementation-Version: 0.0.1-SNAPSHOT
+Build-Timestamp: 2020-10-27T15:42:39.031+02:00[Europe/Kiev]
+Code-Revision: 1.0
+Built-By: if210
+Build-Time: 15:42:39.031
+Build-OS: Windows 10 amd64 10.0
+Build-Jdk: 1.8.0_261 Oracle Corporation 25.261-b12
+Created-By: Gradle 6.6
+
