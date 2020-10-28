@@ -1,23 +1,24 @@
-apply plugin: 'java-library'
-apply plugin: 'org.springframework.boot'
-apply plugin: 'io.spring.dependency-management'
-
-dependencies {
-	implementation 'org.springframework.boot:spring-boot-starter'
-	testImplementation('org.springframework.boot:spring-boot-starter-test') {
-		exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
-	}
-
-	implementation('org.springframework.boot:spring-boot-configuration-processor')
-	annotationProcessor "org.springframework.boot:spring-boot-configuration-processor"
-
+plugins {
+    id 'java'
+    id 'idea'
 }
 
-bootJar {
-	enabled = false
+version '1.0.0.0'
+
+dependencies {
+    compileOnly("org.springframework.boot:spring-boot-starter-actuator:${springBoot}") {
+        exclude group: 'org.springframework.boot', module: 'spring-boot-starter-logging'
+    }
+    compileOnly("org.springframework.boot:spring-boot-starter-web:${springBoot}") {
+        exclude group: 'org.springframework.boot', module: 'spring-boot-starter-tomcat'
+        exclude group: 'org.springframework.boot', module: 'spring-boot-starter-logging'
+    }
+
+    compileOnly "org.springframework.boot:spring-boot-starter-log4j2:${springBoot}"
 }
 
 jar {
-	enabled = true
-	archiveName = 'library.jar'
+    manifest {
+        attributes 'Implementation-Version': archiveVersion
+    }
 }

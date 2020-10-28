@@ -1,4 +1,2 @@
-ua/com/sbrf/multimodule/service/MyService.java
- ua.com.sbrf.multimodule.service.MyService
-ua/com/sbrf/multimodule/service/ServiceProperties.java
- ua.com.sbrf.multimodule.service.ServiceProperties
+ua/com/sbrf/multimodule/configurations/Config.java
+ ua.com.sbrf.multimodule.configurations.Config

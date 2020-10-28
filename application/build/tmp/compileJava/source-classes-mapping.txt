@@ -1,4 +1,2 @@
 ua/com/sbrf/multimodule/application/DemoApplication.java
  ua.com.sbrf.multimodule.application.DemoApplication
-ua/com/sbrf/multimodule/application/Config.java
- ua.com.sbrf.multimodule.application.Config
