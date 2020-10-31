@@ -1,2 +1,0 @@
-org/example/multimodule/configurations/Config.java
- org.example.multimodule.configurations.Config
