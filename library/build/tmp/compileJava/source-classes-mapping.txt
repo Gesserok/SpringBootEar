@@ -1,2 +1,2 @@
-ua/com/sbrf/multimodule/configurations/Config.java
- ua.com.sbrf.multimodule.configurations.Config
+org/example/multimodule/configurations/Config.java
+ org.example.multimodule.configurations.Config

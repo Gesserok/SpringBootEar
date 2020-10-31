@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="INFO" strict="true" name="gs-multi-module">
+
+    <Properties>
+        <Property name="logFileName">
+            "${sys:app.logging.Path}${sys:file.separator}gs-multi-module.log
+        </Property>
+        <Property name="rollingLogFileName">
+            "${sys:app.logging.Path}${sys:file.separator}arch${sys:file.separator}gs-multi-module-%d{yyyy-MM-dd}-%i.log.gz
+        </Property>
+        <Property name="loggingLevel">${sys:app.logging.Level}</Property>
+
+    </Properties>
+
+    <Appenders>
+<!--        <Console name="Console" target="SYSTEM_OUT">-->
+<!--            <PatternLayout pattern="%d{ISO8601} %logger{36} - %msg%%xEx%n"/>-->
+<!--        </Console>-->
+        <RollingRandomAccessFile type="RollingRandomAccessFile" name="File" fileName="${logFileName}"
+                     filePattern="${rollingLogFileName}">
+
+            <PatternLayout charset="UTF-8"
+                patern="%d{ISO8601} [%t] [%-5level] %C{1.}.%M(%F:%L) - %msg%xEX%n"/>
+
+            <Policies>
+                <OnStartupTriggeringPolicy/>
+                <SizeBasedTriggeringPolicy size="100 MB"/>
+                <TimeBasedTriggeringPolicy/>
+            </Policies>
+        </RollingRandomAccessFile>
+    </Appenders>
+
+    <Loggers>
+        <!-- avoid duplicated logs with additivity=false -->
+        <AsyncRoot level="${loggingLevel}" includeLocation="true" additivity="false">
+            <AppenderRef ref="File"/>
+        </AsyncRoot>
+<!--        <Root level="error">-->
+<!--            <AppenderRef ref="Console"/>-->
+<!--        </Root>-->
+    </Loggers>
+</Configuration>

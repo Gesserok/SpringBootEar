@@ -23,7 +23,7 @@ allprojects {
         mavenLocal()
         mavenCentral()
     }
-    group = 'ua.com.sbrf'
+    group = 'org.example'
     version = '0.0.1-SNAPSHOT'
 
     sourceCompatibility = targetCompatibility = JavaVersion.VERSION_1_8
@@ -63,12 +63,14 @@ dependencies {
     earlib ("org.springframework.boot:spring-boot-starter-actuator:${springBoot}") {
         exclude group: 'org.springframework.boot', module: 'spring-boot-starter-logging'
     }
+    earlib ("com.lmax:disruptor:${comLmax}")
     earlib("org.springframework.boot:spring-boot-starter-web:${springBoot}") {
         exclude group: 'org.springframework.boot', module: 'spring-boot-starter-tomcat'
         exclude group: 'org.springframework.boot', module: 'spring-boot-starter-logging'
     }
     earlib "org.springframework.boot:spring-boot-starter-log4j2:${springBoot}"
-
+    earlib "org.apache.commons:commons-text:${apacheCommonText}"
+    earlib "org.example:configstorage:${configstorage}"
 }
 
 ear {
