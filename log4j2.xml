@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Configuration status="INFO" strict="true" name="gs-multi-module">
+<Configuration status="INFO" strict="true" name="SpringBootEar">
 
     <Properties>
         <Property name="logFileName">
-            "${sys:app.logging.Path}${sys:file.separator}gs-multi-module.log
+            "${sys:app.logging.Path}${sys:file.separator}SpringBootEar.log
         </Property>
         <Property name="rollingLogFileName">
-            "${sys:app.logging.Path}${sys:file.separator}arch${sys:file.separator}gs-multi-module-%d{yyyy-MM-dd}-%i.log.gz
+            "${sys:app.logging.Path}${sys:file.separator}arch${sys:file.separator}SpringBootEar-%d{yyyy-MM-dd}-%i.log.gz
         </Property>
         <Property name="loggingLevel">${sys:app.logging.Level}</Property>
 
