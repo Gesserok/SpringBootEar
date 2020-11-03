@@ -27,7 +27,7 @@ public class RepositoryConfiguration {
         return SessionFactoryUtils.getDataSource(sessionFactory);
     }
 
-    @Bean
+    @Bean(name = "sessionFactory")
     public SessionFactory sessionFactory(@Autowired EntityManagerFactory entityManagerFactory) {
         return entityManagerFactory.unwrap(SessionFactory.class);
     }
