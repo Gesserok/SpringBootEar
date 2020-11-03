@@ -17,27 +17,28 @@ import javax.sql.DataSource;
 @EnableJpaRepositories(basePackages = "org.example.multimodule.dao")
 public class RepositoryConfiguration {
 
-//    @Bean(name = "entityManagerFactory")
-//    public EntityManagerFactory getEntityManagerFactory() {
-//        return Persistence.createEntityManagerFactory("ODPUnit");
-//    }
+    @Bean(name = "entityManagerFactory")
+    public EntityManagerFactory getEntityManagerFactory() {
+        return Persistence.createEntityManagerFactory("ODPUnit");
+    }
 
     @Bean(name = "dataSource")
-    public DataSource dataSource(@Autowired SessionFactory sessionFactory) {
+    public DataSource dataSource(@Autowired EntityManagerFactory entityManagerFactory) {
+        SessionFactory sessionFactory = entityManagerFactory.unwrap(SessionFactory.class);
         return SessionFactoryUtils.getDataSource(sessionFactory);
     }
 
-    @Bean(name = "sessionFactory")
-    public SessionFactory sessionFactory() {
-        EntityManagerFactory odpUnit = Persistence.createEntityManagerFactory("ODPUnit");
-        return odpUnit.unwrap(SessionFactory.class);
-    }
+//    @Bean(name = "sessionFactory")
+//    public SessionFactory sessionFactory(@Autowired EntityManagerFactory entityManagerFactory) {
+//        return entityManagerFactory.unwrap(SessionFactory.class);
+//    }
 
     @Bean(name = "transactionManager")
     public PlatformTransactionManager transactionManager(
             @Autowired DataSource dataSource,
-            @Autowired SessionFactory sessionFactory
+            @Autowired EntityManagerFactory entityManagerFactory
     ) {
+        SessionFactory sessionFactory = entityManagerFactory.unwrap(SessionFactory.class);
         HibernateTransactionManager transactionManager = new HibernateTransactionManager();
         transactionManager.setDataSource(dataSource);
         transactionManager.setSessionFactory(sessionFactory);
