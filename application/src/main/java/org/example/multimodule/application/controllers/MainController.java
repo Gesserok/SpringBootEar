@@ -19,4 +19,11 @@ public class MainController {
         return parameters.logLevel() + " " + parameters.logPath();
 
     }
+
+    @GetMapping("/version")
+    public String version() {
+        log.info("Hello");
+        return parameters.logLevel() + " " + parameters.logPath();
+
+    }
 }
