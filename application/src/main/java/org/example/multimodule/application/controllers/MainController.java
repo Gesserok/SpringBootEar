@@ -23,7 +23,7 @@ public class MainController {
     private RegionService regionService;
 
     @GetMapping("/")
-    public String home() {
+    public Region home() {
 
         Region region = new Region();
         region.setResourceId("1");
@@ -40,6 +40,7 @@ public class MainController {
         List<Passport> passports = new ArrayList<>();
         passports.add(passport);
         regionService.save(region);
+        return region;
     }
 
     @GetMapping("/version")
