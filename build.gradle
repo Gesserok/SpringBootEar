@@ -56,7 +56,6 @@ allprojects {
 }
 
 dependencies {
-
     deploy project(path: ':application', configuration: 'archives')
 	earlib project(':library')
 
@@ -71,6 +70,8 @@ dependencies {
     earlib "org.springframework.boot:spring-boot-starter-log4j2:${springBoot}"
     earlib "org.apache.commons:commons-text:${apacheCommonText}"
     earlib "org.example:configstorage:${configstorage}"
+
+    earlib "org.springframework.boot:spring-boot-starter-data-jpa:${springDataJPA}";
 }
 
 ear {
