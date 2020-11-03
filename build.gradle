@@ -71,7 +71,9 @@ dependencies {
     earlib "org.apache.commons:commons-text:${apacheCommonText}"
     earlib "org.example:configstorage:${configstorage}"
 
-    earlib "org.springframework.boot:spring-boot-starter-data-jpa:${springDataJPA}";
+    earlib ("org.springframework.boot:spring-boot-starter-data-jpa:${springDataJPA}") {
+        exclude group: 'org.springframework.boot', module: 'spring-boot-starter-logging'
+    }
 }
 
 ear {
