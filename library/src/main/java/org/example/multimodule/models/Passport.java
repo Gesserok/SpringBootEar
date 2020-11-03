@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
+import javax.persistence.Id;
 import javax.persistence.Table;
 
 @NoArgsConstructor
@@ -39,6 +40,7 @@ public class Passport {
     @Column(name = "d_type")
     private String dType;
 
+    @Id
     @JsonProperty(value = "ID")
     @JsonIgnore
     @JsonInclude(JsonInclude.Include.NON_NULL)
