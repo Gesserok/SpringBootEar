@@ -14,7 +14,7 @@ import java.util.List;
 @NoArgsConstructor
 @Data
 @Entity
-@Table(name = "regions")
+@Table(name = "tp_regions")
 public class Region {
 
     @Id
@@ -26,7 +26,7 @@ public class Region {
 
     @JsonProperty(value = "passports_list")
     @ElementCollection
-    @CollectionTable(name = "passports", joinColumns = @JoinColumn(name = "region_id"))
+    @CollectionTable(name = "tp_passports", joinColumns = @JoinColumn(name = "region_id"))
     private List<Passport> passports;
 
     @JsonProperty("resource_id")

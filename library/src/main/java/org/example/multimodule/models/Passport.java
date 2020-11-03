@@ -12,7 +12,7 @@ import java.math.BigDecimal;
 
 @NoArgsConstructor
 @Embeddable
-@Table(name = "passports")
+@Table(name = "tp_passports")
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Passport {
 
