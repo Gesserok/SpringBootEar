@@ -21,7 +21,7 @@ public class Region {
     @SequenceGenerator(name = "region_gen", sequenceName = "gen_region_id", allocationSize = 1)
     @JsonIgnore
     @JsonInclude(JsonInclude.Include.NON_NULL)
-    private BigDecimal id;
+    private Long id;
 
     @JsonProperty(value = "passports_list")
     @ElementCollection

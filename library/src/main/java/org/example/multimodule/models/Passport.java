@@ -46,7 +46,7 @@ public class Passport {
     @JsonIgnore
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @Column(name = "external_id")
-    private BigDecimal externalId;
+    private Long externalId;
 
     @JsonProperty(value = "INSERT_DATE")
     @JsonIgnore

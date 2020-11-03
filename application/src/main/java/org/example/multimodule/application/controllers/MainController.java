@@ -38,7 +38,7 @@ public class MainController {
         passport.setInsertDate("asdasd");
         passport.setOvd("asd");
         passport.setTheftData("asdsad");
-        passport.setExternalId(new BigDecimal(1));
+        passport.setExternalId(1L);
         List<Passport> passports = new ArrayList<>();
         passports.add(passport);
         region.setPassports(passports);
