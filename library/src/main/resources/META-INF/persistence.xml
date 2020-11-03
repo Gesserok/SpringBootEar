@@ -15,7 +15,7 @@
         <properties>
             <property name="hibernate.default_schema" value="ODP"/>
             <property name="hibernate.connection.autocommit" value="false"/>
-            <property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQL10Dialect"/>
+            <property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQL"/>
             <property name="hibernate.jdbc.batch_size" value="50"/>
             <property name="hibernate.order_inserts" value="true"/>
             <property name="hibernate.order_updates" value="true"/>
@@ -26,6 +26,7 @@
             <property name="hibernate.query.startup_check" value="false"/>
             <property name="hibernate.enable_lazy_load_no_trans" value="true"/>
             <property name="hibernate.show_sql" value="false"/>
+            <property name="hibernate.auto_quote_keyword" value="true"/>
 
         </properties>
     </persistence-unit>
