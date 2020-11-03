@@ -8,6 +8,7 @@ import javax.persistence.Column;
 import javax.persistence.Embeddable;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import java.math.BigDecimal;
 
 @NoArgsConstructor
 @Data
@@ -45,7 +46,7 @@ public class Passport {
     @JsonIgnore
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @Column(name = "external_id")
-    private String extId;
+    private BigDecimal extId;
 
     @JsonProperty(value = "INSERT_DATE")
     @JsonIgnore

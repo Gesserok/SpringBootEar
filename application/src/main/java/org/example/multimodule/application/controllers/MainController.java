@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -37,6 +38,7 @@ public class MainController {
         passport.setInsertDate("asdasd");
         passport.setOvd("asd");
         passport.setTheftData("asdsad");
+        passport.setExtId(new BigDecimal(1));
         List<Passport> passports = new ArrayList<>();
         passports.add(passport);
         regionService.save(region);
