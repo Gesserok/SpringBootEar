@@ -1,24 +1,16 @@
-//package org.example.multimodule.application.configuration;
-//
-//import lombok.extern.log4j.Log4j2;
-//import org.example.config.db.JDBCConfigurationFactory;
-//import org.example.multimodule.infrastructure.ConfigurationStoredParameters;
-//import org.example.multimodule.infrastructure.LoggerConfigurator;
-//import org.example.multimodule.infrastructure.TimedCachebleScope;
-//import org.springframework.beans.factory.annotation.Autowired;
-//import org.springframework.context.annotation.Bean;
-//import org.springframework.context.annotation.Configuration;
-//import org.springframework.context.event.ContextStartedEvent;
-//import org.springframework.context.event.EventListener;
-//
-//import javax.annotation.Resource;
-//import javax.sql.DataSource;
-//import java.sql.SQLException;
-//
-//@Configuration
-//@Log4j2
-//public class ApplicationConfiguration {
-//
+package org.example.multimodule.application.configuration;
+
+import lombok.extern.log4j.Log4j2;
+import org.example.multimodule.infrastructure.LoggerConfigurator;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.context.event.ContextStartedEvent;
+import org.springframework.context.event.EventListener;
+
+@Configuration
+@Log4j2
+public class ApplicationConfiguration {
+    //
 //    @Resource(lookup = "java:comp/env/instanceName")
 //    private String instanceName;
 //    @Resource(lookup = "java:app/AppName")
@@ -27,8 +19,8 @@
 //    @Resource(lookup = "jdbc/configstorage")
 //    private DataSource configstorageDataSource;
 //
-//    @Autowired
-//    public LoggerConfigurator loggerConfigurator;
+    @Autowired
+    public LoggerConfigurator loggerConfigurator;
 //
 //    @Bean
 //    public ConfigurationStoredParameters configurationStoredParameters() {
@@ -48,11 +40,11 @@
 //        });
 //        return (ConfigurationStoredParameters) result;
 //    }
-//
-//    @EventListener(ContextStartedEvent.class)
-//    public void refresh() {
-//        loggerConfigurator.reconfigure();
-//        log.info("Context refreshed. Logger reconfigured.");
-//    }
-//
-//}
+
+    @EventListener(ContextStartedEvent.class)
+    public void refresh() {
+        loggerConfigurator.reconfigure();
+        log.info("Context refreshed. Logger reconfigured.");
+    }
+
+}

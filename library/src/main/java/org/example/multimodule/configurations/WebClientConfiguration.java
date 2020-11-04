@@ -1,6 +1,7 @@
 package org.example.multimodule.configurations;
 
 import org.example.multimodule.dto.ResponsePackageShow;
+import org.example.multimodule.dto.ResponseResourceShow;
 import org.example.multimodule.infrastructure.ConfigurationStoredParameters;
 import org.example.multimodule.models.ClientParams;
 import org.example.multimodule.models.ProxyParams;
@@ -13,10 +14,15 @@ import javax.security.auth.login.LoginException;
 
 public class WebClientConfiguration {
 
-
     @Bean(name = "packageShowOdpClient")
     public ODPClient<ResponsePackageShow> packageShowODPClient(@Autowired ClientParams clientParams,
                                                                @Autowired ProxyParams proxyParams) throws LoginException {
+        return new ODPClientImpl<>(clientParams,proxyParams);
+    }
+
+    @Bean(name = "resourceShowOdpClient")
+    public ODPClient<ResponseResourceShow> resourceShowOdpClient(@Autowired ClientParams clientParams,
+                                                                 @Autowired ProxyParams proxyParams) throws LoginException {
         return new ODPClientImpl<>(clientParams,proxyParams);
     }
 
