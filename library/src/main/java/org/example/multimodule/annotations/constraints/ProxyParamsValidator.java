@@ -4,9 +4,7 @@ import lombok.extern.log4j.Log4j2;
 import org.example.multimodule.exceptions.ODPClientException;
 import org.example.multimodule.models.ProxyParams;
 import org.example.multimodule.service.J2CInfo;
-import org.example.multimodule.service.impl.J2CInfoImpl;
 import org.example.multimodule.utils.Utils;
-import sun.security.x509.DNSName;
 
 import javax.security.auth.login.LoginException;
 import javax.validation.ConstraintValidator;
@@ -15,8 +13,6 @@ import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.nio.charset.StandardCharsets;
 import java.util.Objects;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 @Log4j2
 public class ProxyParamsValidator implements ConstraintValidator<ValidProxyParams, ProxyParams> {
