@@ -9,7 +9,7 @@ import org.springframework.context.event.EventListener;
 
 @Configuration
 @Log4j2
-public class ApplicationConfiguration {
+public class WebAppConfiguration {
     //
 //    @Resource(lookup = "java:comp/env/instanceName")
 //    private String instanceName;
