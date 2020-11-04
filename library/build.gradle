@@ -6,6 +6,10 @@ plugins {
 version '1.0.0.0'
 
 dependencies {
+    compileOnly (
+            "com.ibm.websphere.appserver:was_public:${wasPublic}",
+            "javax:javaee-api:${javaeeApi}"
+    )
     compileOnly("org.springframework.boot:spring-boot-starter-actuator:${springBoot}") {
         exclude group: 'org.springframework.boot', module: 'spring-boot-starter-logging'
     }
@@ -14,14 +18,25 @@ dependencies {
         exclude group: 'org.springframework.boot', module: 'spring-boot-starter-logging'
     }
 
+    compileOnly "org.apache.commons:commons-text:${apacheCommonText}"
+    compileOnly "org.example:configstorage:${configstorage}"
+
     compileOnly "org.projectlombok:lombok:${lombok}"
     annotationProcessor "org.projectlombok:lombok:${lombok}"
 
-    compileOnly ("org.springframework.boot:spring-boot-starter-data-jpa:${springDataJPA}") {
+    compileOnly("org.springframework.boot:spring-boot-starter-data-jpa:${springDataJPA}") {
         exclude group: 'org.springframework.boot', module: 'spring-boot-starter-logging'
     }
 
     compileOnly "org.springframework.boot:spring-boot-starter-log4j2:${springBoot}"
+
+    compileOnly(
+            "org.apache.cxf:cxf-rt-rs-client:${cxf}",
+            "org.apache.cxf:cxf-rt-transports-http-hc:${cxf}",
+            "com.fasterxml.jackson.jaxrs:jackson-jaxrs-json-provider:${jaxrsJsonProvider}"
+    )
+
+    compileOnly('org.springframework.boot:spring-boot-starter-validation')
 }
 
 jar {

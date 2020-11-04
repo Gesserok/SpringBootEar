@@ -1,4 +1,4 @@
-package org.example.multimodule.application.infrastructure;
+package org.example.multimodule.infrastructure;
 
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.ObjectFactory;

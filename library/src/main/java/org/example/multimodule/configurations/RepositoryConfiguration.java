@@ -28,11 +28,6 @@ public class RepositoryConfiguration {
         return SessionFactoryUtils.getDataSource(sessionFactory);
     }
 
-//    @Bean(name = "sessionFactory")
-//    public SessionFactory sessionFactory(@Autowired EntityManagerFactory entityManagerFactory) {
-//        return entityManagerFactory.unwrap(SessionFactory.class);
-//    }
-
     @Bean(name = "transactionManager")
     public PlatformTransactionManager transactionManager(
             @Autowired DataSource dataSource,

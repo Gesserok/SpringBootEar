@@ -24,9 +24,8 @@ dependencies {
     compileOnly ("javax.servlet:javax.servlet-api:${servletApi}")
     compileOnly ("javax:javaee-api:${javaeeApi}")
 
-    compileOnly "org.apache.commons:commons-text:${apacheCommonText}"
+
     compileOnly "com.ibm.websphere.appserver:was_public:${wasPublic}"
-    compileOnly "org.example:configstorage:${configstorage}"
 
 //    testCompile group: 'com.h2database', name: 'h2', version: '1.4.200'
 

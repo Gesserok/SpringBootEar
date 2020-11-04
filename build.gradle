@@ -74,6 +74,14 @@ dependencies {
     earlib ("org.springframework.boot:spring-boot-starter-data-jpa:${springDataJPA}") {
         exclude group: 'org.springframework.boot', module: 'spring-boot-starter-logging'
     }
+
+    earlib('org.springframework.boot:spring-boot-starter-validation')
+
+    earlib(
+            "org.apache.cxf:cxf-rt-rs-client:${cxf}",
+            "org.apache.cxf:cxf-rt-transports-http-hc:${cxf}",
+            "com.fasterxml.jackson.jaxrs:jackson-jaxrs-json-provider:${jaxrsJsonProvider}"
+    )
 }
 
 ear {

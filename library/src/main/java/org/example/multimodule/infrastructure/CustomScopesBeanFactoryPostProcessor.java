@@ -1,4 +1,4 @@
-package org.example.multimodule.application.infrastructure;
+package org.example.multimodule.infrastructure;
 
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.config.BeanFactoryPostProcessor;

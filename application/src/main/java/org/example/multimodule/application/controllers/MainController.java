@@ -1,7 +1,7 @@
 package org.example.multimodule.application.controllers;
 
 import lombok.extern.log4j.Log4j2;
-import org.example.multimodule.application.infrastructure.ConfigurationStoredParameters;
+import org.example.multimodule.infrastructure.ConfigurationStoredParameters;
 import org.example.multimodule.models.Passport;
 import org.example.multimodule.models.Region;
 import org.example.multimodule.service.RegionService;
@@ -9,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -46,10 +45,10 @@ public class MainController {
         return region;
     }
 
-    @GetMapping("/version")
-    public String version() {
-        log.info("Hello");
-        return parameters.logLevel() + " " + parameters.logPath();
-
-    }
+//    @GetMapping("/version")
+//    public String version() {
+//        log.info("Hello");
+//        return parameters.logLevel() + " " + parameters.logPath();
+//
+//    }
 }
