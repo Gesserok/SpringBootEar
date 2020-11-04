@@ -71,10 +71,11 @@ dependencies {
     earlib "org.apache.commons:commons-text:${apacheCommonText}"
     earlib "org.example:configstorage:${configstorage}"
 
-    earlib(
-            "org.springframework.boot:spring-boot-starter-data-jpa:${springBoot}",
-            "org.springframework.boot:spring-boot-starter-validation:${springBoot}"
-    ) {
+    earlib("org.springframework.boot:spring-boot-starter-data-jpa:${springBoot}") {
+        exclude group: 'org.springframework.boot', module: 'spring-boot-starter-logging'
+    }
+
+    earlib("org.springframework.boot:spring-boot-starter-validation:${springBoot}") {
         exclude group: 'org.springframework.boot', module: 'spring-boot-starter-logging'
     }
 
