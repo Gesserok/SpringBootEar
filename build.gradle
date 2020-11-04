@@ -57,12 +57,12 @@ allprojects {
 
 dependencies {
     deploy project(path: ':application', configuration: 'archives')
-	earlib project(':library')
+    earlib project(':library')
 
-    earlib ("org.springframework.boot:spring-boot-starter-actuator:${springBoot}") {
+    earlib("org.springframework.boot:spring-boot-starter-actuator:${springBoot}") {
         exclude group: 'org.springframework.boot', module: 'spring-boot-starter-logging'
     }
-    earlib ("com.lmax:disruptor:${comLmax}")
+    earlib("com.lmax:disruptor:${comLmax}")
     earlib("org.springframework.boot:spring-boot-starter-web:${springBoot}") {
         exclude group: 'org.springframework.boot', module: 'spring-boot-starter-tomcat'
         exclude group: 'org.springframework.boot', module: 'spring-boot-starter-logging'
@@ -71,11 +71,12 @@ dependencies {
     earlib "org.apache.commons:commons-text:${apacheCommonText}"
     earlib "org.example:configstorage:${configstorage}"
 
-    earlib ("org.springframework.boot:spring-boot-starter-data-jpa:${springBoot}") {
+    earlib(
+            "org.springframework.boot:spring-boot-starter-data-jpa:${springBoot}",
+            "org.springframework.boot:spring-boot-starter-validation:${springBoot}"
+    ) {
         exclude group: 'org.springframework.boot', module: 'spring-boot-starter-logging'
     }
-
-    earlib("org.springframework.boot:spring-boot-starter-validation:${springBoot}")
 
     earlib(
             "org.apache.cxf:cxf-rt-rs-client:${cxf}",
