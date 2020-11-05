@@ -17,7 +17,7 @@ import java.sql.SQLException;
 
 @Configuration
 @Log4j2
-public class ApplicationConfiguration {
+public class LibraryApplicationConfiguration {
 
     @Resource(lookup = "java:comp/env/instanceName")
     private String instanceName;
