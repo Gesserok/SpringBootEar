@@ -49,10 +49,4 @@ public class LibraryApplicationConfiguration {
         return (ConfigurationStoredParameters) result;
     }
 
-    @EventListener(ContextStartedEvent.class)
-    public void refresh() {
-        loggerConfigurator.reconfigure();
-        log.info("Context refreshed. Logger reconfigured.");
-    }
-
 }
