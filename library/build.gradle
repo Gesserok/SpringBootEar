@@ -19,7 +19,7 @@ dependencies {
     }
 
     compileOnly "org.apache.commons:commons-text:${apacheCommonText}"
-    compileOnly "org.example:configstorage:${configstorage}"
+    compileOnly "org.example:config-repo:${configstorage}"
 
     compileOnly "org.projectlombok:lombok:${lombok}"
     annotationProcessor "org.projectlombok:lombok:${lombok}"
