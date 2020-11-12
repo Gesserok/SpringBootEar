@@ -1,11 +1,8 @@
 package org.example.multimodule.models;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
-@Getter
-@Setter
+@Data
 @AllArgsConstructor
 public class ClientParams {
     private String baseAddress;
