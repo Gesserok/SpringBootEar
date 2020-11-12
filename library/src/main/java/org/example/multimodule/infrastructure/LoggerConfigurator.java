@@ -29,7 +29,7 @@ public class LoggerConfigurator {
         System.setProperty(LOG_PATH_SYSTEM_PROPERTY, parameters.logPath());
 
         final LoggerContext context = ((Logger) log).getContext();
-        final URL configLocation = getClass().getClassLoader().getResource("log4j2.xml");
+        final URL configLocation = getClass().getClassLoader().getResource("log4j2-boot.xml");
 
         try {
             context.setConfigLocation(Objects.requireNonNull(configLocation).toURI());
