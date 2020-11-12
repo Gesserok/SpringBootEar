@@ -3,10 +3,7 @@ package org.example.multimodule.application.configuration;
 import lombok.extern.log4j.Log4j2;
 import org.example.multimodule.infrastructure.LoggerConfigurator;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.context.event.ApplicationPreparedEvent;
-import org.springframework.boot.context.event.ApplicationReadyEvent;
-import org.springframework.boot.context.event.ApplicationStartedEvent;
-import org.springframework.boot.context.event.ApplicationStartingEvent;
+import org.springframework.boot.context.event.*;
 import org.springframework.boot.web.context.WebServerInitializedEvent;
 import org.springframework.context.ApplicationEvent;
 import org.springframework.context.annotation.Configuration;
@@ -49,7 +46,7 @@ public class WebAppConfiguration {
 //        return (ConfigurationStoredParameters) result;
 //    }
 
-    @EventListener(WebServerInitializedEvent.class)
+    @EventListener(ApplicationContextInitializedEvent.class)
     public void webServerInitializedEvent() {
         loggerConfigurator.reconfigure();
         log.info("WebServerInitializedEvent. Logger reconfigured.");
