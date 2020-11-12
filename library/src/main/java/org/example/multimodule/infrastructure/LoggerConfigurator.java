@@ -7,6 +7,7 @@ import org.apache.logging.log4j.core.LoggerContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import javax.annotation.PostConstruct;
 import java.net.URL;
 import java.util.Objects;
 
@@ -20,6 +21,7 @@ public class LoggerConfigurator {
     private static final String LOG_LEVEL_SYSTEM_PROPERTY = "app.logging.Level";
     private static final String LOG_PATH_SYSTEM_PROPERTY = "app.logging.Path";
 
+    @PostConstruct
     public void reconfigure() {
         if (isLoggerConfigured() && logPropertiesDidNotChange()) {
             return;
