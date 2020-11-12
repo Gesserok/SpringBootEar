@@ -3,6 +3,7 @@ package org.example.multimodule.application.configuration;
 import lombok.extern.log4j.Log4j2;
 import org.example.multimodule.infrastructure.LoggerConfigurator;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.context.event.ContextStartedEvent;
@@ -45,7 +46,13 @@ public class WebAppConfiguration {
     @EventListener(ContextRefreshedEvent.class)
     public void refresh() {
         loggerConfigurator.reconfigure();
-        log.info("Context refreshed. Logger reconfigured.");
+        log.info("ContextRefreshedEvent. Logger reconfigured.");
+    }
+
+    @EventListener(ApplicationReadyEvent.class)
+    public void doSomethingAfterStartup1() {
+        loggerConfigurator.reconfigure();
+        log.info("ApplicationReadyEvent. Logger reconfigured.");
     }
 
 }
