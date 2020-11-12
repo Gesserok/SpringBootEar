@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="info" strict="true" name="Application">
+
+    <Properties>
+        <Property name="logFileName">
+            ${sys:app.logging.Path}${sys:file.separator}Application.log
+        </Property>
+        <Property name="rollingLogFileName">
+            ${sys:app.logging.Path}${sys:file.separator}Application-%d{yyyy-MM-dd}-%i.log.gz
+        </Property>
+        <Property name="loggingLevel">${sys:app.logging.Level}</Property>
+    </Properties>
+
+    <Appenders>
+        <Console name="Console" target="SYSTEM_OUT">
+            <PatternLayout pattern="%d{ISO8601} %logger{36} - %msg%xEx%n"/>
+            <!--            <PatternLayout pattern="%d{yyyy.MM.dd HH:mm:ss.SSS} %logger{36} - %msg%xEx%n"/>-->
+        </Console>
+
+        <RollingRandomAccessFile type="RollingRandomAccessFile" name="File" fileName="${logFileName}"
+                                 filePattern="${rollingLogFileName}">
+
+            <PatternLayout charset="UTF-8"
+                           pattern="%d{ISO8601} [%t] [%-5level] %C{1.}.%M(%F:%L) - %msg%xEx%n"/>
+
+            <Policies>
+                <OnStartupTriggeringPolicy/>
+                <SizeBasedTriggeringPolicy size="100 MB"/>
+                <TimeBasedTriggeringPolicy/>
+            </Policies>
+            <DefaultRolloverStrategy max="30"/>
+        </RollingRandomAccessFile>
+    </Appenders>
+
+    <Loggers>
+        <AsyncRoot level="${loggingLevel}" includeLocation="true" additivity="false">
+            <AppenderRef ref="File"/>
+        </AsyncRoot>
+    </Loggers>
+</Configuration>
