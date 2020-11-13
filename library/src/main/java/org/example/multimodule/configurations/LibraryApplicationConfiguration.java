@@ -16,7 +16,6 @@ import javax.sql.DataSource;
 import java.sql.SQLException;
 
 @Configuration
-@Log4j2
 public class LibraryApplicationConfiguration {
 
     @Resource(lookup = "java:comp/env/instanceName")
@@ -26,9 +25,6 @@ public class LibraryApplicationConfiguration {
 
     @Resource(lookup = "jdbc/configstorage")
     private DataSource configstorageDataSource;
-
-    @Autowired
-    public LoggerConfigurator loggerConfigurator;
 
     @Bean
     public ConfigurationStoredParameters configurationStoredParameters() {
