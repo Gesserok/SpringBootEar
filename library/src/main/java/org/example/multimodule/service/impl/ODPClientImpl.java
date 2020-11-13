@@ -90,10 +90,19 @@ public class ODPClientImpl<T> implements ODPClient<T> {
         tlsClientParameters.setUseHttpsURLConnectionDefaultSslSocketFactory(true);
         tlsClientParameters.setUseHttpsURLConnectionDefaultHostnameVerifier(true);
         httpConduit.setTlsClientParameters(tlsClientParameters);
-        httpConduit.setProxyAuthorization(proxyAuthorizationPolicy(proxyParams));
+        if (Objects.nonNull(proxyParams.getHost())
+                && Objects.nonNull(proxyParams.getProxyAuth())
+                && proxyParams.getPort() != 0) {
+
+            httpConduit.setProxyAuthorization(proxyAuthorizationPolicy(proxyParams));
+        }
         httpConduit.setProxyAuthSupplier(basicAuthSupplier());
-        httpClientPolicy.setProxyServer(proxyParams.getHost());
-        httpClientPolicy.setProxyServerPort(proxyParams.getPort());
+        if (Objects.nonNull(proxyParams.getHost())
+                && Objects.nonNull(proxyParams.getProxyAuth())
+                && proxyParams.getPort() != 0) {
+            httpClientPolicy.setProxyServer(proxyParams.getHost());
+            httpClientPolicy.setProxyServerPort(proxyParams.getPort());
+        }
     }
 
     private HttpAuthSupplier basicAuthSupplier() {
