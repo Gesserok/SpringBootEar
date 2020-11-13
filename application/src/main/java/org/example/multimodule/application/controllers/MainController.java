@@ -1,9 +1,11 @@
 package org.example.multimodule.application.controllers;
 
 import lombok.extern.log4j.Log4j2;
+import org.example.multimodule.dto.ResponsePackageShow;
 import org.example.multimodule.infrastructure.ConfigurationStoredParameters;
 import org.example.multimodule.models.Passport;
 import org.example.multimodule.models.Region;
+import org.example.multimodule.service.ODPClient;
 import org.example.multimodule.service.RegionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,32 +19,18 @@ import java.util.List;
 public class MainController {
 
     @Autowired
-    private ConfigurationStoredParameters parameters;
+    private ODPClient<ResponsePackageShow> odpClient;
 
     @Autowired
     private RegionService regionService;
 
     @GetMapping("/")
-    public Region home() {
+    public ResponsePackageShow home() {
 
-        Region region = new Region();
-        region.setResourceId("1");
-        region.setResourceRevisionUrl("http://res.in");
 
-        Passport passport = new Passport();
-        passport.setDNumber("1");
-        passport.setDSeries("A");
-        passport.setDStatus("fail");
-        passport.setDType("passport");
-        passport.setInsertDate("asdasd");
-        passport.setOvd("asd");
-        passport.setTheftData("asdsad");
-        passport.setExternalId(1L);
-        List<Passport> passports = new ArrayList<>();
-        passports.add(passport);
-        region.setPassports(passports);
-        regionService.save(region);
-        return region;
+        ResponsePackageShow package_show = odpClient.getResponse("package_show", "ab09ed00-4f51-4f6c-a2f7-1b2fb118be0f", ResponsePackageShow.class);
+
+        return package_show;
     }
 
 //    @GetMapping("/version")

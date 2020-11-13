@@ -32,9 +32,10 @@ import java.util.Objects;
 public class ODPClientImpl<T> implements ODPClient<T> {
 
     private final WebClient webClient;
+    private final ClientParams clientParams;
 
     public ODPClientImpl(@ValidClientParams ClientParams clientParams, @ValidProxyParams ProxyParams proxyParams) throws LoginException {
-
+        this.clientParams = clientParams;
         List<Object> providers = new ArrayList<>();
         providers.add(new JacksonJaxbJsonProvider());
 
@@ -53,7 +54,7 @@ public class ODPClientImpl<T> implements ODPClient<T> {
 
     @Override
     public T getResponse(String url, String id, Class<T> tClass) {
-        WebClient client = webClient.path(url);
+        WebClient client = webClient.path(clientParams.getBaseAddress() + url);
 
         if (Objects.nonNull(id) && !id.isEmpty()) {
             client.query("id", id);
