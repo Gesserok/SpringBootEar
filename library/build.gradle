@@ -33,7 +33,9 @@ dependencies {
     compileOnly(
             "org.apache.cxf:cxf-rt-rs-client:${cxf}",
             "org.apache.cxf:cxf-rt-transports-http-hc:${cxf}",
-            "com.fasterxml.jackson.jaxrs:jackson-jaxrs-json-provider:${jaxrsJsonProvider}"
+            "com.fasterxml.jackson.jaxrs:jackson-jaxrs-json-provider:${jaxrsJsonProvider}",
+            "com.fasterxml.jackson.datatype:jackson-datatype-jsr310:${jaxrsJsonProvider}",
+            "com.fasterxml.jackson.core:jackson-databind:${jaxrsJsonProvider}"
     )
 
     compileOnly("org.springframework.boot:spring-boot-starter-validation:${springBoot}"){
