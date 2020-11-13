@@ -2,7 +2,6 @@ package org.example.multimodule.configurations;
 
 import lombok.extern.log4j.Log4j2;
 import org.example.multimodule.dto.ResponsePackageShow;
-import org.example.multimodule.dto.ResponseResourceShow;
 import org.example.multimodule.infrastructure.ConfigurationStoredParameters;
 import org.example.multimodule.models.ClientParams;
 import org.example.multimodule.models.ProxyParams;

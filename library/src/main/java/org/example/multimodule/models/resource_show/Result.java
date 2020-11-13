@@ -1,62 +1,61 @@
+package org.example.multimodule.models.resource_show;
 
-package org.example.multimodule.dto;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.util.List;
-import javax.annotation.Generated;
-import com.google.gson.annotations.Expose;
-import com.google.gson.annotations.SerializedName;
 
-@Generated("net.hexar.json2pojo")
-@SuppressWarnings("unused")
+@NoArgsConstructor
+@Data
 public class Result {
 
-    @Expose
     private Archiver archiver;
-    @SerializedName("cache_last_updated")
+    @JsonProperty("cache_last_updated")
     private Object cacheLastUpdated;
-    @SerializedName("cache_url")
+    @JsonProperty("cache_url")
     private Object cacheUrl;
-    @Expose
+
     private String created;
-    @SerializedName("datastore_active")
+    @JsonProperty("datastore_active")
     private Boolean datastoreActive;
-    @Expose
+
     private String description;
-    @SerializedName("file_hash_sum")
+    @JsonProperty("file_hash_sum")
     private String fileHashSum;
-    @Expose
+
     private String format;
-    @Expose
+
     private String hash;
-    @Expose
+
     private String id;
-    @SerializedName("last_modified")
+    @JsonProperty("last_modified")
     private String lastModified;
-    @Expose
+
     private String mimetype;
-    @SerializedName("mimetype_inner")
+    @JsonProperty("mimetype_inner")
     private Object mimetypeInner;
-    @Expose
+
     private String name;
-    @SerializedName("package_id")
+    @JsonProperty("package_id")
     private String packageId;
-    @Expose
+
     private Long position;
-    @Expose
+
     private Qa qa;
-    @SerializedName("resource_revisions")
+    @JsonProperty("resource_revisions")
     private List<ResourceRevision> resourceRevisions;
-    @SerializedName("resource_type")
+    @JsonProperty("resource_type")
     private Object resourceType;
-    @SerializedName("revision_id")
+    @JsonProperty("revision_id")
     private String revisionId;
-    @Expose
+
     private Long size;
-    @Expose
+
     private String state;
-    @Expose
+
     private String url;
-    @SerializedName("url_type")
+    @JsonProperty("url_type")
     private String urlType;
 
     public Archiver getArchiver() {

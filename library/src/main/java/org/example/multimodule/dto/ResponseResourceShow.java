@@ -1,42 +1,16 @@
-
 package org.example.multimodule.dto;
 
-import javax.annotation.Generated;
-import com.google.gson.annotations.Expose;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import org.example.multimodule.models.resource_show.Result;
 
-@Generated("net.hexar.json2pojo")
-@SuppressWarnings("unused")
+@NoArgsConstructor
+@Data
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class ResponseResourceShow {
 
-    @Expose
     private String help;
-    @Expose
     private Result result;
-    @Expose
     private Boolean success;
-
-    public String getHelp() {
-        return help;
-    }
-
-    public void setHelp(String help) {
-        this.help = help;
-    }
-
-    public Result getResult() {
-        return result;
-    }
-
-    public void setResult(Result result) {
-        this.result = result;
-    }
-
-    public Boolean getSuccess() {
-        return success;
-    }
-
-    public void setSuccess(Boolean success) {
-        this.success = success;
-    }
-
 }
