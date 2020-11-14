@@ -20,6 +20,7 @@ import java.util.Objects;
 @Component
 @AllArgsConstructor(onConstructor = @__({@Autowired}))
 @Log4j2
+
 public class MvsPassportTaskUpdaterScheduledService {
     private final PackageShowResourceResolver packageShowResourceResolver;
     private final ResourceTaskCollector resourceTaskCollector;

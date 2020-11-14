@@ -7,6 +7,7 @@ import org.springframework.boot.context.event.*;
 import org.springframework.boot.web.context.WebServerInitializedEvent;
 import org.springframework.context.ApplicationEvent;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.event.ApplicationContextEvent;
 import org.springframework.context.event.ContextRefreshedEvent;
@@ -15,6 +16,7 @@ import org.springframework.context.event.EventListener;
 
 @Configuration
 @Log4j2
+@ComponentScan(basePackages = "org.example.multimodule")
 public class WebAppConfiguration {
     //
 //    @Resource(lookup = "java:comp/env/instanceName")
