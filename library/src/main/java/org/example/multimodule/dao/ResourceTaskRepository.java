@@ -1,4 +1,4 @@
-package org.example.multimodule.repositories;
+package org.example.multimodule.dao;
 
 import org.example.multimodule.models.ResourceTask;
 import org.springframework.data.jpa.repository.JpaRepository;
