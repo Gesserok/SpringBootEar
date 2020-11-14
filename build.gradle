@@ -58,6 +58,7 @@ allprojects {
 dependencies {
     deploy project(path: ':application', configuration: 'archives')
     earlib project(':library')
+    earlib project(':scheduler')
 
     earlib("org.springframework.boot:spring-boot-starter-actuator:${springBoot}") {
         exclude group: 'org.springframework.boot', module: 'spring-boot-starter-logging'
