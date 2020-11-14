@@ -11,6 +11,7 @@
 
         <class>org.example.multimodule.models.Region</class>
         <class>org.example.multimodule.models.Passport</class>
+        <class>org.example.multimodule.models.ResourceTask</class>
 
         <properties>
             <property name="hibernate.default_schema" value="odp"/>
