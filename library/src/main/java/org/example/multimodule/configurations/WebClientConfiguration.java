@@ -2,11 +2,12 @@ package org.example.multimodule.configurations;
 
 import lombok.extern.log4j.Log4j2;
 import org.example.multimodule.dto.ResponsePackageShow;
+import org.example.multimodule.dto.ResponseResourceShow;
 import org.example.multimodule.infrastructure.ConfigurationStoredParameters;
 import org.example.multimodule.models.ClientParams;
 import org.example.multimodule.models.ProxyParams;
-import org.example.multimodule.service.ODPClient;
-import org.example.multimodule.service.impl.ODPClientImpl;
+import org.example.multimodule.services.client.ODPClient;
+import org.example.multimodule.services.client.impl.ODPClientImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

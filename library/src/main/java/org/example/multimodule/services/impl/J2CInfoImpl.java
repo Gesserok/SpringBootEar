@@ -1,9 +1,9 @@
-package org.example.multimodule.service.impl;
+package org.example.multimodule.services.impl;
 
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.example.multimodule.service.J2CInfo;
+import org.example.multimodule.services.J2CInfo;
 
 import javax.resource.spi.security.PasswordCredential;
 

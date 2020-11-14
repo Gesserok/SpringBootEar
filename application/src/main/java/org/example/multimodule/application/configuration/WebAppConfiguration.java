@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.event.*;
 import org.springframework.boot.web.context.WebServerInitializedEvent;
 import org.springframework.context.ApplicationEvent;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.event.ApplicationContextEvent;
 import org.springframework.context.event.ContextRefreshedEvent;
@@ -24,9 +25,10 @@ public class WebAppConfiguration {
 //    @Resource(lookup = "jdbc/configstorage")
 //    private DataSource configstorageDataSource;
 //
-    @Autowired
-    public LoggerConfigurator loggerConfigurator;
-//
+//    @Autowired
+//    public LoggerConfigurator loggerConfigurator;
+
+
 //    @Bean
 //    public ConfigurationStoredParameters configurationStoredParameters() {
 //        Object result = new TimedCachebleScope().get("storedParameters", () -> {

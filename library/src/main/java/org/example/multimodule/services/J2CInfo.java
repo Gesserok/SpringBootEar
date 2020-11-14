@@ -1,9 +1,7 @@
-package org.example.multimodule.service;
+package org.example.multimodule.services;
 
 import com.ibm.wsspi.security.auth.callback.WSMappingCallbackHandler;
-import lombok.Getter;
-import lombok.Setter;
-import org.example.multimodule.service.impl.J2CInfoImpl;
+import org.example.multimodule.services.impl.J2CInfoImpl;
 
 import javax.resource.spi.security.PasswordCredential;
 import javax.security.auth.login.LoginContext;

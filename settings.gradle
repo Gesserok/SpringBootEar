@@ -1,4 +1,5 @@
 rootProject.name = 'SpringBootEar'
 
 include ':library'
+include ':scheduler'
 include ':application'

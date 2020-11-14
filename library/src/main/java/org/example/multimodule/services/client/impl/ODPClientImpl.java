@@ -1,4 +1,4 @@
-package org.example.multimodule.service.impl;
+package org.example.multimodule.services.client.impl;
 
 import com.fasterxml.jackson.jaxrs.json.JacksonJaxbJsonProvider;
 import lombok.extern.log4j.Log4j2;
@@ -17,8 +17,9 @@ import org.example.multimodule.exceptions.ODPClientSocketTimeoutException;
 import org.example.multimodule.infrastructure.impl.BasicAuthenticator;
 import org.example.multimodule.models.ClientParams;
 import org.example.multimodule.models.ProxyParams;
-import org.example.multimodule.service.J2CInfo;
-import org.example.multimodule.service.ODPClient;
+import org.example.multimodule.services.J2CInfo;
+import org.example.multimodule.services.client.ODPClient;
+import org.example.multimodule.services.impl.J2CInfoImpl;
 
 import javax.security.auth.login.LoginException;
 import javax.ws.rs.NotFoundException;
@@ -30,7 +31,6 @@ import java.util.Objects;
 
 @Log4j2
 public class ODPClientImpl<T> implements ODPClient<T> {
-
     private final WebClient webClient;
     private final ClientParams clientParams;
 

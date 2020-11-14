@@ -3,9 +3,8 @@ package org.example.multimodule.annotations.constraints;
 import lombok.extern.log4j.Log4j2;
 import org.example.multimodule.exceptions.ODPClientException;
 import org.example.multimodule.models.ClientParams;
-import org.example.multimodule.service.J2CInfo;
+import org.example.multimodule.services.J2CInfo;
 import org.example.multimodule.utils.Utils;
-import org.springframework.http.MediaType;
 
 import javax.security.auth.login.LoginException;
 import javax.validation.ConstraintValidator;
