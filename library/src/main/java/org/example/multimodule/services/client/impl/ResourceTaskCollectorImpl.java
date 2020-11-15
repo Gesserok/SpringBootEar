@@ -30,6 +30,6 @@ public class ResourceTaskCollectorImpl implements ResourceTaskCollector {
                 .peek(log::debug)
                 .forEach(tasks::addAll);
 
-        return null;
+        return tasks;
     }
 }
