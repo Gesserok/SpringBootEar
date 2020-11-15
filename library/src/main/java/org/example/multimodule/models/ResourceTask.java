@@ -50,7 +50,8 @@ public class ResourceTask {
 //                DateTimeFormatter.ofPattern("ddMMyyyy"));
         final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
         this.dateRevision = LocalDateTime.parse(resourceRevision.getResourceCreated(), formatter);
-        this.dayRevision = Integer.parseInt(url.substring(url.lastIndexOf("_") + 1));
+        String resourceUrl = resourceRevision.getUrl();
+        this.dayRevision = Integer.parseInt(resourceUrl.substring(resourceUrl.lastIndexOf("_") + 1));
     }
 
     public ResourceTask(Result result) {
