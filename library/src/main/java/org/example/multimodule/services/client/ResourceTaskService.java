@@ -8,4 +8,6 @@ public interface ResourceTaskService {
     List<ResourceTask> updateTaskList(List<ResourceTask> newResourceTasks);
 
     List<ResourceTask> findAll();
+
+    ResourceTask save(ResourceTask resourceTask);
 }

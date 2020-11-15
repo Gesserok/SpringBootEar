@@ -29,4 +29,9 @@ public class ResourceTaskServiceImpl implements ResourceTaskService {
     public List<ResourceTask> findAll() {
         return resourceTaskRepository.findAll();
     }
+
+    @Override
+    public ResourceTask save(ResourceTask resourceTask) {
+        return resourceTaskRepository.save(resourceTask);
+    }
 }
