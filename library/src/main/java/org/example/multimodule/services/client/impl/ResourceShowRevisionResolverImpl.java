@@ -53,8 +53,5 @@ public class ResourceShowRevisionResolverImpl implements ResourceShowRevisionRes
                 .map(resourceRevision -> new ResourceTask(resource, resourceRevision))
                 .peek(resourceTask -> log.debug("Resource added to list"))
                 .collect(Collectors.toList());
-
-
-        return ;
     }
 }
