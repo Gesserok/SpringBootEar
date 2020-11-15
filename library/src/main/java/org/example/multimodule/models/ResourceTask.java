@@ -23,22 +23,22 @@ public class ResourceTask {
     @SequenceGenerator(name = "resource_task_gen", sequenceName = "gen_resource_task_id", allocationSize = 1)
     private Long id;
 
-    @Column(name = "NAME")
+    @Column(name = "name")
     private String name;
 
-    @Column(name = "ADDED_TIME")
+    @Column(name = "added_time")
     private LocalDateTime addedTime;
 
-    @Column(name = "DAY_REVISION")
+    @Column(name = "day_revision")
     private Integer dayRevision;
 
-    @Column(name = "DATE_REVISION")
+    @Column(name = "date_revision")
     private LocalDateTime dateRevision;
 
-    @Column(name = "URL")
+    @Column(name = "url")
     private String url;
 
-    @Column(name = "UPLOAD_TIME")
+    @Column(name = "upload_time")
     private LocalDateTime uploadTime;
 
     public ResourceTask(Resource resource, ResourceRevision resourceRevision) {
