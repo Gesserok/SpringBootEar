@@ -45,9 +45,9 @@ public class ResourceTask {
         this.name = resource.getName();
         this.addedTime = LocalDateTime.now();
         this.url = resource.getUrl();
-        LocalDate localDate = LocalDate.parse(
-                url.substring(url.lastIndexOf("/") + 1, url.lastIndexOf("_")),
-                DateTimeFormatter.ofPattern("ddMMyyyy"));
+//        LocalDate localDate = LocalDate.parse(
+//                url.substring(url.lastIndexOf("/") + 1, url.lastIndexOf("_")),
+//                DateTimeFormatter.ofPattern("ddMMyyyy"));
         final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
         this.dateRevision = LocalDateTime.parse(resourceRevision.getResourceCreated(), formatter);
         this.dayRevision = Integer.parseInt(url.substring(url.lastIndexOf("_") + 1));
@@ -66,7 +66,7 @@ public class ResourceTask {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         ResourceTask that = (ResourceTask) o;
-        return dayRevision == that.dayRevision &&
+        return dayRevision.equals(that.dayRevision) &&
                 Objects.equals(name, that.name) &&
                 Objects.equals(dateRevision, that.dateRevision) &&
                 Objects.equals(url, that.url);
