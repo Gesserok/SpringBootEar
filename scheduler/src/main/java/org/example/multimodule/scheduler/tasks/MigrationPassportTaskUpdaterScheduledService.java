@@ -20,8 +20,8 @@ import java.util.Objects;
 @Component
 @AllArgsConstructor(onConstructor = @__({@Autowired}))
 @Log4j2
-public class MvsPassportTaskUpdaterScheduledService {
-
+public class MigrationPassportTaskUpdaterScheduledService {
+    
     private final PackageShowResourceResolver packageShowResourceResolver;
     private final ResourceTaskCollector resourceTaskCollector;
     private final NewResourceTaskSearcher newResourceTaskSearcher;
@@ -29,19 +29,19 @@ public class MvsPassportTaskUpdaterScheduledService {
     private final ConfigurationStoredParameters parameters;
 
     @Scheduled(cron = "#{@getCron}")
-    public void saveMvsResourceTasks() {
-        List<Resource> resources = packageShowResourceResolver.getResources(parameters.packageId());
+    public void saveMigrationServiceResourceTasks() {
+        List<Resource> resources = packageShowResourceResolver.getResources(parameters.migrationUkrPassportsPackageId());
         log.info("After filtering left " + resources.size() + " resources");
 
         List<ResourceTask> resourceTasks = resourceTaskCollector.collect(resources);
-        log.info("MVS-UkrPassports Open Data Portal contains " + resourceTasks.size() + " revisions");
+        log.info("MigrationService-UkrPassports Open Data Portal contains " + resourceTasks.size() + " revisions");
 
         List<ResourceTask> newResourceTasks = newResourceTaskSearcher.getNewTask(resourceTasks);
-        log.info("Among the " + resourceTasks.size() + " tasks on the MVS-UkrPassports portal, there are " + newResourceTasks.size() + " new ones");
+        log.info("Among the " + resourceTasks.size() + " tasks on the MigrationService-UkrPassports portal, there are " + newResourceTasks.size() + " new ones");
 
         List<ResourceTask> savedResourceTasks = resourceTaskService.updateTaskList(newResourceTasks);
-        String logAdd = " new resourceTasks saved to DB - MVS-UkrPassports";
-        log.info(Objects.nonNull(savedResourceTasks)
+        String logAdd = " new resourceTasks saved to DB - MigrationService-UkrPassports";
+        log.info(Objects.nonNull(savedResourceTasks) 
                 ? savedResourceTasks.size()  + logAdd
                 : 0 + logAdd);
     }
