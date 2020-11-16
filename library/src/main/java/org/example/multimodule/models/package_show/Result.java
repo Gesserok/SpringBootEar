@@ -13,6 +13,9 @@ public class Result {
 
     private Archiver archiver;
 
+    @JsonProperty("title_chosen")
+    private String titleChosen;
+
     private String author;
     @JsonProperty("author_email")
     private String authorEmail;
