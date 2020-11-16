@@ -28,7 +28,7 @@ public class MigrationPassportTaskUpdaterScheduledService {
     private final ResourceTaskService resourceTaskService;
     private final ConfigurationStoredParameters parameters;
 
-    @Scheduled(cron = "#{@getCron}")
+    @Scheduled(cron = "#{@getMigrationCron}")
     public void saveMigrationServiceResourceTasks() {
         List<Resource> resources = packageShowResourceResolver.getResources(parameters.migrationUkrPassportsPackageId());
         log.info("After filtering left " + resources.size() + " resources");
@@ -47,7 +47,7 @@ public class MigrationPassportTaskUpdaterScheduledService {
     }
 
     @Bean
-    protected String getCron() {
+    protected String getMigrationCron() {
         return parameters.cron();
     }
 
