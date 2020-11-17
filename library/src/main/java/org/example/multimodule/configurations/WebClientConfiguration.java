@@ -73,7 +73,11 @@ public class WebClientConfiguration {
                 || Objects.isNull(proxyParams.getPort())
                 || proxyParams.getPort() == 0) {
             log.info("Proxy is not set");
-            return null;
+            return new Proxy(Proxy.Type.DIRECT,
+                    new InetSocketAddress(
+                            proxyParams.getHost(),
+                            proxyParams.getPort()
+                    ));
         }
 
         return log.traceExit("Proxy set ", new Proxy(
