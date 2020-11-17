@@ -9,6 +9,7 @@ import org.example.multimodule.db.RegionCreator;
 import org.example.multimodule.load.ResourceTaskLoader;
 import org.example.multimodule.models.Region;
 import org.example.multimodule.models.ResourceTask;
+import org.example.multimodule.services.client.ResourceTaskService;
 import org.example.multimodule.services.db.RegionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -28,6 +29,7 @@ public class ResourceTaskLoaderImpl implements ResourceTaskLoader {
     private final ResourceConnection resourceConnection;
     private final RegionCreator regionCreator;
     private final RegionService regionService;
+    private final ResourceTaskService resourceTaskService;
 
     @Override
     public void saveRegions(ResourceTask resourceTask) {
@@ -35,7 +37,7 @@ public class ResourceTaskLoaderImpl implements ResourceTaskLoader {
         regionService.deleteAllByResourceId(resourceTask.getName());
         try (Reader reader = new InputStreamReader(connection.getInputStream(), StandardCharsets.UTF_8)) {
 
-            Iterator<CSVRecord> iterator  = CSVFormat.DEFAULT.withDelimiter(';')
+            Iterator<CSVRecord> iterator = CSVFormat.DEFAULT.withDelimiter(';')
                     .withFirstRecordAsHeader()
                     .withIgnoreHeaderCase(true)
                     .parse(reader)
@@ -50,10 +52,7 @@ public class ResourceTaskLoaderImpl implements ResourceTaskLoader {
             log.error("IT IS ERROR HERE");
         }
 
+        resourceTaskService.updateStatus(resourceTask);
 
-
-//        while (connection)
-
-//        regionCreator.create()
     }
 }

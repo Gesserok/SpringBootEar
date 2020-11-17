@@ -10,4 +10,6 @@ public interface ResourceTaskService {
     List<ResourceTask> findAll();
 
     ResourceTask save(ResourceTask resourceTask);
+
+    ResourceTask updateStatus(ResourceTask resourceTask);
 }
