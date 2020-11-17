@@ -80,6 +80,8 @@ dependencies {
         exclude group: 'org.springframework.boot', module: 'spring-boot-starter-logging'
     }
 
+    earlib "org.apache.commons:commons-csv:${apacheCsv}"
+
     earlib(
             "org.apache.cxf:cxf-rt-rs-client:${cxf}",
             "org.apache.cxf:cxf-rt-transports-http-hc:${cxf}",

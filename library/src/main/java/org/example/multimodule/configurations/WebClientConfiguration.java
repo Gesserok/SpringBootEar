@@ -13,6 +13,9 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 import javax.security.auth.login.LoginException;
+import java.net.InetSocketAddress;
+import java.net.Proxy;
+import java.util.Objects;
 
 @Configuration
 @Log4j2
@@ -60,6 +63,27 @@ public class WebClientConfiguration {
         );
         log.traceExit("ClientParams initialized: \n" + clientParams);
         return clientParams;
+    }
+
+    @Bean
+    public Proxy proxy(@Autowired ProxyParams proxyParams) {
+
+        if (Objects.isNull(proxyParams)
+                || Objects.isNull(proxyParams.getHost())
+                || Objects.isNull(proxyParams.getPort())
+                || proxyParams.getPort() == 0) {
+            log.info("Proxy is not set");
+            return null;
+        }
+
+        return log.traceExit("Proxy set ", new Proxy(
+                        Proxy.Type.HTTP,
+                        new InetSocketAddress(
+                                proxyParams.getHost(),
+                                proxyParams.getPort()
+                        )
+                )
+        );
     }
 
 

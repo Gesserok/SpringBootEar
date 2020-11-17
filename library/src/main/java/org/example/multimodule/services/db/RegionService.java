@@ -17,4 +17,8 @@ public class RegionService {
     public void save(Region region) {
         regionRepository.save(region);
     }
+
+    public void deleteAllByResourceId(String resourceId) {
+        regionRepository.deleteAllByResourceId(resourceId);
+    }
 }

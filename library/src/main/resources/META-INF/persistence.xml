@@ -10,7 +10,7 @@
         <jta-data-source>jdbc/odp</jta-data-source>
 
         <class>org.example.multimodule.models.Region</class>
-        <class>org.example.multimodule.models.Passport</class>
+        <class>org.example.multimodule.models.MVSUkrPassport</class>
         <class>org.example.multimodule.models.ResourceTask</class>
 
         <properties>

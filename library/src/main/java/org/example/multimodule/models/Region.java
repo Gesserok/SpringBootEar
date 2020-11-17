@@ -5,10 +5,8 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.RequiredArgsConstructor;
 
 import javax.persistence.*;
-import java.math.BigDecimal;
 import java.util.List;
 
 @NoArgsConstructor
@@ -27,7 +25,12 @@ public class Region {
     @JsonProperty(value = "passports_list")
     @ElementCollection
     @CollectionTable(name = "passports", joinColumns = @JoinColumn(name = "region_id"))
-    private List<Passport> passports;
+    private List<MVSUkrPassport> mvsUkrPassports;
+
+    @JsonIgnore
+    @ElementCollection
+    @CollectionTable(name = "migration_passports", joinColumns = @JoinColumn(name = "region_id"))
+    private List<MigrationServiceUrkPassport> migrationServiceUrkPassports;
 
     @JsonProperty("resource_id")
     @Column(name = "resource_id")

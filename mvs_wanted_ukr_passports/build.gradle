@@ -11,14 +11,19 @@ dependencies {
         exclude group: 'org.springframework.boot', module: 'spring-boot-starter-tomcat'
         exclude group: 'org.springframework.boot', module: 'spring-boot-starter-logging'
     }
+    compileOnly("org.springframework.boot:spring-boot-starter-data-jpa:${springBoot}") {
+        exclude group: 'org.springframework.boot', module: 'spring-boot-starter-logging'
+    }
     compileOnly "org.springframework.boot:spring-boot-starter-log4j2:${springBoot}"
 
     compileOnly project(":library")
     compileOnly "org.example:config-repo:${configstorage}"
+    // https://mvnrepository.com/artifact/org.apache.commons/commons-csv
+    compileOnly "org.apache.commons:commons-csv:${apacheCsv}"
+
 
     compileOnly ("org.projectlombok:lombok:${lombok}")
     annotationProcessor("org.projectlombok:lombok:${lombok}")
-
 }
 
 jar {
