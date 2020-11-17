@@ -3,7 +3,9 @@ package org.example.multimodule.scheduler.configurations;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.task.TaskExecutor;
 import org.springframework.scheduling.annotation.EnableScheduling;
+import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 
 import java.time.LocalDateTime;
 
@@ -16,5 +18,17 @@ public class SchedulerConfiguration {
     public LocalDateTime localDateTime() {
         log.info("-------------------LocalDateTime------------------------------");
         return LocalDateTime.now();
+    }
+
+//    @Bean
+//    public TaskScheduler taskScheduler() {
+//        final ThreadPoolTaskScheduler taskScheduler = new ThreadPoolTaskScheduler();
+//        taskScheduler.setPoolSize(4);
+//        return taskScheduler;
+//    }
+
+    @Bean
+    public TaskExecutor taskExecutor() {
+        return new ThreadPoolTaskExecutor();
     }
 }

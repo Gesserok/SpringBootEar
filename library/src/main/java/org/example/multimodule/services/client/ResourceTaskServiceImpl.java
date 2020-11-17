@@ -42,4 +42,9 @@ public class ResourceTaskServiceImpl implements ResourceTaskService {
         currentTask.setUploadTime(LocalDateTime.now());
         return resourceTaskRepository.save(currentTask);
     }
+
+    @Override
+    public ResourceTask findFirstByNameIgnoreCaseOrderByDateRevisionDescDateRevisionDesc(String name) {
+        return resourceTaskRepository.findFirstByNameIgnoreCaseOrderByDateRevisionDescDateRevisionDesc(name);
+    }
 }

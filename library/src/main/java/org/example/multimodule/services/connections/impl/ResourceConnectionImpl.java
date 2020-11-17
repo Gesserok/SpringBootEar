@@ -1,12 +1,11 @@
-package org.example.multimodule.connections.impl;
+package org.example.multimodule.services.connections.impl;
 
 import lombok.AllArgsConstructor;
-import lombok.Data;
 import lombok.extern.log4j.Log4j2;
-import org.example.multimodule.connections.ResourceConnection;
 import org.example.multimodule.exceptions.ODPMalformedURLException;
 import org.example.multimodule.exceptions.ODPURLConnectionException;
 import org.example.multimodule.models.ResourceTask;
+import org.example.multimodule.services.connections.ResourceConnection;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -18,7 +17,7 @@ import java.net.URLConnection;
 import java.util.Objects;
 
 @Component
-@AllArgsConstructor (onConstructor = @__({@Autowired}))
+@AllArgsConstructor(onConstructor = @__({@Autowired}))
 @Log4j2
 public class ResourceConnectionImpl implements ResourceConnection {
 

@@ -12,16 +12,16 @@ import org.example.multimodule.services.client.ResourceTaskService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.scheduling.annotation.Scheduled;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Objects;
 
-@Component
+@Service
 @AllArgsConstructor(onConstructor = @__({@Autowired}))
 @Log4j2
 public class MigrationPassportTaskUpdaterScheduledService {
-    
+
     private final PackageShowResourceResolver packageShowResourceResolver;
     private final ResourceTaskCollector resourceTaskCollector;
     private final NewResourceTaskSearcher newResourceTaskSearcher;
@@ -41,8 +41,8 @@ public class MigrationPassportTaskUpdaterScheduledService {
 
         List<ResourceTask> savedResourceTasks = resourceTaskService.updateTaskList(newResourceTasks);
         String logAdd = " new resourceTasks saved to DB - MigrationService-UkrPassports";
-        log.info(Objects.nonNull(savedResourceTasks) 
-                ? savedResourceTasks.size()  + logAdd
+        log.info(Objects.nonNull(savedResourceTasks)
+                ? savedResourceTasks.size() + logAdd
                 : 0 + logAdd);
     }
 

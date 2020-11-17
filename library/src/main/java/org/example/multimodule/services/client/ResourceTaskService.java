@@ -12,4 +12,6 @@ public interface ResourceTaskService {
     ResourceTask save(ResourceTask resourceTask);
 
     ResourceTask updateStatus(ResourceTask resourceTask);
+
+    ResourceTask findFirstByNameIgnoreCaseOrderByDateRevisionDescDateRevisionDesc(String name);
 }

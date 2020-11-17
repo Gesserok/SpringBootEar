@@ -1,4 +1,4 @@
-package org.example.multimodule.connections;
+package org.example.multimodule.services.connections;
 
 import org.example.multimodule.models.ResourceTask;
 
