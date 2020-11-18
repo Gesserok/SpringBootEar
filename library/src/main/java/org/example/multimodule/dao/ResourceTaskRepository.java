@@ -13,7 +13,7 @@ public interface ResourceTaskRepository extends JpaRepository<ResourceTask, Long
 
     ResourceTask findFirstByNameIgnoreCaseOrderByDateRevisionDescDateRevisionDesc(String name);
 
-    @Query(value = "SELECT rt.id, rt.name, rt.added_time, rt.day_revision, rt,date_revision, rt.url, rt.upload_time" +
+    @Query(value = "SELECT rt.id, rt.name, rt.added_time, rt.day_revision, rt,date_revision, rt.url, rt.upload_time " +
             "FROM (SELECT id," +
             "             name," +
             "             added_time," +
