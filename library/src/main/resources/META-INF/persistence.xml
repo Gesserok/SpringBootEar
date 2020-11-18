@@ -11,6 +11,7 @@
 
         <class>org.example.multimodule.models.Region</class>
         <class>org.example.multimodule.models.MVSUkrPassport</class>
+        <class>org.example.multimodule.models.MigrationServiceUrkPassport</class>
         <class>org.example.multimodule.models.ResourceTask</class>
 
         <properties>

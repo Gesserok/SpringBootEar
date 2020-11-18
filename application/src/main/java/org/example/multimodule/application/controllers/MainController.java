@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @RestController
 @Log4j2
@@ -20,26 +21,11 @@ public class MainController {
     private ResourceTaskService resourceTaskService;
 
     @GetMapping("/")
-    public ResourceTask home() {
+    public List<ResourceTask> home() {
 
-        ResourceTask resourceTask = new ResourceTask();
-        resourceTask.setAddedTime(
-                LocalDateTime.now()
-        );
-        resourceTask.setDateRevision(
-                LocalDateTime.now()
-        );
-        resourceTask.setDayRevision(0);
-        resourceTask.setName("0000");
-        resourceTask.setUploadTime(
-                LocalDateTime.now()
-        );
+        List<ResourceTask> tasks = resourceTaskService.findAllGroupByNameAndNotUploadedOrderByDateRevisionDescDateRevisionDesc();
 
-        resourceTask.setUrl("asdas");
-
-        ResourceTask saved = resourceTaskService.save(resourceTask);
-
-        return saved;
+        return tasks;
     }
 
 //    @GetMapping("/version")

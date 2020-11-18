@@ -14,4 +14,6 @@ public interface ResourceTaskService {
     ResourceTask updateStatus(ResourceTask resourceTask);
 
     ResourceTask findFirstByNameIgnoreCaseOrderByDateRevisionDescDateRevisionDesc(String name);
+
+    List<ResourceTask> findAllGroupByNameAndNotUploadedOrderByDateRevisionDescDateRevisionDesc();
 }

@@ -14,7 +14,7 @@ import javax.persistence.Table;
 @Embeddable
 @Table(name = "passports")
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class MVSUkrPassport extends Passport {
+public class MVSUkrPassport {
 
     @JsonProperty(value = "D_NUMBER")
     @JsonIgnore

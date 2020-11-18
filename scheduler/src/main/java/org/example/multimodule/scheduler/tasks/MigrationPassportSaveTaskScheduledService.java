@@ -8,8 +8,6 @@ import org.example.multimodule.models.ResourceTask;
 import org.example.multimodule.services.client.ResourceTaskService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
-import org.springframework.core.task.TaskExecutor;
-import org.springframework.scheduling.TaskScheduler;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
@@ -24,15 +22,12 @@ public class MigrationPassportSaveTaskScheduledService {
     private static AtomicInteger atomicInteger = new AtomicInteger(0);
 
     private final ConfigurationStoredParameters parameters;
-    private final ResourceTaskExecutor resourceTaskExecutor;
     private final ResourceTaskService resourceTaskService;
+    private final ResourceTaskLoader resourceTaskLoader;
 
     @Scheduled(cron = "#{@getMigrationPassportsCron}")
     public void saveMigrationServicePassports() {
-
-        log.info("RUN " + atomicInteger.addAndGet(1));
-        List<ResourceTask> all = resourceTaskService.findAll();
-
+        List<ResourceTask> lastTasks = resourceTaskService.findAllGroupByNameAndNotUploadedOrderByDateRevisionDescDateRevisionDesc();
     }
 
     @Bean

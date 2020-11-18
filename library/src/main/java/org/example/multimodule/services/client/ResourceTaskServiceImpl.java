@@ -47,4 +47,9 @@ public class ResourceTaskServiceImpl implements ResourceTaskService {
     public ResourceTask findFirstByNameIgnoreCaseOrderByDateRevisionDescDateRevisionDesc(String name) {
         return resourceTaskRepository.findFirstByNameIgnoreCaseOrderByDateRevisionDescDateRevisionDesc(name);
     }
+
+    @Override
+    public List<ResourceTask> findAllGroupByNameAndNotUploadedOrderByDateRevisionDescDateRevisionDesc() {
+        return resourceTaskRepository.findAllGroupByNameAndUploadTimeIsNullOrderByDateRevisionDescDateRevisionDesc();
+    }
 }
