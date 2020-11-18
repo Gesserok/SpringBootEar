@@ -34,13 +34,17 @@ public class MigrationPassportSaveTaskScheduledService {
         List<ResourceTask> all = resourceTaskService.findAll();
 
         all.forEach(resourceTask -> {
-            resourceTaskExecutor.run();
+            getRTE().run();
         });
     }
 
     @Bean
     protected String getMigrationPassportsCron() {
         return parameters.cron();
+    }
+
+    private ResourceTaskExecutor getRTE() {
+        return resourceTaskExecutor;
     }
 
 }

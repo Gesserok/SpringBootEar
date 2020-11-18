@@ -8,4 +8,5 @@ import org.springframework.stereotype.Repository;
 public interface ResourceTaskRepository extends JpaRepository<ResourceTask, Long> {
 
     ResourceTask findFirstByNameIgnoreCaseOrderByDateRevisionDescDateRevisionDesc(String name);
+
 }
