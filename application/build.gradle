@@ -20,7 +20,7 @@ dependencies {
     compileOnly ("com.lmax:disruptor:${comLmax}")
 
     compileOnly project(":library")
-    compileOnly project(":scheduler")
+//    compileOnly project(":scheduler")
 
     compileOnly ("javax.servlet:javax.servlet-api:${servletApi}")
     compileOnly ("javax:javaee-api:${javaeeApi}")

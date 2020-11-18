@@ -27,7 +27,7 @@
             <property name="javax.persistence.validation.mode" value="none"/>
             <property name="hibernate.query.startup_check" value="false"/>
             <property name="hibernate.enable_lazy_load_no_trans" value="true"/>
-            <property name="hibernate.show_sql" value="false"/>
+            <property name="hibernate.show_sql" value="true"/>
 <!--            <property name="hibernate.auto_quote_keyword" value="false"/>-->
 
         </properties>
