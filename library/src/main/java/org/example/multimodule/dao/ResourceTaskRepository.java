@@ -24,7 +24,7 @@ public interface ResourceTaskRepository extends JpaRepository<ResourceTask, Long
             "             rank()" +
             "             over (partition by name order by day_revision, date_revision desc) rnk" +
             "      from odp.resource_tasks) rt" +
-            "WHERE rnk = 1")
+            "WHERE rnk = 1", nativeQuery = true)
     List<ResourceTask> findAllGroupByNameAndUploadTimeIsNullOrderByDateRevisionDescDateRevisionDesc();
 
 }
