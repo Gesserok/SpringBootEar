@@ -1,6 +1,8 @@
 package org.example.multimodule.scheduler.tasks;
 
 import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.Setter;
 import lombok.SneakyThrows;
 import lombok.extern.log4j.Log4j2;
 import org.example.multimodule.load.ResourceTaskLoader;
@@ -16,22 +18,20 @@ import org.springframework.stereotype.Service;
 @Scope(
         value = ConfigurableBeanFactory.SCOPE_PROTOTYPE,
         proxyMode = ScopedProxyMode.TARGET_CLASS)
-@AllArgsConstructor(onConstructor = @__({@Autowired}))
+@Setter
 @Log4j2
 public class ResourceTaskExecutor implements Runnable{
 
-    private final ResourceTaskService resourceTaskService;
-    private final ResourceTaskLoader resourceTaskLoader;
+    private ResourceTaskService resourceTaskService;
+    @Autowired
+    private ResourceTaskLoader resourceTaskLoader;
 
     @SneakyThrows
     @Override
     public void run() {
 
         log.info("ResourceTaskExecutor");
-
-
-        Thread.currentThread().interrupt();
-        Thread.sleep(10000);
+        Thread.sleep(30000);
     }
 
 }

@@ -3,9 +3,8 @@ package org.example.multimodule.scheduler.configurations;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.core.task.TaskExecutor;
 import org.springframework.scheduling.annotation.EnableScheduling;
-import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
+import org.springframework.scheduling.concurrent.ThreadPoolTaskScheduler;
 
 import java.time.LocalDateTime;
 
@@ -28,10 +27,9 @@ public class SchedulerConfiguration {
 //    }
 
     @Bean
-    public TaskExecutor taskExecutor() {
-        ThreadPoolTaskExecutor threadPoolTaskExecutor = new ThreadPoolTaskExecutor();
-        threadPoolTaskExecutor.setCorePoolSize(4);
-        threadPoolTaskExecutor.setMaxPoolSize(6);
-        return threadPoolTaskExecutor;
+    public ThreadPoolTaskScheduler taskScheduler() {
+        ThreadPoolTaskScheduler taskScheduler = new ThreadPoolTaskScheduler();
+        taskScheduler.setPoolSize(4);
+        return taskScheduler;
     }
 }

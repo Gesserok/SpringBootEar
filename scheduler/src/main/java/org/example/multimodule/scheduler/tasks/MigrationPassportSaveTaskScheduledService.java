@@ -33,19 +33,11 @@ public class MigrationPassportSaveTaskScheduledService {
         log.info("RUN " + atomicInteger.addAndGet(1));
         List<ResourceTask> all = resourceTaskService.findAll();
 
-        all.parallelStream().forEachOrdered(resourceTask -> {
-            getRTE().run();
-        });
-
     }
 
     @Bean
     protected String getMigrationPassportsCron() {
         return parameters.cron();
-    }
-
-    private ResourceTaskExecutor getRTE() {
-        return resourceTaskExecutor;
     }
 
 }
