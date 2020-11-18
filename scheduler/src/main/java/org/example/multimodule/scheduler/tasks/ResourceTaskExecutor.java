@@ -28,7 +28,10 @@ public class ResourceTaskExecutor implements Runnable{
     public void run() {
 
         log.info("ResourceTaskExecutor");
+
+
         Thread.currentThread().interrupt();
+        Thread.sleep(10000);
     }
 
 }
