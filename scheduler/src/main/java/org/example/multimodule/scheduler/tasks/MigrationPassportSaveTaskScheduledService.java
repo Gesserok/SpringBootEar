@@ -36,6 +36,7 @@ public class MigrationPassportSaveTaskScheduledService {
         all.parallelStream().forEachOrdered(resourceTask -> {
             getRTE().run();
         });
+
     }
 
     @Bean
