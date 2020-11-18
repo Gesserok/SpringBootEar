@@ -33,7 +33,7 @@ public class MigrationPassportSaveTaskScheduledService {
         log.info("RUN " + atomicInteger.addAndGet(1));
         List<ResourceTask> all = resourceTaskService.findAll();
 
-        all.forEach(resourceTask -> {
+        all.parallelStream().forEachOrdered(resourceTask -> {
             getRTE().run();
         });
     }

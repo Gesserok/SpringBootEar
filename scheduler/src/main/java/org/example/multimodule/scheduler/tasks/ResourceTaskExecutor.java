@@ -1,6 +1,7 @@
 package org.example.multimodule.scheduler.tasks;
 
 import lombok.AllArgsConstructor;
+import lombok.SneakyThrows;
 import lombok.extern.log4j.Log4j2;
 import org.example.multimodule.load.ResourceTaskLoader;
 import org.example.multimodule.models.ResourceTask;
@@ -22,11 +23,12 @@ public class ResourceTaskExecutor implements Runnable{
     private final ResourceTaskService resourceTaskService;
     private final ResourceTaskLoader resourceTaskLoader;
 
+    @SneakyThrows
     @Override
     public void run() {
 
         log.info("ResourceTaskExecutor");
-
+        Thread.sleep(10000);
     }
 
 }
