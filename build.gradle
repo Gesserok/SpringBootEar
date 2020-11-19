@@ -58,7 +58,7 @@ allprojects {
 dependencies {
     deploy project(path: ':application', configuration: 'archives')
     earlib project(':library')
-//    earlib project(':scheduler')
+    earlib project(':scheduler')
     earlib project(':migration_service_wanted_ukr_passports')
 
     earlib("org.springframework.boot:spring-boot-starter-actuator:${springBoot}") {
