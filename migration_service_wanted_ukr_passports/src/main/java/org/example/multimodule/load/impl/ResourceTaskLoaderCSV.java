@@ -5,6 +5,7 @@ import lombok.extern.log4j.Log4j2;
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVRecord;
 import org.example.multimodule.db.RegionCreator;
+import org.example.multimodule.exceptions.ODPConnectorException;
 import org.example.multimodule.load.ResourceTaskLoader;
 import org.example.multimodule.models.Region;
 import org.example.multimodule.models.ResourceTask;
@@ -54,9 +55,11 @@ public class ResourceTaskLoaderCSV implements ResourceTaskLoader {
 
         } catch (IOException e) {
             log.error("IT IS ERROR HERE");
+            throw new ODPConnectorException("IT IS ERROR HERE", e);
         }
 
         resourceTaskService.updateStatus(resourceTask);
+        log.info("Region " + savedRegion.getId() + " " +savedRegion.getResourceId() + " saved");
         log.info("Save resourceTask " + resourceTask.getName() + " finished in thread " + Thread.currentThread().getName());
         return savedRegion;
     }
