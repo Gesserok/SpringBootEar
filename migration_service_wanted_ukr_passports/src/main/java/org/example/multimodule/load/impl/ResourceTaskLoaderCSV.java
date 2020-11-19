@@ -8,9 +8,9 @@ import org.example.multimodule.db.RegionCreator;
 import org.example.multimodule.load.ResourceTaskLoader;
 import org.example.multimodule.models.Region;
 import org.example.multimodule.models.ResourceTask;
-import org.example.multimodule.services.client.ResourceTaskService;
 import org.example.multimodule.services.connections.ResourceConnection;
 import org.example.multimodule.services.db.RegionService;
+import org.example.multimodule.services.db.ResourceTaskService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -32,9 +32,10 @@ public class ResourceTaskLoaderCSV implements ResourceTaskLoader {
     private final ResourceTaskService resourceTaskService;
 
     @Override
-    public void saveRegions(ResourceTask resourceTask) {
+    public Region saveRegions(ResourceTask resourceTask) {
         URLConnection connection = resourceConnection.connection(resourceTask);
         regionService.deleteAllByResourceId(resourceTask.getName());
+        Region savedRegion = null;
         try (Reader reader = new InputStreamReader(connection.getInputStream(), StandardCharsets.UTF_8)) {
 
             Iterator<CSVRecord> iterator = CSVFormat.DEFAULT.withDelimiter(';')
@@ -45,7 +46,7 @@ public class ResourceTaskLoaderCSV implements ResourceTaskLoader {
 
             while (iterator.hasNext()) {
                 Region region = regionCreator.create(resourceTask, iterator);
-                regionService.save(region);
+                savedRegion = regionService.save(region);
             }
 
         } catch (IOException e) {
@@ -54,5 +55,6 @@ public class ResourceTaskLoaderCSV implements ResourceTaskLoader {
 
         resourceTaskService.updateStatus(resourceTask);
 
+        return savedRegion;
     }
 }

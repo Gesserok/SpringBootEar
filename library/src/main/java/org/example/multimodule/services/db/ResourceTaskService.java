@@ -1,4 +1,4 @@
-package org.example.multimodule.services.client;
+package org.example.multimodule.services.db;
 
 import org.example.multimodule.models.ResourceTask;
 
