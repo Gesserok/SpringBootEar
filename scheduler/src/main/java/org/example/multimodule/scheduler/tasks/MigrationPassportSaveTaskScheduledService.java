@@ -30,6 +30,9 @@ public class MigrationPassportSaveTaskScheduledService {
     @Scheduled(cron = "#{@getMigrationPassportsCron}")
     public void saveMigrationServicePassports() {
         List<ResourceTask> lastTasks = resourceTaskService.findAllGroupByNameAndNotUploadedOrderByDateRevisionDescDateRevisionDesc();
+
+        log.info("Found " + lastTasks + " tasks");
+
         List<Region> savedRegions = lastTasks.parallelStream().map(resourceTaskLoader::saveRegions).collect(Collectors.toList());
 
         log.info("savedRegions.size() = " + savedRegions.size());

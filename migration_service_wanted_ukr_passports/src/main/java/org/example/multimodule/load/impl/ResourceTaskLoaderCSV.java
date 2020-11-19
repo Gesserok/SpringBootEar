@@ -35,6 +35,7 @@ public class ResourceTaskLoaderCSV implements ResourceTaskLoader {
     @Override
     @Transactional
     public Region saveRegions(ResourceTask resourceTask) {
+        log.info("Save resourceTask " + resourceTask.getName() + " started in thread " + Thread.currentThread().getName());
         URLConnection connection = resourceConnection.connection(resourceTask);
         regionService.deleteAllByResourceId(resourceTask.getName());
         Region savedRegion = null;
@@ -56,7 +57,7 @@ public class ResourceTaskLoaderCSV implements ResourceTaskLoader {
         }
 
         resourceTaskService.updateStatus(resourceTask);
-
+        log.info("Save resourceTask " + resourceTask.getName() + " finished in thread " + Thread.currentThread().getName());
         return savedRegion;
     }
 }
