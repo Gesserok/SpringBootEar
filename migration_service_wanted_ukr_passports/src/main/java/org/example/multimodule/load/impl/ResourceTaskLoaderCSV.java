@@ -42,15 +42,12 @@ public class ResourceTaskLoaderCSV implements ResourceTaskLoader {
         Region savedRegion = null;
         try (Reader reader = new InputStreamReader(connection.getInputStream(), StandardCharsets.UTF_8)) {
 
-            Iterator<CSVRecord> iterator = CSVFormat.DEFAULT.withDelimiter(';')
-                    .withFirstRecordAsHeader()
-                    .withIgnoreHeaderCase(true)
-                    .parse(reader)
-                    .iterator();
-
-            while (iterator.hasNext()) {
-                Region region = regionCreator.create(resourceTask, iterator);
-                savedRegion = regionService.save(region);
+            if ("application/json".equalsIgnoreCase(connection.getContentType())) {
+                savedRegion = saveJson(resourceTask, savedRegion, reader);
+            } else if ("application/csv".equalsIgnoreCase(connection.getContentType())) {
+                savedRegion = saveCSV(resourceTask, savedRegion, reader);
+            } else {
+                throw new ODPConnectorException("Unsupported media type " + connection.getContentType());
             }
 
         } catch (IOException e) {
@@ -61,6 +58,24 @@ public class ResourceTaskLoaderCSV implements ResourceTaskLoader {
         resourceTaskService.updateStatus(resourceTask);
         log.info("Region " + savedRegion.getId() + " " +savedRegion.getResourceId() + " saved");
         log.info("Save resourceTask " + resourceTask.getName() + " finished in thread " + Thread.currentThread().getName());
+        return savedRegion;
+    }
+
+    private Region saveJson(ResourceTask resourceTask, Region savedRegion, Reader reader) {
+        return null;
+    }
+
+    private Region saveCSV(ResourceTask resourceTask, Region savedRegion, Reader reader) throws IOException {
+        Iterator<CSVRecord> iterator = CSVFormat.DEFAULT.withDelimiter(';')
+                .withFirstRecordAsHeader()
+                .withIgnoreHeaderCase(true)
+                .parse(reader)
+                .iterator();
+
+        while (iterator.hasNext()) {
+            Region region = regionCreator.create(resourceTask, iterator);
+            savedRegion = regionService.save(region);
+        }
         return savedRegion;
     }
 }
