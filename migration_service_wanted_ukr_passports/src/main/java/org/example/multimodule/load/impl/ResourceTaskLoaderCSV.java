@@ -44,7 +44,7 @@ public class ResourceTaskLoaderCSV implements ResourceTaskLoader {
 
             if ("application/json".equalsIgnoreCase(connection.getContentType())) {
                 savedRegion = saveJson(resourceTask, savedRegion, reader);
-            } else if ("application/csv".equalsIgnoreCase(connection.getContentType())) {
+            } else if ("application/octet-stream".equalsIgnoreCase(connection.getContentType())) {
                 savedRegion = saveCSV(resourceTask, savedRegion, reader);
             } else {
                 throw new ODPConnectorException("Unsupported media type " + connection.getContentType());

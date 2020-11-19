@@ -32,9 +32,7 @@ public class MigrationPassportSaveTaskScheduledService {
         List<ResourceTask> lastTasks = resourceTaskService.findAllGroupByNameAndNotUploadedOrderByDateRevisionDescDateRevisionDesc();
 
         log.info("Found " + lastTasks + " tasks");
-        List<Region> savedRegions = lastTasks.parallelStream().filter(
-                resourceTask -> !resourceTask.getName().contains("MVS")
-        )
+        List<Region> savedRegions = lastTasks.parallelStream()
                 .map(resourceTaskLoader::saveRegions)
                 .collect(Collectors.toList());
         log.info("savedRegions.size() = " + savedRegions.size());
