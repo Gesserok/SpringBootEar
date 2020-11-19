@@ -14,6 +14,7 @@ import org.example.multimodule.services.db.ResourceTaskService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.Reader;
@@ -32,6 +33,7 @@ public class ResourceTaskLoaderCSV implements ResourceTaskLoader {
     private final ResourceTaskService resourceTaskService;
 
     @Override
+    @Transactional
     public Region saveRegions(ResourceTask resourceTask) {
         URLConnection connection = resourceConnection.connection(resourceTask);
         regionService.deleteAllByResourceId(resourceTask.getName());
