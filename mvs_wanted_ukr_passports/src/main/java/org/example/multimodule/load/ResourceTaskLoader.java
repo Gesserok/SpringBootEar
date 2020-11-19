@@ -6,6 +6,5 @@ import javax.transaction.Transactional;
 
 @FunctionalInterface
 public interface ResourceTaskLoader {
-    @Transactional
     void saveRegions(ResourceTask resourceTask);
 }
