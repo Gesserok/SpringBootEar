@@ -22,6 +22,7 @@ import java.io.Reader;
 import java.net.URLConnection;
 import java.nio.charset.StandardCharsets;
 import java.util.Iterator;
+import java.util.Objects;
 
 @Service
 @AllArgsConstructor(onConstructor = @__({@Autowired}))
@@ -42,9 +43,9 @@ public class ResourceTaskLoaderCSV implements ResourceTaskLoader {
         Region savedRegion = null;
         try (Reader reader = new InputStreamReader(connection.getInputStream(), StandardCharsets.UTF_8)) {
 
-            if ("application/json".equalsIgnoreCase(connection.getContentType())) {
+            if (Objects.nonNull(resourceTask.getUrl()) && resourceTask.getUrl().endsWith(".json")) {
                 savedRegion = saveJson(resourceTask, savedRegion, reader);
-            } else if ("application/octet-stream".equalsIgnoreCase(connection.getContentType())) {
+            } else if (Objects.nonNull(resourceTask.getUrl()) && resourceTask.getUrl().endsWith(".csv")) {
                 savedRegion = saveCSV(resourceTask, savedRegion, reader);
             } else {
                 throw new ODPConnectorException("Unsupported media type " + connection.getContentType());
@@ -62,7 +63,7 @@ public class ResourceTaskLoaderCSV implements ResourceTaskLoader {
     }
 
     private Region saveJson(ResourceTask resourceTask, Region savedRegion, Reader reader) {
-        return null;
+        return new Region();
     }
 
     private Region saveCSV(ResourceTask resourceTask, Region savedRegion, Reader reader) throws IOException {
