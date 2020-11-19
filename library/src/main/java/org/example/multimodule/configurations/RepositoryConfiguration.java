@@ -9,6 +9,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.orm.hibernate5.HibernateTransactionManager;
 import org.springframework.orm.hibernate5.SessionFactoryUtils;
 import org.springframework.transaction.PlatformTransactionManager;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -17,6 +18,7 @@ import javax.sql.DataSource;
 @Configuration
 @EnableJpaRepositories(basePackages = "org.example.multimodule.dao")
 @Log4j2
+@EnableTransactionManagement
 public class RepositoryConfiguration {
 
     @Bean(name = "entityManagerFactory")
