@@ -24,7 +24,7 @@ public class Region {
 
     @JsonProperty(value = "passports_list")
     @ElementCollection
-    @CollectionTable(name = "passports", joinColumns = @JoinColumn(name = "region_id"))
+    @CollectionTable(name = "mvs_ukr_passports", joinColumns = @JoinColumn(name = "region_id"))
     private List<MVSUkrPassport> mvsUkrPassports;
 
     @JsonIgnore

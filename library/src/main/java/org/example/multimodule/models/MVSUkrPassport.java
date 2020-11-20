@@ -12,7 +12,7 @@ import javax.persistence.Table;
 
 @NoArgsConstructor
 @Embeddable
-@Table(name = "passports")
+@Table(name = "mvs_ukr_passports")
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class MVSUkrPassport extends Passport{
 
