@@ -20,6 +20,7 @@ import java.io.Reader;
 import java.util.Iterator;
 import java.util.List;
 
+@Service
 @AllArgsConstructor(onConstructor = @__({@Autowired}))
 @Log4j2
 public class RegionCreatorImpl implements RegionCreator {
