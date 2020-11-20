@@ -1,6 +1,9 @@
 package org.example.multimodule.models;
 
-import com.fasterxml.jackson.annotation.*;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.Column;
@@ -11,7 +14,7 @@ import javax.persistence.Table;
 @Embeddable
 @Table(name = "mvs_ukr_passports")
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class MVSUkrPassport implements Passport{
+public class MVSUkrPassport {
 
     @JsonProperty(value = "D_NUMBER")
     @JsonIgnore

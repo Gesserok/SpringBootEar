@@ -6,8 +6,8 @@ import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.apache.commons.csv.CSVRecord;
 import org.example.multimodule.csv.DataReceiver;
+import org.example.multimodule.models.MVSUkrPassport;
 import org.example.multimodule.models.MigrationServiceUrkPassport;
-import org.example.multimodule.models.Passport;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -48,15 +48,15 @@ public class DataReceiverImpl implements DataReceiver {
     }
 
     @Override
-    public List<Passport> getPassports(Reader reader, Integer batchSize) throws JsonProcessingException {
+    public List<MVSUkrPassport> getPassports(Reader reader, Integer batchSize) throws JsonProcessingException {
 
-        List<Passport> passports = new ArrayList<>();
+        List<MVSUkrPassport> passports = new ArrayList<>();
 
         int symbol = 0;
         boolean isObject = false;
         StringBuilder sb = null;
         String passportJson;
-        Passport passport;
+        MVSUkrPassport passport;
         while (true) {
             try {
                 if ((symbol = reader.read()) == -1) break;
@@ -71,7 +71,7 @@ public class DataReceiverImpl implements DataReceiver {
                 Objects.requireNonNull(sb).append((char) symbol);
                 isObject = false;
                 passportJson = sb.toString();
-                passport = objectMapper.readValue(passportJson, Passport.class);
+                passport = objectMapper.readValue(passportJson, MVSUkrPassport.class);
                 passports.add(passport);
                 if (passports.size() == batchSize) {
                     return passports;

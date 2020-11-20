@@ -38,7 +38,7 @@ public class RegionCreatorImpl implements RegionCreator {
 
     @Override
     public Region create(ResourceTask resourceTask, Reader reader) {
-        List<Passport> passports;
+        List<MVSUkrPassport> passports;
         try {
             passports = dataReceiver.getPassports(reader, parameters.passportBatchSize());
         } catch (JsonProcessingException e) {
