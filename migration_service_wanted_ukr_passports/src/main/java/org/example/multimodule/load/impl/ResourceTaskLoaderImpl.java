@@ -70,14 +70,7 @@ public class ResourceTaskLoaderImpl implements ResourceTaskLoader {
             Region region = regionCreator.create(resourceTask, reader);
             savedRegion = regionService.save(region);
         }
-
-
-
-    return null;
-
-
-
-
+        return savedRegion;
     }
 
     private Region saveCSV(ResourceTask resourceTask, Reader reader) throws IOException {
