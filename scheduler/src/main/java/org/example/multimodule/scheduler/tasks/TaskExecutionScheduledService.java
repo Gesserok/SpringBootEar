@@ -19,9 +19,7 @@ import java.util.stream.Collectors;
 @Service
 @AllArgsConstructor(onConstructor = @__({@Autowired}))
 @Log4j2
-public class MigrationPassportSaveTaskScheduledService {
-
-    private static AtomicInteger atomicInteger = new AtomicInteger(0);
+public class TaskExecutionScheduledService {
 
     private final ConfigurationStoredParameters parameters;
     private final ResourceTaskService resourceTaskService;
@@ -33,7 +31,7 @@ public class MigrationPassportSaveTaskScheduledService {
 
         log.info("Found " + lastTasks + " tasks");
         List<Region> savedRegions = lastTasks.parallelStream()
-                .map(resourceTaskLoader::saveRegions)
+                .map(resourceTaskLoader::saveRegions).parallel()
                 .collect(Collectors.toList());
         log.info("savedRegions.size() = " + savedRegions.size());
     }

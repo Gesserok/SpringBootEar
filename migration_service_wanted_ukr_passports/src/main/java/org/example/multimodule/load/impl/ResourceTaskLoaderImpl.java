@@ -13,6 +13,7 @@ import org.example.multimodule.services.connections.ResourceConnection;
 import org.example.multimodule.services.db.RegionService;
 import org.example.multimodule.services.db.ResourceTaskService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -27,7 +28,7 @@ import java.util.Objects;
 @Service
 @AllArgsConstructor(onConstructor = @__({@Autowired}))
 @Log4j2
-public class ResourceTaskLoaderCSV implements ResourceTaskLoader {
+public class ResourceTaskLoaderImpl implements ResourceTaskLoader {
 
     private final ResourceConnection resourceConnection;
     private final RegionCreator regionCreator;
@@ -44,9 +45,9 @@ public class ResourceTaskLoaderCSV implements ResourceTaskLoader {
         try (Reader reader = new InputStreamReader(connection.getInputStream(), StandardCharsets.UTF_8)) {
 
             if (Objects.nonNull(resourceTask.getUrl()) && resourceTask.getUrl().endsWith(".json")) {
-                savedRegion = saveJson(resourceTask, savedRegion, reader);
+                savedRegion = saveJson(resourceTask, reader);
             } else if (Objects.nonNull(resourceTask.getUrl()) && resourceTask.getUrl().endsWith(".csv")) {
-                savedRegion = saveCSV(resourceTask, savedRegion, reader);
+                savedRegion = saveCSV(resourceTask, reader);
             } else {
                 throw new ODPConnectorException("Unsupported media type " + connection.getContentType());
             }
@@ -62,11 +63,25 @@ public class ResourceTaskLoaderCSV implements ResourceTaskLoader {
         return savedRegion;
     }
 
-    private Region saveJson(ResourceTask resourceTask, Region savedRegion, Reader reader) {
-        return new Region();
+    private Region saveJson(ResourceTask resourceTask, Reader reader) throws IOException {
+        Region savedRegion = null;
+        int symbol;
+        while ((symbol = reader.read()) != -1) {
+            Region region = regionCreator.create(resourceTask, reader);
+            savedRegion = regionService.save(region);
+        }
+
+
+
+    return null;
+
+
+
+
     }
 
-    private Region saveCSV(ResourceTask resourceTask, Region savedRegion, Reader reader) throws IOException {
+    private Region saveCSV(ResourceTask resourceTask, Reader reader) throws IOException {
+        Region savedRegion = null;
         Iterator<CSVRecord> iterator = CSVFormat.DEFAULT.withDelimiter(';')
                 .withFirstRecordAsHeader()
                 .withIgnoreHeaderCase(true)
