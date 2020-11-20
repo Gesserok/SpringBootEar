@@ -89,7 +89,8 @@ public class WebClientConfiguration {
 
     @Bean
     public ObjectMapper objectMapper() {
-        return new ObjectMapper();
+        ObjectMapper objectMapper = new ObjectMapper();
+        return objectMapper;
     }
 
 }

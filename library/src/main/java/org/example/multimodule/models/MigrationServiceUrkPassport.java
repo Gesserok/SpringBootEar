@@ -13,7 +13,7 @@ import javax.persistence.Table;
 @Data
 @Embeddable
 @Table(name = "migration_passports")
-public class MigrationServiceUrkPassport extends Passport{
+public class MigrationServiceUrkPassport implements Passport {
 
     @Column(name = "ovd_number")
     private String nn;
