@@ -8,10 +8,7 @@ import org.example.multimodule.csv.DataReceiver;
 import org.example.multimodule.db.RegionCreator;
 import org.example.multimodule.exceptions.ODPConnectorException;
 import org.example.multimodule.infrastructure.ConfigurationStoredParameters;
-import org.example.multimodule.models.MVSUkrPassport;
-import org.example.multimodule.models.MigrationServiceUrkPassport;
-import org.example.multimodule.models.Region;
-import org.example.multimodule.models.ResourceTask;
+import org.example.multimodule.models.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
@@ -41,7 +38,7 @@ public class RegionCreatorImpl implements RegionCreator {
 
     @Override
     public Region create(ResourceTask resourceTask, Reader reader) {
-        List<MVSUkrPassport> passports;
+        List<Passport> passports;
         try {
             passports = dataReceiver.getPassports(reader, parameters.passportBatchSize());
         } catch (JsonProcessingException e) {
