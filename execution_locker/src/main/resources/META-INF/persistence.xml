@@ -9,7 +9,7 @@
         <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
         <jta-data-source>jdbc/odp</jta-data-source>
 
-
+        <class>org.example.task_locker.models.TaskLock</class>
 
         <properties>
             <property name="hibernate.default_schema" value="odp"/>
