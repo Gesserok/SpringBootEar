@@ -18,6 +18,7 @@ dependencies {
         exclude group: 'org.springframework.boot', module: 'spring-boot-starter-logging'
     }
 
+    compileOnly project(':execution_locker')
 
     compileOnly "org.apache.commons:commons-text:${apacheCommonText}"
     compileOnly "org.example:config-repo:${configstorage}"

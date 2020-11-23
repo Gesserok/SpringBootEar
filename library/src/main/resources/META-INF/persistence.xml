@@ -13,6 +13,7 @@
         <class>org.example.multimodule.models.MVSUkrPassport</class>
         <class>org.example.multimodule.models.MigrationServiceUrkPassport</class>
         <class>org.example.multimodule.models.ResourceTask</class>
+        <class>org.example.task_locker.models.TaskLock</class>
 
         <properties>
             <property name="hibernate.default_schema" value="odp"/>
