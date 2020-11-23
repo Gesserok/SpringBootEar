@@ -20,7 +20,7 @@ public class ResourceTask {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "resource_task_gen")
-    @SequenceGenerator(name = "resource_task_gen", sequenceName = "gen_resource_task_id", allocationSize = 1)
+    @SequenceGenerator(name = "resource_task_gen", sequenceName = "resource_tasks_id_seq", allocationSize = 1)
     private Long id;
 
     @Column(name = "name")
