@@ -17,8 +17,8 @@ import javax.persistence.Table;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class MVSUkrPassport {
 
-    @Getter(onMethod = @__({@JsonGetter("D_NUMBER")}))
-    @Setter(onMethod = @__({@JsonSetter("D_NUMBER")}))
+//    @Getter(onMethod = @__({@JsonGetter("D_NUMBER")}))
+//    @Setter(onMethod = @__({@JsonSetter("D_NUMBER")}))
     @JsonIgnore
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @Column(name = "d_number")
