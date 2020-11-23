@@ -1,72 +1,77 @@
 package org.example.multimodule.models;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.*;
 import lombok.AllArgsConstructor;
-import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.Setter;
 
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
 import javax.persistence.Table;
 
 @NoArgsConstructor
-@Data
 @AllArgsConstructor
 @Embeddable
 @Table(name = "mvs_ukr_passports")
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class MVSUkrPassport {
 
-    @JsonProperty("D_NUMBER")
+    @Getter(onMethod = @__({@JsonGetter("D_NUMBER")}))
+    @Setter(onMethod = @__({@JsonSetter("D_NUMBER")}))
     @JsonIgnore
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @Column(name = "d_number")
     private String dNumber;
 
-    @JsonProperty("D_SERIES")
+    @Getter(onMethod = @__({@JsonGetter("D_SERIES")}))
+    @Setter(onMethod = @__({@JsonSetter("D_SERIES")}))
     @JsonIgnore
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @Column(name = "d_series")
     private String dSeries;
 
-    @JsonProperty("D_STATUS")
+    @Getter(onMethod = @__({@JsonGetter("D_STATUS")}))
+    @Setter(onMethod = @__({@JsonSetter("D_STATUS")}))
     @JsonIgnore
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @Column(name = "d_status")
     private String dStatus;
 
-    @JsonProperty("D_TYPE")
+    @Getter(onMethod = @__({@JsonGetter("D_TYPE")}))
+    @Setter(onMethod = @__({@JsonSetter("D_TYPE")}))
     @JsonIgnore
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @Column(name = "d_type")
     private String dType;
 
-    @JsonProperty("ID")
+    @Getter(onMethod = @__({@JsonGetter("ID")}))
+    @Setter(onMethod = @__({@JsonSetter("ID")}))
     @JsonIgnore
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @Column(name = "external_id")
     private Long externalId;
 
-    @JsonProperty("INSERT_DATE")
+    @Getter(onMethod = @__({@JsonGetter("INSERT_DATE")}))
+    @Setter(onMethod = @__({@JsonSetter("INSERT_DATE")}))
     @JsonIgnore
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @Column(name = "insert_date")
     private String insertDate;
 
-    @JsonProperty("OVD")
+    @Getter(onMethod = @__({@JsonGetter("OVD")}))
+    @Setter(onMethod = @__({@JsonSetter("OVD")}))
     @JsonIgnore
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @Column(name = "ovd")
     private String ovd;
 
-    @JsonProperty("THEFT_DATA")
+    @Getter(onMethod = @__({@JsonGetter("THEFT_DATA")}))
+    @Setter(onMethod = @__({@JsonSetter("THEFT_DATA")}))
     @JsonIgnore
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @Column(name = "theft_data")
     private String theftData;
+
 
 }
