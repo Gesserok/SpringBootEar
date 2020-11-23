@@ -11,18 +11,19 @@ import java.lang.reflect.Method;
 @Component
 public class LockedAspectProcessor {
 
-//    @Pointcut(value = "@annotation(executionLocking)", argNames = "executionLocking")
-//    private void annotatedMethods(ExecutionLocking executionLocking) {
-//
-//    }
-
-    @Pointcut(value = "execution(public * * (..)) && @within(executionLocking)", argNames = "executionLocking")
-    private void methodOfAnnotatedClass(ExecutionLocking executionLocking) {
+    @Pointcut(value = "@annotation(executionLocking)", argNames = "executionLocking")
+    private void annotatedMethods(ExecutionLocking executionLocking) {
 
     }
 
+//    @Pointcut(value = "execution(public * * (..)) && @within(executionLocking)", argNames = "executionLocking")
+//    private void methodOfAnnotatedClass(ExecutionLocking executionLocking) {
+//
+//    }
+
 //    @Pointcut(value = "annotatedMethods(executionLocking) || methodOfAnnotatedClass(executionLocking)", argNames = "executionLocking")
-    @Pointcut(value = "methodOfAnnotatedClass(executionLocking)", argNames = "executionLocking")
+//    @Pointcut(value = "methodOfAnnotatedClass(executionLocking)", argNames = "executionLocking")
+    @Pointcut(value = "annotatedMethods(executionLocking)", argNames = "executionLocking")
     private void annotatedMethodOrClass(ExecutionLocking executionLocking) {
 
     }
