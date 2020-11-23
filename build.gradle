@@ -59,6 +59,7 @@ dependencies {
     deploy project(path: ':application', configuration: 'archives')
     earlib project(':library')
     earlib project(':scheduler')
+    earlib project(':execution_locker')
     earlib project(':migration_service_wanted_ukr_passports')
 
     earlib("org.springframework.boot:spring-boot-starter-actuator:${springBoot}") {
@@ -69,6 +70,10 @@ dependencies {
         exclude group: 'org.springframework.boot', module: 'spring-boot-starter-tomcat'
         exclude group: 'org.springframework.boot', module: 'spring-boot-starter-logging'
     }
+    earlib(
+            "org.aspectj:aspectjrt:${aspect}",
+            "org.aspectj:aspectjweaver:${aspect}"
+    )
     earlib "org.springframework.boot:spring-boot-starter-log4j2:${springBoot}"
     earlib "org.apache.commons:commons-text:${apacheCommonText}"
     earlib "org.example:config-repo:${configstorage}"

@@ -21,6 +21,7 @@ dependencies {
 
     compileOnly project(":library")
     compileOnly project(":scheduler")
+    compileOnly project(":migration_service_wanted_ukr_passports")
 
     compileOnly ("javax.servlet:javax.servlet-api:${servletApi}")
     compileOnly ("javax:javaee-api:${javaeeApi}")

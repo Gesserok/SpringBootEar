@@ -12,6 +12,7 @@ import org.example.multimodule.models.ResourceTask;
 import org.example.multimodule.services.connections.ResourceConnection;
 import org.example.multimodule.services.db.RegionService;
 import org.example.multimodule.services.db.ResourceTaskService;
+import org.example.task_locker.annotations.ExecutionLocking;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -36,11 +37,12 @@ public class ResourceTaskLoaderImpl implements ResourceTaskLoader {
 
     @Override
     @Transactional
+    @ExecutionLocking(minTime = 2, maxTime = 1)
     public Region saveRegions(ResourceTask resourceTask) {
         log.info("Save resourceTask " + resourceTask.getName() + " started in thread " + Thread.currentThread().getName());
         URLConnection connection = resourceConnection.connection(resourceTask);
         regionService.deleteAllByResourceId(resourceTask.getName());
-        Region savedRegion = null;
+        Region savedRegion;
         try (Reader reader = new InputStreamReader(connection.getInputStream(), StandardCharsets.UTF_8)) {
 
             if (Objects.nonNull(resourceTask.getUrl()) && resourceTask.getUrl().endsWith(".json")) {
