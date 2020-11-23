@@ -1,9 +1,9 @@
 package org.example.task_locker.aspects;
 
 import lombok.AllArgsConstructor;
-import lombok.extern.log4j.Log4j2;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.*;
+import org.example.task_locker.annotations.ExecutionLocking;
 import org.example.task_locker.services.TaskLockService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -16,32 +16,37 @@ import java.lang.reflect.Method;
 public class LockedAspectProcessor {
     private final TaskLockService taskLockService;
 
-    @Pointcut("@annotation(org.example.task_locker.annotations.ExecutionLocking)")
-    private void annotatedMethods(){
-
-    }
-    @Pointcut("execution(public * * (..)) && @within(org.example.task_locker.annotations.ExecutionLocking)")
-    private void methodOfAnnotatedClass(){
-
-    }
-    @Pointcut("annotatedMethods() || methodOfAnnotatedClass()")
-    private void annotatedMethodOrClass(){
+    @Pointcut(value = "@annotation(executionLocking)", argNames = "executionLocking")
+    private void annotatedMethods(ExecutionLocking executionLocking) {
 
     }
 
-    @Before("annotatedMethodOrClass()")
-    public void beforeAdvice(JoinPoint joinPoint) {
+    @Pointcut(value = "execution(public * * (..)) && @within(executionLocking)", argNames = "executionLocking")
+    private void methodOfAnnotatedClass(ExecutionLocking executionLocking) {
+
+    }
+
+    @Pointcut(value = "annotatedMethods(executionLocking) || methodOfAnnotatedClass(executionLocking)", argNames = "executionLocking")
+    private void annotatedMethodOrClass(ExecutionLocking executionLocking) {
+
+    }
+
+    @Before(value = "annotatedMethodOrClass(executionLocking)", argNames = "joinPoint,executionLocking")
+    public void beforeAdvice(JoinPoint joinPoint, ExecutionLocking executionLocking) {
         Method[] declaredMethods = joinPoint.getTarget().getClass().getDeclaredMethods();
-        System.out.println("asdasdasdasdasd");
-    }
 
-    @AfterReturning("annotatedMethodOrClass()")
-    public void afterReturningAdvice() {
+        long l1 = executionLocking.minTime();
+        long l2 = executionLocking.maxTime();
 
     }
 
-    @AfterThrowing("annotatedMethodOrClass()")
-    public void afterThrowingAdvice() {
+    @AfterReturning(value = "annotatedMethodOrClass(executionLocking)", argNames = "executionLocking")
+    public void afterReturningAdvice(ExecutionLocking executionLocking) {
+
+    }
+
+    @AfterThrowing(value = "annotatedMethodOrClass(executionLocking)", argNames = "executionLocking")
+    public void afterThrowingAdvice(ExecutionLocking executionLocking) {
 
     }
 
