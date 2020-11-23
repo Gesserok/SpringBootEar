@@ -1,11 +1,11 @@
 package org.example.task_locker.aspects;
 
 import org.aspectj.lang.JoinPoint;
-import org.aspectj.lang.annotation.*;
+import org.aspectj.lang.annotation.Aspect;
+import org.aspectj.lang.annotation.Before;
+import org.aspectj.lang.annotation.Pointcut;
 import org.example.task_locker.annotations.ExecutionLocking;
 import org.springframework.stereotype.Component;
-
-import java.lang.reflect.Method;
 
 @Aspect
 @Component
@@ -30,7 +30,11 @@ public class LockedAspectProcessor {
 
     @Before(value = "annotatedMethods(executionLocking)", argNames = "joinPoint,executionLocking")
     public void beforeAdvice(JoinPoint joinPoint, ExecutionLocking executionLocking) {
-//        Method[] declaredMethods = joinPoint.getTarget().getClass().getDeclaredMethods();
+
+        String methodName = joinPoint.getSignature().getName();
+        Object[] args = joinPoint.getArgs();
+        Class<?> aClass = args[0].getClass();
+
 
         System.out.println("HEllO");
 

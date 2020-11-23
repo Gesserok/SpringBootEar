@@ -17,7 +17,7 @@ dependencies {
     compileOnly "org.springframework.boot:spring-boot-starter-log4j2:${springBoot}"
 
     compileOnly project(":library")
-    compileOnly project(":execution_locker")
+//    compileOnly project(":execution_locker")
     compileOnly "org.example:config-repo:${configstorage}"
     // https://mvnrepository.com/artifact/org.apache.commons/commons-csv
     compileOnly "org.apache.commons:commons-csv:${apacheCsv}"

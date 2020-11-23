@@ -14,10 +14,6 @@ dependencies {
         exclude group: 'org.springframework.boot', module: 'spring-boot-starter-tomcat'
         exclude group: 'org.springframework.boot', module: 'spring-boot-starter-logging'
     }
-    compileOnly(
-            "org.aspectj:aspectjrt:${aspect}",
-            "org.aspectj:aspectjweaver:${aspect}"
-    )
 
     compileOnly "org.apache.commons:commons-text:${apacheCommonText}"
     compileOnly "org.example:config-repo:${configstorage}"
