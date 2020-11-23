@@ -34,7 +34,7 @@ public class TaskExecutionScheduledService {
     public void taskExecutor() {
         List<ResourceTask> lastTasks = resourceTaskService.findAllGroupByNameAndNotUploadedOrderByDateRevisionDescDateRevisionDesc();
 
-        log.info("Found " + lastTasks + " tasks");
+        log.info("Found " + lastTasks.size() + " tasks");
         List<Region> savedRegions = lastTasks.parallelStream()
                 .map(resourceTaskLoader::saveRegions).parallel()
                 .collect(Collectors.toList());

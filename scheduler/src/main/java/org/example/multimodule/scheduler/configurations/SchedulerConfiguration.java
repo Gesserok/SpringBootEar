@@ -3,6 +3,7 @@ package org.example.multimodule.scheduler.configurations;
 import lombok.extern.log4j.Log4j2;
 import net.javacrumbs.shedlock.core.LockProvider;
 import net.javacrumbs.shedlock.provider.jdbctemplate.JdbcTemplateLockProvider;
+import net.javacrumbs.shedlock.spring.annotation.EnableSchedulerLock;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -17,6 +18,7 @@ import static net.javacrumbs.shedlock.provider.jdbctemplate.JdbcTemplateLockProv
 
 @Configuration
 @EnableScheduling
+@EnableSchedulerLock(defaultLockAtMostFor = "30s")
 @Log4j2
 public class SchedulerConfiguration {
 
