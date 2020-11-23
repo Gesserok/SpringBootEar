@@ -14,64 +14,54 @@ import javax.persistence.Table;
 @AllArgsConstructor
 @Embeddable
 @Table(name = "mvs_ukr_passports")
-@JsonIgnoreProperties(ignoreUnknown = true)
 public class MVSUkrPassport {
 
     @Getter(onMethod = @__({@JsonGetter("D_NUMBER")}))
     @Setter(onMethod = @__({@JsonSetter("D_NUMBER")}))
-    @JsonIgnore
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @Column(name = "d_number")
     private String dNumber;
 
     @Getter(onMethod = @__({@JsonGetter("D_SERIES")}))
     @Setter(onMethod = @__({@JsonSetter("D_SERIES")}))
-    @JsonIgnore
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @Column(name = "d_series")
     private String dSeries;
 
     @Getter(onMethod = @__({@JsonGetter("D_STATUS")}))
     @Setter(onMethod = @__({@JsonSetter("D_STATUS")}))
-    @JsonIgnore
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @Column(name = "d_status")
     private String dStatus;
 
     @Getter(onMethod = @__({@JsonGetter("D_TYPE")}))
     @Setter(onMethod = @__({@JsonSetter("D_TYPE")}))
-    @JsonIgnore
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @Column(name = "d_type")
     private String dType;
 
     @Getter(onMethod = @__({@JsonGetter("ID")}))
     @Setter(onMethod = @__({@JsonSetter("ID")}))
-    @JsonIgnore
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @Column(name = "external_id")
     private Long externalId;
 
     @Getter(onMethod = @__({@JsonGetter("INSERT_DATE")}))
     @Setter(onMethod = @__({@JsonSetter("INSERT_DATE")}))
-    @JsonIgnore
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @Column(name = "insert_date")
     private String insertDate;
 
     @Getter(onMethod = @__({@JsonGetter("OVD")}))
     @Setter(onMethod = @__({@JsonSetter("OVD")}))
-    @JsonIgnore
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @Column(name = "ovd")
     private String ovd;
 
     @Getter(onMethod = @__({@JsonGetter("THEFT_DATA")}))
     @Setter(onMethod = @__({@JsonSetter("THEFT_DATA")}))
-    @JsonIgnore
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @Column(name = "theft_data")
     private String theftData;
-
 
 }
