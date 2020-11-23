@@ -11,24 +11,27 @@ import java.lang.reflect.Method;
 @Component
 public class LockedAspectProcessor {
 
-    @Pointcut(value = "@annotation(executionLocking)", argNames = "executionLocking")
-    private void annotatedMethods(ExecutionLocking executionLocking) {
-
-    }
+//    @Pointcut(value = "@annotation(executionLocking)", argNames = "executionLocking")
+//    private void annotatedMethods(ExecutionLocking executionLocking) {
+//
+//    }
 
     @Pointcut(value = "execution(public * * (..)) && @within(executionLocking)", argNames = "executionLocking")
     private void methodOfAnnotatedClass(ExecutionLocking executionLocking) {
 
     }
 
-    @Pointcut(value = "annotatedMethods(executionLocking) || methodOfAnnotatedClass(executionLocking)", argNames = "executionLocking")
+//    @Pointcut(value = "annotatedMethods(executionLocking) || methodOfAnnotatedClass(executionLocking)", argNames = "executionLocking")
+    @Pointcut(value = "methodOfAnnotatedClass(executionLocking)", argNames = "executionLocking")
     private void annotatedMethodOrClass(ExecutionLocking executionLocking) {
 
     }
 
-    @Before(value = "annotatedMethodOrClass(executionLocking)", argNames = "joinPoint,executionLocking")
-    public void beforeAdvice(JoinPoint joinPoint, ExecutionLocking executionLocking) {
-        Method[] declaredMethods = joinPoint.getTarget().getClass().getDeclaredMethods();
+    @Before(value = "annotatedMethodOrClass(executionLocking)", argNames = "executionLocking")
+    public void beforeAdvice(ExecutionLocking executionLocking) {
+//        Method[] declaredMethods = joinPoint.getTarget().getClass().getDeclaredMethods();
+
+        System.out.println("HEllO");
 
         long l1 = executionLocking.minTime();
         long l2 = executionLocking.maxTime();
