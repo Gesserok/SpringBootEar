@@ -1,6 +1,7 @@
 package org.example.multimodule.configurations;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.PropertyNamingStrategy;
 import lombok.extern.log4j.Log4j2;
 import org.example.multimodule.dto.ResponsePackageShow;
 import org.example.multimodule.dto.ResponseResourceShow;
@@ -90,6 +91,7 @@ public class WebClientConfiguration {
     @Bean
     public ObjectMapper objectMapper() {
         ObjectMapper objectMapper = new ObjectMapper();
+        objectMapper.setPropertyNamingStrategy(PropertyNamingStrategy.SNAKE_CASE);
         return objectMapper;
     }
 
