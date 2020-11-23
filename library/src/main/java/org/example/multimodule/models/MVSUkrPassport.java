@@ -14,6 +14,7 @@ import javax.persistence.Table;
 @AllArgsConstructor
 @Embeddable
 @Table(name = "mvs_ukr_passports")
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class MVSUkrPassport {
 
     @Getter(onMethod = @__({@JsonGetter("D_NUMBER")}))
