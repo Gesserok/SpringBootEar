@@ -53,18 +53,5 @@ public class RepositoryConfiguration {
         return transactionManager;
     }
 
-    @Bean
-    public LockProvider lockProvider(DataSource dataSource, PlatformTransactionManager transactionManager) {
-        log.info("SHEDLOCK STARTED");
-        JdbcTemplateLockProvider jdbcTemplateLockProvider = new JdbcTemplateLockProvider(builder()
-                .withTableName("shedlock")
-                .withColumnNames(new ColumnNames(
-                        "name", "lock_until", "locked_at", "locked_by"))
-                .withJdbcTemplate(new JdbcTemplate(dataSource, true))
-                .withTransactionManager(transactionManager)
-                .build());
-        jdbcTemplateLockProvider.clearCache();
-        log.info("SHEDLOCK FINISHED");
-        return jdbcTemplateLockProvider;
-    }
+
 }
