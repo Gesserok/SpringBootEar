@@ -4,6 +4,7 @@ import lombok.extern.log4j.Log4j2;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.orm.hibernate5.HibernateTransactionManager;
@@ -16,9 +17,10 @@ import javax.persistence.Persistence;
 import javax.sql.DataSource;
 
 @Configuration
-@EnableJpaRepositories(basePackages = "org.example.multimodule.dao")
+@EnableJpaRepositories(basePackages = {"org.example.multimodule.dao", "org.example.task_locker.dao"})
 @Log4j2
 @EnableTransactionManagement
+@ComponentScan("org.example.task_locker")
 public class RepositoryConfiguration {
 
     @Bean(name = "entityManagerFactory")

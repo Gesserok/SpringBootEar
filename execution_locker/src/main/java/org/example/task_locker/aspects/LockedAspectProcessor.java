@@ -13,7 +13,6 @@ import java.lang.reflect.Method;
 @Aspect
 @Component
 @AllArgsConstructor(onConstructor = @__({@Autowired}))
-@Log4j2
 public class LockedAspectProcessor {
     private final TaskLockService taskLockService;
 
@@ -33,7 +32,7 @@ public class LockedAspectProcessor {
     @Before("annotatedMethodOrClass()")
     public void beforeAdvice(JoinPoint joinPoint) {
         Method[] declaredMethods = joinPoint.getTarget().getClass().getDeclaredMethods();
-
+        System.out.println("asdasdasdasdasd");
     }
 
     @AfterReturning("annotatedMethodOrClass()")
