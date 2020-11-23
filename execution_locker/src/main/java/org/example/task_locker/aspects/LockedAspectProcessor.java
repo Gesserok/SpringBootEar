@@ -11,22 +11,22 @@ import java.lang.reflect.Method;
 @Component
 public class LockedAspectProcessor {
 
-    @Pointcut(value = "@annotation(executionLocking)", argNames = "joinPoint,executionLocking")
-    private void annotatedMethods(JoinPoint joinPoint, ExecutionLocking executionLocking) {
+    @Pointcut(value = "@annotation(executionLocking)", argNames = "executionLocking")
+    private void annotatedMethods(ExecutionLocking executionLocking) {
 
     }
 
-    @Pointcut(value = "execution(public * * (..)) && @within(executionLocking)", argNames = "joinPoint,executionLocking")
-    private void methodOfAnnotatedClass(JoinPoint joinPoint, ExecutionLocking executionLocking) {
+    @Pointcut(value = "execution(public * * (..)) && @within(executionLocking)", argNames = "executionLocking")
+    private void methodOfAnnotatedClass(ExecutionLocking executionLocking) {
 
     }
 
-    @Pointcut(value = "annotatedMethods(joinPoint,executionLocking) || methodOfAnnotatedClass(joinPoint,executionLocking)", argNames = "joinPoint,executionLocking")
-    private void annotatedMethodOrClass(JoinPoint joinPoint, ExecutionLocking executionLocking) {
+    @Pointcut(value = "annotatedMethods(executionLocking) || methodOfAnnotatedClass(executionLocking)", argNames = "executionLocking")
+    private void annotatedMethodOrClass(ExecutionLocking executionLocking) {
 
     }
 
-    @Before(value = "annotatedMethodOrClass(joinPoint,executionLocking)", argNames = "joinPoint,executionLocking")
+    @Before(value = "annotatedMethodOrClass(executionLocking)", argNames = "joinPoint,executionLocking")
     public void beforeAdvice(JoinPoint joinPoint, ExecutionLocking executionLocking) {
         Method[] declaredMethods = joinPoint.getTarget().getClass().getDeclaredMethods();
 
@@ -35,14 +35,14 @@ public class LockedAspectProcessor {
 
     }
 
-    @AfterReturning(value = "annotatedMethodOrClass(joinPoint,executionLocking)", argNames = "joinPoint,executionLocking")
-    public void afterReturningAdvice(JoinPoint joinPoint, ExecutionLocking executionLocking) {
-
-    }
-
-    @AfterThrowing(value = "annotatedMethodOrClass(joinPoint,executionLocking)", argNames = "joinPoint,executionLocking")
-    public void afterThrowingAdvice(JoinPoint joinPoint, ExecutionLocking executionLocking) {
-
-    }
+//    @AfterReturning(value = "annotatedMethodOrClass(joinPoint,executionLocking)", argNames = "joinPoint,executionLocking")
+//    public void afterReturningAdvice(JoinPoint joinPoint, ExecutionLocking executionLocking) {
+//
+//    }
+//
+//    @AfterThrowing(value = "annotatedMethodOrClass(joinPoint,executionLocking)", argNames = "joinPoint,executionLocking")
+//    public void afterThrowingAdvice(JoinPoint joinPoint, ExecutionLocking executionLocking) {
+//
+//    }
 
 }
