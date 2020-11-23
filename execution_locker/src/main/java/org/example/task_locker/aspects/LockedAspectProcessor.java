@@ -16,19 +16,19 @@ public class LockedAspectProcessor {
 
     }
 
-    @Pointcut(value = "execution(public * * (..)) && @within(executionLocking)", argNames = "executionLocking")
-    private void methodOfAnnotatedClass(ExecutionLocking executionLocking) {
+//    @Pointcut(value = "execution(public * * (..)) && @within(executionLocking)", argNames = "executionLocking")
+//    private void methodOfAnnotatedClass(ExecutionLocking executionLocking) {
+//
+//    }
 
-    }
-
-    @Pointcut(value = "annotatedMethods(executionLocking) || methodOfAnnotatedClass(executionLocking)", argNames = "executionLocking")
+//    @Pointcut(value = "annotatedMethods(executionLocking) || methodOfAnnotatedClass(executionLocking)", argNames = "executionLocking")
 //    @Pointcut(value = "methodOfAnnotatedClass(executionLocking)", argNames = "executionLocking")
 //    @Pointcut(value = "annotatedMethods(executionLocking)", argNames = "executionLocking")
-    private void annotatedMethodOrClass(ExecutionLocking executionLocking) {
+//    private void annotatedMethodOrClass(ExecutionLocking executionLocking) {
+//
+//    }
 
-    }
-
-    @Before(value = "annotatedMethodOrClass(executionLocking)", argNames = "executionLocking")
+    @Before(value = "annotatedMethods(executionLocking)", argNames = "executionLocking")
     public void beforeAdvice(ExecutionLocking executionLocking) {
 //        Method[] declaredMethods = joinPoint.getTarget().getClass().getDeclaredMethods();
 
