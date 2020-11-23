@@ -28,8 +28,8 @@ public class LockedAspectProcessor {
 //
 //    }
 
-    @Before(value = "annotatedMethods(executionLocking)", argNames = "executionLocking")
-    public void beforeAdvice(ExecutionLocking executionLocking) {
+    @Before(value = "annotatedMethods(executionLocking)", argNames = "joinPoint,executionLocking")
+    public void beforeAdvice(JoinPoint joinPoint, ExecutionLocking executionLocking) {
 //        Method[] declaredMethods = joinPoint.getTarget().getClass().getDeclaredMethods();
 
         System.out.println("HEllO");
