@@ -33,7 +33,7 @@ public class ResourceShowRevisionResolverImpl implements ResourceShowRevisionRes
                 ResponseResourceShow.class
         );
 
-        log.info("Response \"resource_show?id=" + resource.getId() + " received successfully");
+        log.debug("Response \"resource_show?id=" + resource.getId() + " received successfully");
 
         if (Objects.isNull(resourceShow.getResult())) {
             log.warn("Field \"Result\" is null");

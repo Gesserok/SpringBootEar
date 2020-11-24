@@ -37,17 +37,17 @@ public class MvsPassportTaskUpdaterScheduledService {
             lockAtMostFor = "1h")
     public void saveMvsResourceTasks() {
         List<Resource> resources = packageShowResourceResolver.getResources(parameters.packageId());
-        log.info("After filtering left " + resources.size() + " resources");
+        log.debug("After filtering left " + resources.size() + " resources");
 
         List<ResourceTask> resourceTasks = resourceTaskCollector.collect(resources);
-        log.info("MVS-UkrPassports Open Data Portal contains " + resourceTasks.size() + " revisions");
+        log.debug("MVS-UkrPassports Open Data Portal contains " + resourceTasks.size() + " revisions");
 
         List<ResourceTask> newResourceTasks = newResourceTaskSearcher.getNewTask(resourceTasks);
-        log.info("Among the " + resourceTasks.size() + " tasks on the MVS-UkrPassports portal, there are " + newResourceTasks.size() + " new ones");
+        log.debug("Among the " + resourceTasks.size() + " tasks on the MVS-UkrPassports portal, there are " + newResourceTasks.size() + " new ones");
 
         List<ResourceTask> savedResourceTasks = resourceTaskService.updateTaskList(newResourceTasks);
         String logAdd = " new resourceTasks saved to DB - MVS-UkrPassports";
-        log.info(Objects.nonNull(savedResourceTasks)
+        log.debug(Objects.nonNull(savedResourceTasks)
                 ? savedResourceTasks.size()  + logAdd
                 : 0 + logAdd);
     }

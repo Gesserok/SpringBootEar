@@ -52,7 +52,7 @@ public class TaskExecutionScheduledService {
                                 Duration.of(1L, ChronoUnit.HOURS),
                                 Duration.of(1L, ChronoUnit.HOURS)))).parallel().collect(Collectors.toList());
 
-        log.info("taskExecutor execution count = " + count.addAndGet(1) + " finished " + executed.size());
+        log.info("taskExecutor execution count = " + count.get() + " finished " + executed.size());
     }
 
     @Bean

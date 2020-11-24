@@ -37,7 +37,7 @@ public class ResourceTaskLoaderImpl implements ResourceTaskLoader {
     @Override
     @Transactional
     public Region saveRegions(ResourceTask resourceTask) {
-        log.info("Save resourceTask " + resourceTask.getName() + " started in thread " + Thread.currentThread().getName());
+        log.debug("Save resourceTask " + resourceTask.getName() + " started in thread " + Thread.currentThread().getName());
         URLConnection connection = resourceConnection.connection(resourceTask);
         regionService.deleteAllByResourceId(resourceTask.getName());
         Region savedRegion;
@@ -57,15 +57,14 @@ public class ResourceTaskLoaderImpl implements ResourceTaskLoader {
         }
 
         resourceTaskService.updateStatus(resourceTask);
-        log.info("Region " + savedRegion.getId() + " " + savedRegion.getResourceId() + " saved");
-        log.info("Save resourceTask " + resourceTask.getName() + " finished in thread " + Thread.currentThread().getName());
+        log.debug("Region " + savedRegion.getId() + " " + savedRegion.getResourceId() + " saved");
+        log.debug("Save resourceTask " + resourceTask.getName() + " finished in thread " + Thread.currentThread().getName());
         return savedRegion;
     }
 
     private Region saveFromJson(ResourceTask resourceTask, Reader reader) throws IOException {
         Region savedRegion = null;
-        int symbol;
-        while ((symbol = reader.read()) != -1) {
+        while (reader.read() != -1) {
             Region region = regionCreator.create(resourceTask, reader);
             savedRegion = regionService.save(region);
         }

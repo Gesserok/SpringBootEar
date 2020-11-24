@@ -34,7 +34,7 @@ public class PackageShowResourceResolverImpl implements PackageShowResourceResol
             throw new ResponseSuccessFalseException("package_show url return success = " + responsePackageShow.getSuccess());
         }
 
-        log.info("Response \"package_show?id=" + packageId + " received successfully");
+        log.debug("Response \"package_show?id=" + packageId + " received successfully");
 
         return filter(responsePackageShow);
     }

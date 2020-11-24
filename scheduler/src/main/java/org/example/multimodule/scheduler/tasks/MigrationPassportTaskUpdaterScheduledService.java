@@ -36,17 +36,17 @@ public class MigrationPassportTaskUpdaterScheduledService {
             lockAtMostFor = "1h")
     public void saveMigrationServiceResourceTasks() {
         List<Resource> resources = packageShowResourceResolver.getResources(parameters.migrationUkrPassportsPackageId());
-        log.info("After filtering left " + resources.size() + " resources");
+        log.debug("After filtering left " + resources.size() + " resources");
 
         List<ResourceTask> resourceTasks = resourceTaskCollector.collect(resources);
-        log.info("MigrationService-UkrPassports Open Data Portal contains " + resourceTasks.size() + " revisions");
+        log.debug("MigrationService-UkrPassports Open Data Portal contains " + resourceTasks.size() + " revisions");
 
         List<ResourceTask> newResourceTasks = newResourceTaskSearcher.getNewTask(resourceTasks);
-        log.info("Among the " + resourceTasks.size() + " tasks on the MigrationService-UkrPassports portal, there are " + newResourceTasks.size() + " new ones");
+        log.debug("Among the " + resourceTasks.size() + " tasks on the MigrationService-UkrPassports portal, there are " + newResourceTasks.size() + " new ones");
 
         List<ResourceTask> savedResourceTasks = resourceTaskService.updateTaskList(newResourceTasks);
         String logAdd = " new resourceTasks saved to DB - MigrationService-UkrPassports";
-        log.info(Objects.nonNull(savedResourceTasks)
+        log.debug(Objects.nonNull(savedResourceTasks)
                 ? savedResourceTasks.size() + logAdd
                 : 0 + logAdd);
     }
