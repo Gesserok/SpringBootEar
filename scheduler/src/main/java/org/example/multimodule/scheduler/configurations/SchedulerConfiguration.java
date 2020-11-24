@@ -33,7 +33,7 @@ public class SchedulerConfiguration {
     public LockProvider lockProvider(DataSource dataSource, PlatformTransactionManager transactionManager) {
         log.info("SHEDLOCK STARTED");
         JdbcTemplateLockProvider jdbcTemplateLockProvider = new JdbcTemplateLockProvider(builder()
-                .withTableName("shedlock")
+                .withTableName("odp.shedlock")
                 .withColumnNames(new JdbcTemplateLockProvider.ColumnNames(
                         "name", "lock_until", "locked_at", "locked_by"))
                 .withJdbcTemplate(new JdbcTemplate(dataSource, true))
