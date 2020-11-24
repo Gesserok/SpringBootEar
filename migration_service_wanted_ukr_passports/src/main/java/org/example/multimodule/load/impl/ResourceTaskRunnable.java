@@ -35,7 +35,7 @@ public class ResourceTaskRunnable implements Runnable{
 
     @Override
     public void run () {
-
+        log.info("ResourceTaskRunnable start " + resourceTask.getName());
         resourceTaskLoader.saveRegions(this.resourceTask);
 
     }

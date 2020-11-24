@@ -38,6 +38,9 @@ public class TaskExecutionScheduledService {
             lockAtLeastFor = "10m",
             lockAtMostFor = "20m")
     public void taskExecutor() {
+
+        log.info("taskExecutor executed" );
+
         List<ResourceTask> lastTasks = resourceTaskService.findAllGroupByNameAndNotUploadedOrderByDateRevisionDescDateRevisionDesc();
 
         List<ResourceTaskRunnable> collect = lastTasks.stream()
