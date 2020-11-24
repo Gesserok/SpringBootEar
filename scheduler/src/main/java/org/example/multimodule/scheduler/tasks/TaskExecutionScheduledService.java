@@ -44,12 +44,13 @@ public class TaskExecutionScheduledService {
                 .map(resourceTask -> new ResourceTaskRunnable(resourceTaskLoader, resourceTask))
                 .collect(Collectors.toList());
 
-        collect.parallelStream().parallel().forEachOrdered(resourceTaskRunnable ->
+        List<ResourceTaskRunnable> executed = collect.parallelStream().peek(resourceTaskRunnable ->
                 executor.executeWithLock(resourceTaskRunnable,
                         new LockConfiguration(Instant.now(), resourceTaskRunnable.getResourceTask().getName(),
                                 Duration.of(1L, ChronoUnit.HOURS),
-                                Duration.of(1L, ChronoUnit.HOURS))));
+                                Duration.of(1L, ChronoUnit.HOURS)))).parallel().collect(Collectors.toList());
 
+        log.info("EXECUTED " + executed.size());
 
 //        log.info("Found " + lastTasks.size() + " tasks");
 //        List<ResourceTaskRunnablerImpl> collect = lastTasks.stream()
