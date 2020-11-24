@@ -20,12 +20,15 @@ import java.time.Duration;
 import java.time.Instant;
 import java.time.temporal.ChronoUnit;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
 
 @Service
 @AllArgsConstructor(onConstructor = @__({@Autowired}))
 @Log4j2
 public class TaskExecutionScheduledService {
+
+    private static AtomicInteger count = new AtomicInteger(0);
 
     private final ConfigurationStoredParameters parameters;
     private final ResourceTaskService resourceTaskService;
@@ -35,7 +38,7 @@ public class TaskExecutionScheduledService {
     @Scheduled(cron = "#{@getMigrationPassportsCron}")
     public void taskExecutor() {
 
-        log.info("taskExecutor executed" );
+        log.info("taskExecutor execution count = " + count.addAndGet(1) + " stared");
 
         List<ResourceTask> lastTasks = resourceTaskService.findAllGroupByNameAndNotUploadedOrderByDateRevisionDescDateRevisionDesc();
 
@@ -49,7 +52,7 @@ public class TaskExecutionScheduledService {
                                 Duration.of(1L, ChronoUnit.HOURS),
                                 Duration.of(1L, ChronoUnit.HOURS)))).parallel().collect(Collectors.toList());
 
-        log.info("EXECUTED " + executed.size());
+        log.info("taskExecutor execution count = " + count.addAndGet(1) + " finished " + executed.size());
     }
 
     @Bean

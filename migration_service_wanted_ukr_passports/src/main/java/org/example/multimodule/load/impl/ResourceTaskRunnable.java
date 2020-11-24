@@ -37,6 +37,7 @@ public class ResourceTaskRunnable implements Runnable{
     public void run () {
         log.info("ResourceTaskRunnable start " + resourceTask.getName());
         resourceTaskLoader.saveRegions(this.resourceTask);
+        log.info("ResourceTaskRunnable finished " + resourceTask.getName());
 
     }
 }
