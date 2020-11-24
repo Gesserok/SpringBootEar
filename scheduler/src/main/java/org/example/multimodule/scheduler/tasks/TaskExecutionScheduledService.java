@@ -31,7 +31,6 @@ public class TaskExecutionScheduledService {
     private final ResourceTaskService resourceTaskService;
     private final ResourceTaskLoader resourceTaskLoader;
     private final LockingTaskExecutor executor;
-    private final LockProvider lockProvider;
 
     @Scheduled(cron = "#{@getMigrationPassportsCron}")
     @SchedulerLock(
@@ -45,7 +44,7 @@ public class TaskExecutionScheduledService {
                 .map(resourceTask -> new ResourceTaskRunnable(resourceTaskLoader, resourceTask))
                 .collect(Collectors.toList());
 
-        collect.parallelStream().forEachOrdered(resourceTaskRunnable ->
+        collect.parallelStream().parallel().forEachOrdered(resourceTaskRunnable ->
                 executor.executeWithLock(resourceTaskRunnable,
                         new LockConfiguration(Instant.now(), resourceTaskRunnable.getResourceTask().getName(),
                                 Duration.of(1L, ChronoUnit.HOURS),
