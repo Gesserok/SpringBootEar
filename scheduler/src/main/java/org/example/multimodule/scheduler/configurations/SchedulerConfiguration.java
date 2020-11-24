@@ -1,11 +1,11 @@
 package org.example.multimodule.scheduler.configurations;
 
 import lombok.extern.log4j.Log4j2;
-import net.javacrumbs.shedlock.core.LockConfiguration;
+import net.javacrumbs.shedlock.core.DefaultLockingTaskExecutor;
 import net.javacrumbs.shedlock.core.LockProvider;
+import net.javacrumbs.shedlock.core.LockingTaskExecutor;
 import net.javacrumbs.shedlock.provider.jdbctemplate.JdbcTemplateLockProvider;
 import net.javacrumbs.shedlock.spring.annotation.EnableSchedulerLock;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -14,8 +14,6 @@ import org.springframework.scheduling.concurrent.ThreadPoolTaskScheduler;
 import org.springframework.transaction.PlatformTransactionManager;
 
 import javax.sql.DataSource;
-
-import java.time.Instant;
 
 import static net.javacrumbs.shedlock.provider.jdbctemplate.JdbcTemplateLockProvider.Configuration.builder;
 
@@ -45,5 +43,10 @@ public class SchedulerConfiguration {
         jdbcTemplateLockProvider.clearCache();
         log.info("SHEDLOCK FINISHED");
         return jdbcTemplateLockProvider;
+    }
+
+    @Bean
+    public LockingTaskExecutor executor(LockProvider lockProvider) {
+        return new DefaultLockingTaskExecutor(lockProvider);
     }
 }

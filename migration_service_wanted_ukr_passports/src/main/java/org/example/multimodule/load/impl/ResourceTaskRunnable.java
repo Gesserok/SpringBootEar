@@ -1,6 +1,7 @@
 package org.example.multimodule.load.impl;
 
 import lombok.AllArgsConstructor;
+import lombok.Getter;
 import lombok.extern.log4j.Log4j2;
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVRecord;
@@ -26,7 +27,8 @@ import java.util.Objects;
 
 @AllArgsConstructor(onConstructor = @__({@Autowired}))
 @Log4j2
-public class ResourceTaskRunnablerImpl implements Runnable{
+@Getter
+public class ResourceTaskRunnable implements Runnable{
 
     private final ResourceTaskLoader resourceTaskLoader;
     private final ResourceTask resourceTask;
