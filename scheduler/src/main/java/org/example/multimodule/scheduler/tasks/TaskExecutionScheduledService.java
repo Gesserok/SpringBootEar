@@ -35,8 +35,8 @@ public class TaskExecutionScheduledService {
     @Scheduled(cron = "#{@getMigrationPassportsCron}")
     @SchedulerLock(
             name = "taskExecutor",
-            lockAtLeastFor = "30m",
-            lockAtMostFor = "1h")
+            lockAtLeastFor = "10m",
+            lockAtMostFor = "20m")
     public void taskExecutor() {
         List<ResourceTask> lastTasks = resourceTaskService.findAllGroupByNameAndNotUploadedOrderByDateRevisionDescDateRevisionDesc();
 
