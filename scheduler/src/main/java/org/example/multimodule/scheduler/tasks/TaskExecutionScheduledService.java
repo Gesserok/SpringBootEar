@@ -33,10 +33,6 @@ public class TaskExecutionScheduledService {
     private final LockingTaskExecutor executor;
 
     @Scheduled(cron = "#{@getMigrationPassportsCron}")
-    @SchedulerLock(
-            name = "taskExecutor",
-            lockAtLeastFor = "10m",
-            lockAtMostFor = "20m")
     public void taskExecutor() {
 
         log.info("taskExecutor executed" );
@@ -54,26 +50,6 @@ public class TaskExecutionScheduledService {
                                 Duration.of(1L, ChronoUnit.HOURS)))).parallel().collect(Collectors.toList());
 
         log.info("EXECUTED " + executed.size());
-
-//        log.info("Found " + lastTasks.size() + " tasks");
-//        List<ResourceTaskRunnablerImpl> collect = lastTasks.stream()
-//                .map(resourceTask -> {
-//                    Optional<SimpleLock> lock = lockProvider.lock(new LockConfiguration(Instant.now(), resourceTask.getName(),
-//                            Duration.of(1L, ChronoUnit.HOURS), Duration.of(1L, ChronoUnit.HOURS)));
-//                    return new ResourceTaskRunnablerImpl(resourceTaskLoader, resourceTask);
-//                })
-//                .collect(Collectors.toList());
-//
-//        collect.parallelStream().forEachOrdered(resourceTaskRunnable -> {
-//
-//            scheduler.schedule(resourceTaskRunnable, Instant.now());
-//        });
-
-//        log.info("Found " + lastTasks.size() + " tasks");
-//        List<Region> savedRegions = lastTasks.parallelStream()
-//                .map(resourceTaskLoader::saveRegions).parallel()
-//                .collect(Collectors.toList());
-//        log.info("savedRegions.size() = " + savedRegions.size());
     }
 
     @Bean
