@@ -9,4 +9,16 @@
         <env-entry-value></env-entry-value>
     </env-entry>
 
+    <env-entry>
+        <env-entry-name>useMvsPassportService</env-entry-name>
+        <env-entry-type>java.lang.Boolean</env-entry-type>
+        <env-entry-value>true</env-entry-value>
+    </env-entry>
+
+    <env-entry>
+        <env-entry-name>useMigrationPassportService</env-entry-name>
+        <env-entry-type>java.lang.Boolean</env-entry-type>
+        <env-entry-value>true</env-entry-value>
+    </env-entry>
+
 </web-app>
