@@ -6,6 +6,7 @@ import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.apache.commons.csv.CSVRecord;
 import org.example.multimodule.csv.DataReceiver;
+import org.example.multimodule.exceptions.ODPConnectorException;
 import org.example.multimodule.models.MVSUkrPassport;
 import org.example.multimodule.models.MigrationServiceUrkPassport;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -65,6 +66,7 @@ public class DataReceiverImpl implements DataReceiver {
                 }
             } catch (IOException e) {
                 log.info("IOEXCEPTION");
+                throw new ODPConnectorException("I/O Exception", e);
             }
             if ('{' == (char) symbol) {
                 isObject = true;
