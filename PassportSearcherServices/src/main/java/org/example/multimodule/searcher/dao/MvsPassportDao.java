@@ -14,13 +14,13 @@ import java.util.List;
 public class MvsPassportDao {
 
     private static final String SELEC_BY_NUMBER =
-            ("SELECT external_id extId, d_series dSeries, d_number dNumber, d_status, d_type, theft_data, insert_date, ovd " +
+            ("SELECT external_id externalId, d_series dSeries, d_number dNumber, d_status, d_type, theft_data, insert_date, ovd " +
                     "FROM mvs_ukr_passports " +
                     " WHERE " +
                     "d_number = ?");
 
     private static final String SELEC_BY_SERIES_NUMBER =
-            ("SELECT external_id extId, d_series dSeries, d_number dNumber, d_status, d_type, theft_data, insert_date, ovd " +
+            ("SELECT external_id externalId, d_series dSeries, d_number dNumber, d_status, d_type, theft_data, insert_date, ovd " +
                     "FROM mvs_ukr_passports " +
                     " WHERE " +
                     "d_series = ? " +
