@@ -16,13 +16,13 @@ public class MigrationPassportDao {
     private static final String SELECT_BY_NUMBER =
             ("SELECT ovd_number nn, series dSeries, doc_num dNumber, status, date_edit " +
                     "FROM " +
-                    "migration_passports " +
+                    "odp.migration_passports " +
                     "WHERE d_number = ?");
 
     private static final String SELECT_BY_SERIES_NUMBER =
             ("SELECT ovd_number nn, series dSeries, doc_num dNumber, status, date_edit " +
                     "FROM " +
-                    "migration_passports " +
+                    "odp.migration_passports " +
                     "WHERE series = ? " +
                     "AND doc_num = ?");
 
