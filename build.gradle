@@ -74,6 +74,7 @@ dependencies {
             "net.javacrumbs.shedlock:shedlock-spring:${shedlock}",
             "net.javacrumbs.shedlock:shedlock-provider-jdbc-template:${shedlock}"
     )
+    earlib "org.example.spring:spring-boot-starter-binding-soap-interceptor:${bindingSoapInteceptor}"
 
     earlib "org.springframework.boot:spring-boot-starter-log4j2:${springBoot}"
     earlib "org.apache.commons:commons-text:${apacheCommonText}"

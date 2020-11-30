@@ -1,7 +1,7 @@
 rootProject.name = 'SpringBootEar'
 
 include ':library'
-//include ':execution_locker'
+include ':PassportSearcherSOAP'
 include ':scheduler'
 include ':wanted_ukr_passports'
 include ':application'

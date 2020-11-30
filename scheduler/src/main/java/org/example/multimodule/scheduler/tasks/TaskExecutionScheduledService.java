@@ -15,6 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
+import sun.util.locale.provider.LocaleServiceProviderPool;
 
 import java.time.Duration;
 import java.time.Instant;
@@ -46,13 +47,16 @@ public class TaskExecutionScheduledService {
                 .map(resourceTask -> new ResourceTaskRunnable(resourceTaskLoader, resourceTask))
                 .collect(Collectors.toList());
 
-        List<ResourceTaskRunnable> executed = collect.parallelStream().peek(resourceTaskRunnable ->
-                executor.executeWithLock(resourceTaskRunnable,
-                        new LockConfiguration(Instant.now(), resourceTaskRunnable.getResourceTask().getName(),
-                                Duration.of(1L, ChronoUnit.HOURS),
-                                Duration.of(1L, ChronoUnit.HOURS)))).parallel().collect(Collectors.toList());
+        collect.forEach(resourceTaskRunnable -> log.info(resourceTaskRunnable.getResourceTask().getName()));
+//
+//        List<ResourceTaskRunnable> executed = collect.parallelStream().peek(resourceTaskRunnable ->
+//                executor.executeWithLock(resourceTaskRunnable,
+//                        new LockConfiguration(Instant.now(), resourceTaskRunnable.getResourceTask().getName(),
+//                                Duration.of(1L, ChronoUnit.HOURS),
+//                                Duration.of(1L, ChronoUnit.HOURS)))).parallel().collect(Collectors.toList());
 
-        log.info("taskExecutor execution count = " + count.get() + " finished " + executed.size());
+        log.info("taskExecutor execution count = " + count.get() + " finished");
+        log.info("---------------------------------------------------------------------------------------------------------------------------");
     }
 
     @Bean

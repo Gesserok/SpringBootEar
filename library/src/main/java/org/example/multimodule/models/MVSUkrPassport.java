@@ -45,7 +45,7 @@ public class MVSUkrPassport {
     @Setter(onMethod = @__({@JsonSetter("ID")}))
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @Column(name = "external_id")
-    private Long externalId;
+    private String externalId;
 
     @Getter(onMethod = @__({@JsonGetter("INSERT_DATE")}))
     @Setter(onMethod = @__({@JsonSetter("INSERT_DATE")}))

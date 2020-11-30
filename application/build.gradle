@@ -16,8 +16,11 @@ dependencies {
         exclude group:'org.springframework.boot', module:'spring-boot-starter-logging'
     }
     compileOnly "org.springframework.boot:spring-boot-starter-log4j2:${springBoot}"
+    compileOnly "org.example.spring:spring-boot-starter-binding-soap-interceptor:${bindingSoapInteceptor}"
 
     compileOnly ("com.lmax:disruptor:${comLmax}")
+
+    compileOnly "org.apache.commons:commons-text:${apacheCommonText}"
 
     compileOnly project(":library")
     compileOnly project(":scheduler")
