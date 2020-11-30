@@ -40,4 +40,5 @@ public class Region {
     @Column(name = "resource_revision_url")
     private String resourceRevisionUrl;
 
+    private boolean isLast = false;
 }

@@ -64,7 +64,9 @@ public class ResourceTaskLoaderImpl implements ResourceTaskLoader {
 
     private Region saveFromJson(ResourceTask resourceTask, Reader reader) throws IOException {
         Region savedRegion = null;
-        while (reader.read() != -1) {
+        int symbol;
+        while (( symbol = reader.read()) != -1) {
+            log.info(symbol);
             Region region = regionCreator.create(resourceTask, reader);
             savedRegion = regionService.save(region);
         }

@@ -59,9 +59,12 @@ public class DataReceiverImpl implements DataReceiver {
         MVSUkrPassport passport;
         while (true) {
             try {
-                if ((symbol = reader.read()) == -1) break;
+                if ((symbol = reader.read()) == -1) {
+                    log.info("LAST SYMBOL READ");
+                    break;
+                }
             } catch (IOException e) {
-                e.printStackTrace();
+                log.info("IOEXCEPTION");
             }
             if ('{' == (char) symbol) {
                 isObject = true;
