@@ -26,7 +26,7 @@ public class PassportSearcher {
     @Resource(name = "useMigrationPassportService")
     private Boolean useMigrationPassportService;
 
-    @Setter(onMethod = @__({@Autowired}))
+    @Autowired
     private PassportSearcherResponseBuilder passportSearcherResponseBuilder;
 
 

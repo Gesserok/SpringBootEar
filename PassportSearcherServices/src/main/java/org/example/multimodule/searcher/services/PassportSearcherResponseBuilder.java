@@ -9,6 +9,7 @@ import org.example.multimodule.searcher.models.SOAPPassport;
 import org.example.multimodule.searcher.services.db.MigrationPassportService;
 import org.example.multimodule.searcher.services.db.MvsPassportService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.QueryTimeoutException;
@@ -17,14 +18,16 @@ import java.util.List;
 import java.util.Objects;
 
 @Service
-@AllArgsConstructor(onConstructor = @__({@Autowired}))
+@ComponentScan(basePackages = "org.multimodule.searcher")
 public class PassportSearcherResponseBuilder {
 
     private static int MAX_ERROR_MESSAGE_LENGTH = 1860;
-
-    private final MvsPassportService mvsPassportService;
-    private final MigrationPassportService migrationPassportService;
-    private final PassportValidator passportValidator;
+    @Autowired
+    private MvsPassportService mvsPassportService;
+    @Autowired
+    private MigrationPassportService migrationPassportService;
+    @Autowired
+    private PassportValidator passportValidator;
 
 
     public PassportSearcherResponse findPassports(
