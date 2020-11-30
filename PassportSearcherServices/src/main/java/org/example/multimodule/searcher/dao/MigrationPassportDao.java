@@ -14,17 +14,17 @@ import java.util.List;
 public class MigrationPassportDao {
 
     private static final String SELECT_BY_NUMBER =
-            ("SELECT OVD_NUMBER nn, D_SERIES_TRANSFORMED dSeries, D_DOC_NUM_TRANSFORMED dNumber, STATUS, DATE_EDIT " +
+            ("SELECT ovd_number nn, series dSeries, doc_num dNumber, status, date_edit " +
                     "FROM " +
                     "migration_passports " +
-                    "WHERE D_DOC_NUM_TRANSFORMED = ?").toLowerCase();
+                    "WHERE d_number = ?");
 
     private static final String SELECT_BY_SERIES_NUMBER =
-            ("SELECT OVD_NUMBER nn, D_SERIES_TRANSFORMED dSeries, D_DOC_NUM_TRANSFORMED dNumber, STATUS, DATE_EDIT " +
+            ("SELECT ovd_number nn, series dSeries, doc_num dNumber, status, date_edit " +
                     "FROM " +
                     "migration_passports " +
-                    "WHERE D_DOC_SERIES_TRANSFORMED = ? " +
-                    "AND D_DOC_NUM_TRANSFORMED = ?").toLowerCase();
+                    "WHERE series = ? " +
+                    "AND doc_num = ?");
 
     private final JdbcTemplate jdbcTemplate;
 
