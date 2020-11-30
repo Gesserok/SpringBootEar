@@ -47,12 +47,12 @@ public class TaskExecutionScheduledService {
                 .collect(Collectors.toList());
 
         collect.forEach(resourceTaskRunnable -> log.info(resourceTaskRunnable.getResourceTask().getName()));
-//
-//        List<ResourceTaskRunnable> executed = collect.parallelStream().peek(resourceTaskRunnable ->
-//                executor.executeWithLock(resourceTaskRunnable,
-//                        new LockConfiguration(Instant.now(), resourceTaskRunnable.getResourceTask().getName(),
-//                                Duration.of(1L, ChronoUnit.HOURS),
-//                                Duration.of(1L, ChronoUnit.HOURS)))).parallel().collect(Collectors.toList());
+
+        List<ResourceTaskRunnable> executed = collect.parallelStream().peek(resourceTaskRunnable ->
+                executor.executeWithLock(resourceTaskRunnable,
+                        new LockConfiguration(Instant.now(), resourceTaskRunnable.getResourceTask().getName(),
+                                Duration.of(1L, ChronoUnit.HOURS),
+                                Duration.of(1L, ChronoUnit.HOURS)))).parallel().collect(Collectors.toList());
 
         log.info("taskExecutor execution count = " + count.get() + " finished");
         log.info("---------------------------------------------------------------------------------------------------------------------------");
