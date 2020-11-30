@@ -19,15 +19,14 @@ import java.util.Objects;
 
 @Service
 @ComponentScan(basePackages = "org.multimodule.searcher")
+@AllArgsConstructor(onConstructor = @__({@Autowired}))
 public class PassportSearcherResponseBuilder {
 
     private static int MAX_ERROR_MESSAGE_LENGTH = 1860;
-    @Autowired
-    private MvsPassportService mvsPassportService;
-    @Autowired
-    private MigrationPassportService migrationPassportService;
-    @Autowired
-    private PassportValidator passportValidator;
+
+    private final MvsPassportService mvsPassportService;
+    private final MigrationPassportService migrationPassportService;
+    private final PassportValidator passportValidator;
 
 
     public PassportSearcherResponse findPassports(
@@ -66,7 +65,7 @@ public class PassportSearcherResponseBuilder {
 
         List<SOAPPassport> result = new ArrayList<>();
         List<MVSUkrPassport> mvsPassports;
-        List<MigrationServiceUrkPassport> migrationServiceUrkPassports = new ArrayList<>();
+        List<MigrationServiceUrkPassport> migrationServiceUrkPassports;
         PassportSearcherResponse passportSearcherResponse;
         try {
             if (useMvsPassportService) {
