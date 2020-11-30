@@ -1,8 +1,7 @@
-package org.example.multimodule.dao;
+package org.example.multimodule.searcher.dao;
 
 import lombok.AllArgsConstructor;
 import org.example.multimodule.models.MVSUkrPassport;
-import org.example.multimodule.models.SOAPPassport;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -32,9 +31,9 @@ public class MvsPassportDao {
     public List<MVSUkrPassport> findByDSeriesAndDNumber(String series, String number) {
         return jdbcTemplate.query(
                 SELEC_BY_SERIES_NUMBER
-        , new BeanPropertyRowMapper<>(MVSUkrPassport.class)
-        , series
-        , number);
+                , new BeanPropertyRowMapper<>(MVSUkrPassport.class)
+                , series
+                , number);
     }
 
     public List<MVSUkrPassport> findByDNumber(String number) {

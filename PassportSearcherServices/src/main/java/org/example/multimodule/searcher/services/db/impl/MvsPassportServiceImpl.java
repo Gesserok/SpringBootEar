@@ -1,9 +1,9 @@
-package org.example.multimodule.services.impl;
+package org.example.multimodule.searcher.services.db.impl;
 
 import lombok.AllArgsConstructor;
-import org.example.multimodule.dao.MvsPassportDao;
+import org.example.multimodule.searcher.dao.MvsPassportDao;
 import org.example.multimodule.models.MVSUkrPassport;
-import org.example.multimodule.services.MvsPassportService;
+import org.example.multimodule.searcher.services.db.MvsPassportService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

@@ -1,4 +1,4 @@
-package org.example.multimodule.services;
+package org.example.multimodule.searcher.services.db;
 
 import org.example.multimodule.models.MigrationServiceUrkPassport;
 

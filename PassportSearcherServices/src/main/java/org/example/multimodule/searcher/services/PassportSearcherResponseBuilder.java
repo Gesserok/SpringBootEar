@@ -1,14 +1,13 @@
-package org.example.multimodule.application.soap;
+package org.example.multimodule.searcher.services;
 
 import lombok.AllArgsConstructor;
 import org.apache.commons.lang3.exception.ExceptionUtils;
 import org.example.multimodule.models.MVSUkrPassport;
 import org.example.multimodule.models.MigrationServiceUrkPassport;
-import org.example.multimodule.models.PassportSearcherResponse;
-import org.example.multimodule.models.SOAPPassport;
-import org.example.multimodule.services.MigrationPassportService;
-import org.example.multimodule.services.MvsPassportService;
-import org.example.multimodule.services.PassportValidator;
+import org.example.multimodule.searcher.dto.PassportSearcherResponse;
+import org.example.multimodule.searcher.models.SOAPPassport;
+import org.example.multimodule.searcher.services.db.MigrationPassportService;
+import org.example.multimodule.searcher.services.db.MvsPassportService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

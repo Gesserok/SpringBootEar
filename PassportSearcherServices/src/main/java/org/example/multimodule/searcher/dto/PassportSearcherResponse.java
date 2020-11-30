@@ -1,7 +1,8 @@
-package org.example.multimodule.models;
+package org.example.multimodule.searcher.dto;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.example.multimodule.searcher.models.SOAPPassport;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;

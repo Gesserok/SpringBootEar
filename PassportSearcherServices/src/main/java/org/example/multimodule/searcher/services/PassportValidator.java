@@ -1,6 +1,6 @@
-package org.example.multimodule.services;
+package org.example.multimodule.searcher.services;
 
-import org.example.multimodule.models.PassportSearcherResponse;
+import org.example.multimodule.searcher.dto.PassportSearcherResponse;
 import org.springframework.stereotype.Component;
 
 import java.util.Objects;

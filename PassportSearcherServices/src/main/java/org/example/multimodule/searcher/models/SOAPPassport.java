@@ -1,6 +1,8 @@
-package org.example.multimodule.models;
+package org.example.multimodule.searcher.models;
 
 import lombok.RequiredArgsConstructor;
+import org.example.multimodule.models.MVSUkrPassport;
+import org.example.multimodule.models.MigrationServiceUrkPassport;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;

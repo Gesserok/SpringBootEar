@@ -2,7 +2,8 @@ package org.example.multimodule.application.soap;
 
 
 import lombok.extern.log4j.Log4j2;
-import org.example.multimodule.models.PassportSearcherResponse;
+import org.example.multimodule.searcher.dto.PassportSearcherResponse;
+import org.example.multimodule.searcher.services.PassportSearcherResponseBuilder;
 import org.example.spring.binding.SpringBindingInterceptor;
 import org.springframework.beans.factory.annotation.Autowired;
 

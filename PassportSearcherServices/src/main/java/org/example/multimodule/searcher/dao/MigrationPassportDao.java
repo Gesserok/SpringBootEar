@@ -1,4 +1,4 @@
-package org.example.multimodule.dao;
+package org.example.multimodule.searcher.dao;
 
 import lombok.AllArgsConstructor;
 import org.example.multimodule.models.MigrationServiceUrkPassport;

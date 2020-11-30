@@ -59,7 +59,7 @@ dependencies {
     deploy project(path: ':application', configuration: 'archives')
     earlib project(':library')
     earlib project(':scheduler')
-//    earlib project(':execution_locker')
+    earlib project(':PassportSearcherServices')
     earlib project(':wanted_ukr_passports')
 
     earlib("org.springframework.boot:spring-boot-starter-actuator:${springBoot}") {
@@ -70,10 +70,14 @@ dependencies {
         exclude group: 'org.springframework.boot', module: 'spring-boot-starter-tomcat'
         exclude group: 'org.springframework.boot', module: 'spring-boot-starter-logging'
     }
-    earlib(
-            "net.javacrumbs.shedlock:shedlock-spring:${shedlock}",
-            "net.javacrumbs.shedlock:shedlock-provider-jdbc-template:${shedlock}"
-    )
+
+    earlib("net.javacrumbs.shedlock:shedlock-provider-jdbc-template:${shedlock}") {
+        exclude group: ' org.springframework', module: 'spring-jdbc'
+    }
+    earlib("net.javacrumbs.shedlock:shedlock-spring:${shedlock}") {
+        exclude group: ' org.springframework', module: 'spring-context'
+    }
+
     earlib "org.example.spring:spring-boot-starter-binding-soap-interceptor:${bindingSoapInteceptor}"
 
     earlib "org.springframework.boot:spring-boot-starter-log4j2:${springBoot}"
