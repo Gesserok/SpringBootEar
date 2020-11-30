@@ -20,7 +20,7 @@ dependencies {
             "net.javacrumbs.shedlock:shedlock-provider-jdbc-template:${shedlock}"
     )
 
-    compileOnly project(":migration_service_wanted_ukr_passports")
+    compileOnly project(":wanted_ukr_passports")
     compileOnly "org.example:config-repo:${configstorage}"
 
     compileOnly ("org.projectlombok:lombok:${lombok}")

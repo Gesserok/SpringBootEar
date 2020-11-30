@@ -60,7 +60,7 @@ dependencies {
     earlib project(':library')
     earlib project(':scheduler')
 //    earlib project(':execution_locker')
-    earlib project(':migration_service_wanted_ukr_passports')
+    earlib project(':wanted_ukr_passports')
 
     earlib("org.springframework.boot:spring-boot-starter-actuator:${springBoot}") {
         exclude group: 'org.springframework.boot', module: 'spring-boot-starter-logging'
