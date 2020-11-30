@@ -2,6 +2,7 @@ package org.example.multimodule.application.configuration;
 
 import lombok.extern.log4j.Log4j2;
 import org.example.multimodule.infrastructure.LoggerConfigurator;
+import org.example.spring.binding.EnableSpringBinding;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.event.*;
 import org.springframework.boot.web.context.WebServerInitializedEvent;
@@ -17,6 +18,7 @@ import org.springframework.context.event.EventListener;
 @Configuration
 @Log4j2
 @ComponentScan(basePackages = "org.example.multimodule")
+@EnableSpringBinding
 public class WebAppConfiguration {
     //
 //    @Resource(lookup = "java:comp/env/instanceName")

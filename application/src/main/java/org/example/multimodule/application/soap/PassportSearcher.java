@@ -1,6 +1,7 @@
 package org.example.multimodule.application.soap;
 
 
+import lombok.Setter;
 import lombok.extern.log4j.Log4j2;
 import org.example.multimodule.searcher.dto.PassportSearcherResponse;
 import org.example.multimodule.searcher.services.PassportSearcherResponseBuilder;
@@ -25,7 +26,7 @@ public class PassportSearcher {
     @Resource(name = "useMigrationPassportService")
     private Boolean useMigrationPassportService;
 
-    @Autowired
+    @Setter(onMethod = @__({@Autowired}))
     private PassportSearcherResponseBuilder passportSearcherResponseBuilder;
 
 
