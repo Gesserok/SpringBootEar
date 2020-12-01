@@ -46,10 +46,12 @@ public class TaskExecutionScheduledService {
 
         forkJoinPool.submit(() -> collect.parallelStream().peek(resourceTaskRunnable -> {
             try {
+                ChronoUnit most = ChronoUnit.valueOf(parameters.lockAtMostChronoUnit());
+                ChronoUnit least = ChronoUnit.valueOf(parameters.lockAtLeastChronoUnit());
                 executor.executeWithLock(resourceTaskRunnable,
                         new LockConfiguration(Instant.now(), resourceTaskRunnable.getResourceTask().getName(),
-                                Duration.of(parameters.lockAtMostFor(), ChronoUnit.valueOf(parameters.lockAtMostChronoUnit())/*ChronoUnit.HOURS*/),
-                                Duration.of(parameters.lockAtLeastFor(), ChronoUnit.valueOf(parameters.lockAtLeastChronoUnit()))
+                                Duration.of(parameters.lockAtMostFor(), most/*ChronoUnit.HOURS*/),
+                                Duration.of(parameters.lockAtLeastFor(), least)
                         ));
             } catch (Throwable e) {
                 log.error(resourceTaskRunnable.getResourceTask().getName() + " throws " + e.getClass() + " " + e.getMessage());
