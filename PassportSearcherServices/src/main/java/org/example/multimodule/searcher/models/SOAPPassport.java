@@ -1,6 +1,7 @@
 package org.example.multimodule.searcher.models;
 
 import lombok.RequiredArgsConstructor;
+import lombok.ToString;
 import org.example.multimodule.models.MVSUkrPassport;
 import org.example.multimodule.models.MigrationServiceUrkPassport;
 
@@ -8,6 +9,7 @@ import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlType;
 
+@ToString
 @RequiredArgsConstructor
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(propOrder = {"extId", "dSeries", "dNumber", "dStatus", "theftData", "insertDate", "ovd", "dType"})
@@ -50,6 +52,5 @@ public class SOAPPassport {
         this.ovd = mvsUkrPassport.getOvd();
         this.theftData = mvsUkrPassport.getTheftData();
         this.insertDate = mvsUkrPassport.getInsertDate();
-
     }
 }
