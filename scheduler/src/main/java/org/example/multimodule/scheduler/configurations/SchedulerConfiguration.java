@@ -61,15 +61,11 @@ public class SchedulerConfiguration {
     @Bean
     public ForkJoinPool forkJoinPool() {
 
-        ForkJoinPool forkJoinPool1 = ForkJoinPool.commonPool();
-
-
         ForkJoinPool forkJoinPool = new ForkJoinPool(
                 parameters.threadPool(),
                 ForkJoinPool.defaultForkJoinWorkerThreadFactory,
                 null,
                 true);
-        forkJoinPool.getStealCount()
         log.info("ForkJoinPool thread size = " + forkJoinPool.getPoolSize() + " " + forkJoinPool.getActiveThreadCount());
         return forkJoinPool;
     }
