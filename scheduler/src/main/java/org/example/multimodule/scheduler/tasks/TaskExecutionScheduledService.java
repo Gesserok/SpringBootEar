@@ -18,6 +18,7 @@ import java.time.Duration;
 import java.time.Instant;
 import java.time.temporal.ChronoUnit;
 import java.util.List;
+import java.util.concurrent.ForkJoinPool;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
 
@@ -32,6 +33,7 @@ public class TaskExecutionScheduledService {
     private final ResourceTaskService resourceTaskService;
     private final ResourceTaskLoader resourceTaskLoader;
     private final LockingTaskExecutor executor;
+    private final ForkJoinPool forkJoinPool;
 
     @Scheduled(cron = "#{@getMigrationPassportsCron}")
     public void taskExecutor() {
@@ -44,13 +46,22 @@ public class TaskExecutionScheduledService {
                 .map(resourceTask -> new ResourceTaskRunnable(resourceTaskLoader, resourceTask))
                 .collect(Collectors.toList());
 
-        collect.forEach(resourceTaskRunnable -> log.info(resourceTaskRunnable.getResourceTask().getName()));
 
-        List<ResourceTaskRunnable> executed = collect.parallelStream().limit(parameters.threadPool()).peek(resourceTaskRunnable ->
-                executor.executeWithLock(resourceTaskRunnable,
-                        new LockConfiguration(Instant.now(), resourceTaskRunnable.getResourceTask().getName(),
-                                Duration.of(1L, ChronoUnit.HOURS),
-                                Duration.of(1L, ChronoUnit.HOURS)))).parallel().collect(Collectors.toList());
+        List<ResourceTaskRunnable> executed = forkJoinPool.submit(() -> collect.parallelStream().peek(resourceTaskRunnable -> {
+
+            executor.executeWithLock(resourceTaskRunnable,
+                    new LockConfiguration(Instant.now(), resourceTaskRunnable.getResourceTask().getName(),
+                            Duration.of(1L, ChronoUnit.HOURS),
+                            Duration.of(1L, ChronoUnit.HOURS)));
+
+        }).collect(Collectors.toList())).join();
+
+
+//        List<ResourceTaskRunnable> executed = collect.parallelStream().peek(resourceTaskRunnable ->
+//                executor.executeWithLock(resourceTaskRunnable,
+//                        new LockConfiguration(Instant.now(), resourceTaskRunnable.getResourceTask().getName(),
+//                                Duration.of(1L, ChronoUnit.HOURS),
+//                                Duration.of(1L, ChronoUnit.HOURS)))).parallel().collect(Collectors.toList());
 
         log.info("taskExecutor execution count = " + count.get() + " finished");
         log.info("---------------------------------------------------------------------------------------------------------------------------");

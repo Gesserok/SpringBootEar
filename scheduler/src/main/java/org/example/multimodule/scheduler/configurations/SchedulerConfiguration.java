@@ -27,10 +27,14 @@ import static net.javacrumbs.shedlock.provider.jdbctemplate.JdbcTemplateLockProv
 @Log4j2
 public class SchedulerConfiguration {
 
+    @Autowired
+    private ConfigurationStoredParameters parameters;
+
+
     @Bean
     public ThreadPoolTaskScheduler taskScheduler() {
         ThreadPoolTaskScheduler taskScheduler = new ThreadPoolTaskScheduler();
-        taskScheduler.setPoolSize(4);
+        taskScheduler.setPoolSize(3);
         return taskScheduler;
     }
 
@@ -54,4 +58,19 @@ public class SchedulerConfiguration {
         return new DefaultLockingTaskExecutor(lockProvider);
     }
 
+    @Bean
+    public ForkJoinPool forkJoinPool() {
+
+        ForkJoinPool forkJoinPool1 = ForkJoinPool.commonPool();
+
+
+        ForkJoinPool forkJoinPool = new ForkJoinPool(
+                parameters.threadPool(),
+                ForkJoinPool.defaultForkJoinWorkerThreadFactory,
+                null,
+                true);
+        forkJoinPool.getStealCount()
+        log.info("ForkJoinPool thread size = " + forkJoinPool.getPoolSize() + " " + forkJoinPool.getActiveThreadCount());
+        return forkJoinPool;
+    }
 }
