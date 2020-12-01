@@ -42,4 +42,6 @@ public interface ConfigurationStoredParameters extends Config {
     @Config.Key(value = "migrationUkrPassportsPackageId")
     String migrationUkrPassportsPackageId();
 
+    @Config.Key(value = "threadPool")
+    Integer threadPool();
 }

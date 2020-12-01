@@ -6,6 +6,8 @@ import net.javacrumbs.shedlock.core.LockProvider;
 import net.javacrumbs.shedlock.core.LockingTaskExecutor;
 import net.javacrumbs.shedlock.provider.jdbctemplate.JdbcTemplateLockProvider;
 import net.javacrumbs.shedlock.spring.annotation.EnableSchedulerLock;
+import org.example.multimodule.infrastructure.ConfigurationStoredParameters;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -15,6 +17,8 @@ import org.springframework.transaction.PlatformTransactionManager;
 
 import javax.sql.DataSource;
 
+import java.util.concurrent.ForkJoinPool;
+
 import static net.javacrumbs.shedlock.provider.jdbctemplate.JdbcTemplateLockProvider.Configuration.builder;
 
 @Configuration
@@ -22,6 +26,10 @@ import static net.javacrumbs.shedlock.provider.jdbctemplate.JdbcTemplateLockProv
 @EnableSchedulerLock(defaultLockAtMostFor = "30s")
 @Log4j2
 public class SchedulerConfiguration {
+
+    @Autowired
+    private ConfigurationStoredParameters parameters;
+
 
     @Bean
     public ThreadPoolTaskScheduler taskScheduler() {
@@ -48,5 +56,11 @@ public class SchedulerConfiguration {
     @Bean
     public LockingTaskExecutor executor(LockProvider lockProvider) {
         return new DefaultLockingTaskExecutor(lockProvider);
+    }
+
+    @Bean
+    public ForkJoinPool forkJoinPool() {
+        ForkJoinPool forkJoinPool = new ForkJoinPool(parameters.threadPool());
+
     }
 }
