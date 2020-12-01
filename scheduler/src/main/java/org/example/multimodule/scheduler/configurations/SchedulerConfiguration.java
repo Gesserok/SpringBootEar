@@ -60,7 +60,10 @@ public class SchedulerConfiguration {
 
     @Bean
     public ForkJoinPool forkJoinPool() {
-        ForkJoinPool forkJoinPool = new ForkJoinPool(parameters.threadPool());
-
+        return new ForkJoinPool(
+                parameters.threadPool(),
+                ForkJoinPool.defaultForkJoinWorkerThreadFactory,
+                null,
+                true);
     }
 }
