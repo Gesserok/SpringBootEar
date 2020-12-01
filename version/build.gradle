@@ -1,0 +1,36 @@
+plugins {
+    id 'war'
+}
+
+version '1.0.0'
+dependencies {
+
+    compileOnly ("org.projectlombok:lombok:${lombok}")
+    annotationProcessor("org.projectlombok:lombok:${lombok}")
+
+    compileOnly("org.springframework.boot:spring-boot-starter-web:${springBoot}") {
+        exclude group:'org.springframework.boot', module:'spring-boot-starter-tomcat'
+        exclude group:'org.springframework.boot', module:'spring-boot-starter-logging'
+    }
+    compileOnly "org.springframework.boot:spring-boot-starter-log4j2:${springBoot}"
+
+    compileOnly ("com.lmax:disruptor:${comLmax}")
+
+    compileOnly project(":library")
+
+    compileOnly ("javax.servlet:javax.servlet-api:${servletApi}")
+    compileOnly ("javax:javaee-api:${javaeeApi}")
+
+    compileOnly "com.ibm.websphere.appserver:was_public:${wasPublic}"
+}
+
+war {
+    archiveFileName = "${archiveBaseName.orNull}.${archiveExtension.orNull}"
+    manifest {
+        attributes 'Implementation-Title': rootProject.name,
+                'Implementation-Version': rootProject.version
+    }
+}
+
+
+

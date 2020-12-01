@@ -57,6 +57,7 @@ allprojects {
 
 dependencies {
     deploy project(path: ':application', configuration: 'archives')
+    deploy project(path: ':version', configuration: 'archives')
     earlib project(':library')
     earlib project(':scheduler')
     earlib project(':PassportSearcherServices')
@@ -113,6 +114,7 @@ ear {
         displayName = "multimodule"
         description = "multimodule spring boot app - ear - gradle"
         webModule("application.war", "web/ear")
+        webModule("version.war", "web/version")
     }
 }
 
