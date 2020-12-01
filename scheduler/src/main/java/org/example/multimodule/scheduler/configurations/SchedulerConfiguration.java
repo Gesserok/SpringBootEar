@@ -33,7 +33,7 @@ public class SchedulerConfiguration {
     @Bean
     public ThreadPoolTaskScheduler taskScheduler() {
         ThreadPoolTaskScheduler taskScheduler = new ThreadPoolTaskScheduler();
-        taskScheduler.setPoolSize(3);
+        taskScheduler.setPoolSize(parameters.threadPool());
         return taskScheduler;
     }
 
