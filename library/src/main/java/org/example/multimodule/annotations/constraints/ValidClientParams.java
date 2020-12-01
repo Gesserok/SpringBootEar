@@ -11,6 +11,6 @@ import java.lang.annotation.*;
 public @interface ValidClientParams {
 
     String message() default "{ClientParams.invalid}";
-    Class<?>[] groups() default { };
-    Class<? extends Payload>[] payload() default { };
+    Class<?>[] groups() default {};
+    Class<? extends Payload>[] payload() default {};
 }

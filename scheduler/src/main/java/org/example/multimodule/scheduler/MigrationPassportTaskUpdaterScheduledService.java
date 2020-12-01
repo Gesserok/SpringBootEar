@@ -1,4 +1,4 @@
-package org.example.multimodule.scheduler.tasks;
+package org.example.multimodule.scheduler;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j2;

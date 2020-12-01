@@ -16,6 +16,7 @@ import java.util.Objects;
 
 @Log4j2
 public class ProxyParamsValidator implements ConstraintValidator<ValidProxyParams, ProxyParams> {
+
     public void initialize(ValidProxyParams constraint) {
     }
 

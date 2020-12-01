@@ -1,6 +1,7 @@
 package org.example.multimodule.models;
 
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
 
 @Data
 @AllArgsConstructor

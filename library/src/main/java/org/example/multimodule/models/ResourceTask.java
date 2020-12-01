@@ -7,7 +7,6 @@ import org.example.multimodule.models.resource_show.ResourceRevision;
 import org.example.multimodule.models.resource_show.Result;
 
 import javax.persistence.*;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Objects;
@@ -45,9 +44,6 @@ public class ResourceTask {
         this.name = resource.getName();
         this.addedTime = LocalDateTime.now();
         this.url = resource.getUrl();
-//        LocalDate localDate = LocalDate.parse(
-//                url.substring(url.lastIndexOf("/") + 1, url.lastIndexOf("_")),
-//                DateTimeFormatter.ofPattern("ddMMyyyy"));
         final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
         this.dateRevision = LocalDateTime.parse(resourceRevision.getResourceCreated(), formatter);
         String resourceUrl = resourceRevision.getUrl();

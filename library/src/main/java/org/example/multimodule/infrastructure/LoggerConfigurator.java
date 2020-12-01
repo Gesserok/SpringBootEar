@@ -47,6 +47,6 @@ public class LoggerConfigurator {
     }
 
     private boolean isLoggerConfigured() {
-        return ((Logger)log).getContext().getConfigLocation() != null;
+        return ((Logger) log).getContext().getConfigLocation() != null;
     }
 }

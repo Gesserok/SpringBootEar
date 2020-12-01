@@ -8,9 +8,11 @@ import org.example.multimodule.csv.DataReceiver;
 import org.example.multimodule.db.RegionCreator;
 import org.example.multimodule.exceptions.ODPConnectorException;
 import org.example.multimodule.infrastructure.ConfigurationStoredParameters;
-import org.example.multimodule.models.*;
+import org.example.multimodule.models.MVSUkrPassport;
+import org.example.multimodule.models.MigrationServiceUrkPassport;
+import org.example.multimodule.models.Region;
+import org.example.multimodule.models.ResourceTask;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import java.io.Reader;
@@ -33,7 +35,6 @@ public class RegionCreatorImpl implements RegionCreator {
         region.setMigrationServiceUrkPassports(passports);
 
         return region;
-
     }
 
     @Override

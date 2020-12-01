@@ -23,8 +23,6 @@ dependencies {
             "net.javacrumbs.shedlock:shedlock-provider-jdbc-template:${shedlock}"
     )
 
-//    compileOnly project(':execution_locker')
-
     compileOnly "org.apache.commons:commons-text:${apacheCommonText}"
     compileOnly "org.example:config-repo:${configstorage}"
 

@@ -11,7 +11,6 @@ import org.example.multimodule.models.resource_show.Result;
 @JsonIgnoreProperties(ignoreUnknown = true)
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class ResponseResourceShow {
-
     private String help;
     private Result result;
     private Boolean success;

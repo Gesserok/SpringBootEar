@@ -1,4 +1,4 @@
-package org.example.multimodule.scheduler.tasks;
+package org.example.multimodule.scheduler;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j2;
@@ -27,18 +27,17 @@ import java.util.stream.Collectors;
 @Log4j2
 public class TaskExecutionScheduledService {
 
-    private static AtomicInteger count = new AtomicInteger(0);
-
     private final ConfigurationStoredParameters parameters;
     private final ResourceTaskService resourceTaskService;
     private final ResourceTaskLoader resourceTaskLoader;
     private final LockingTaskExecutor executor;
     private final ForkJoinPool forkJoinPool;
 
+
     @Scheduled(cron = "#{@getMigrationPassportsCron}")
     public void taskExecutor() {
 
-        log.info("taskExecutor execution count = " + count.addAndGet(1) + " stared");
+        log.traceEntry("taskExecutor execution stared");
 
         List<ResourceTask> lastTasks = resourceTaskService.findAllGroupByNameAndNotUploadedOrderByDateRevisionDescDateRevisionDesc();
 
@@ -46,25 +45,18 @@ public class TaskExecutionScheduledService {
                 .map(resourceTask -> new ResourceTaskRunnable(resourceTaskLoader, resourceTask))
                 .collect(Collectors.toList());
 
-
-        List<ResourceTaskRunnable> executed = forkJoinPool.submit(() -> collect.parallelStream().peek(resourceTaskRunnable -> {
-
-            executor.executeWithLock(resourceTaskRunnable,
-                    new LockConfiguration(Instant.now(), resourceTaskRunnable.getResourceTask().getName(),
-                            Duration.of(1L, ChronoUnit.HOURS),
-                            Duration.of(1L, ChronoUnit.HOURS)));
-
+        forkJoinPool.submit(() -> collect.parallelStream().peek(resourceTaskRunnable -> {
+            try {
+                executor.executeWithLock(resourceTaskRunnable,
+                        new LockConfiguration(Instant.now(), resourceTaskRunnable.getResourceTask().getName(),
+                                Duration.of(1L, ChronoUnit.HOURS),
+                                Duration.of(1L, ChronoUnit.HOURS)));
+            } catch (Throwable e) {
+                log.error(resourceTaskRunnable.getResourceTask().getName() + " throws " + e.getClass() + " " + e.getMessage());
+            }
         }).collect(Collectors.toList())).join();
 
-
-//        List<ResourceTaskRunnable> executed = collect.parallelStream().peek(resourceTaskRunnable ->
-//                executor.executeWithLock(resourceTaskRunnable,
-//                        new LockConfiguration(Instant.now(), resourceTaskRunnable.getResourceTask().getName(),
-//                                Duration.of(1L, ChronoUnit.HOURS),
-//                                Duration.of(1L, ChronoUnit.HOURS)))).parallel().collect(Collectors.toList());
-
-        log.info("taskExecutor execution count = " + count.get() + " finished");
-        log.info("---------------------------------------------------------------------------------------------------------------------------");
+        log.traceExit("taskExecutor execution finished");
     }
 
     @Bean

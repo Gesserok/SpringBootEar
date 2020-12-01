@@ -35,10 +35,13 @@ public interface ConfigurationStoredParameters extends Config {
 
     @Config.Key(value = "passportBatchSize")
     Integer passportBatchSize();
+
     @Config.Key(value = "cron")
     String cron();
+
     @Config.Key(value = "packageId")
     String packageId();
+
     @Config.Key(value = "migrationUkrPassportsPackageId")
     String migrationUkrPassportsPackageId();
 

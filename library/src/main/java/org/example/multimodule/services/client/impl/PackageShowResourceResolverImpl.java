@@ -2,8 +2,8 @@ package org.example.multimodule.services.client.impl;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j2;
-import org.example.multimodule.annotations.ResponseSuccessFalseException;
 import org.example.multimodule.dto.ResponsePackageShow;
+import org.example.multimodule.exceptions.ODPResponseSuccessFalseException;
 import org.example.multimodule.models.package_show.Resource;
 import org.example.multimodule.services.client.ODPClient;
 import org.example.multimodule.services.client.PackageShowResourceResolver;
@@ -31,7 +31,7 @@ public class PackageShowResourceResolverImpl implements PackageShowResourceResol
 
         if (!responsePackageShow.getSuccess()) {
             log.error("package_show url return success = " + responsePackageShow.getSuccess());
-            throw new ResponseSuccessFalseException("package_show url return success = " + responsePackageShow.getSuccess());
+            throw new ODPResponseSuccessFalseException("package_show url return success = " + responsePackageShow.getSuccess());
         }
 
         log.debug("Response \"package_show?id=" + packageId + " received successfully");

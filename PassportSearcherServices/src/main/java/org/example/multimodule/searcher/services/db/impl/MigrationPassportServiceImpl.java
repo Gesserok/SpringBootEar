@@ -1,8 +1,8 @@
 package org.example.multimodule.searcher.services.db.impl;
 
 import lombok.AllArgsConstructor;
-import org.example.multimodule.searcher.dao.MigrationPassportDao;
 import org.example.multimodule.models.MigrationServiceUrkPassport;
+import org.example.multimodule.searcher.dao.MigrationPassportDao;
 import org.example.multimodule.searcher.services.db.MigrationPassportService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

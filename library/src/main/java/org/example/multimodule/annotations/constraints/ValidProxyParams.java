@@ -9,6 +9,7 @@ import java.lang.annotation.*;
 @Constraint(validatedBy = ProxyParamsValidator.class)
 @Documented
 public @interface ValidProxyParams {
+
     String message() default "{ProxyParams.invalid}";
     Class<?>[] groups() default { };
     Class<? extends Payload>[] payload() default { };

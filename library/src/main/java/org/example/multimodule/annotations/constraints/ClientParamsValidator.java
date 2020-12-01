@@ -16,7 +16,6 @@ import java.util.Objects;
 public class ClientParamsValidator implements ConstraintValidator<ValidClientParams, ClientParams> {
 
     public void initialize(ValidClientParams constraint) {
-
     }
 
     public boolean isValid(ClientParams clientParams, ConstraintValidatorContext context) {

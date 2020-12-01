@@ -61,11 +61,9 @@ public class DataReceiverImpl implements DataReceiver {
         while (true) {
             try {
                 if ((symbol = reader.read()) == -1) {
-                    log.info("LAST SYMBOL READ");
                     break;
                 }
             } catch (IOException e) {
-                log.info("IOEXCEPTION");
                 throw new ODPConnectorException("I/O Exception", e);
             }
             if ('{' == (char) symbol) {
@@ -86,8 +84,6 @@ public class DataReceiverImpl implements DataReceiver {
             if (isObject) {
                 sb.append((char) symbol);
             }
-
-
         }
         return passports;
     }

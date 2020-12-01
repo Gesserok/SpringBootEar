@@ -21,9 +21,6 @@ dependencies {
     compileOnly("net.javacrumbs.shedlock:shedlock-spring:${shedlock}") {
         exclude group: ' org.springframework', module: 'spring-context'
     }
-//    compileOnly "org.springframework:spring-boot-starter-log4j2:${}"
-
-
 
     compileOnly project(":wanted_ukr_passports")
     compileOnly "org.example:config-repo:${configstorage}"

@@ -1,13 +1,11 @@
 package org.example.multimodule.application.soap;
 
 
-import lombok.Setter;
 import lombok.extern.log4j.Log4j2;
 import org.example.multimodule.searcher.dto.PassportSearcherResponse;
 import org.example.multimodule.searcher.services.PassportSearcherResponseBuilder;
 import org.example.spring.binding.SpringBindingInterceptor;
 import org.springframework.beans.factory.annotation.Autowired;
-
 
 import javax.annotation.Resource;
 import javax.interceptor.Interceptors;
@@ -29,7 +27,6 @@ public class PassportSearcher {
     @Autowired
     private PassportSearcherResponseBuilder passportSearcherResponseBuilder;
 
-
     @WebMethod
     @WebResult(name = "Found")
     public PassportSearcherResponse find(
@@ -40,8 +37,5 @@ public class PassportSearcher {
         final PassportSearcherResponse passportSearcherResponse = passportSearcherResponseBuilder.findPassports(series, number, useMvsPassportService, useMigrationPassportService);
         log.info("Search result " + passportSearcherResponse + " for series " + series + " number " + number);
         return passportSearcherResponse;
-
-
-
     }
 }

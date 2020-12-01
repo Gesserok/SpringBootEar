@@ -1,5 +1,6 @@
 package org.example.multimodule.scheduler.configurations;
 
+import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import net.javacrumbs.shedlock.core.DefaultLockingTaskExecutor;
 import net.javacrumbs.shedlock.core.LockProvider;
@@ -16,7 +17,6 @@ import org.springframework.scheduling.concurrent.ThreadPoolTaskScheduler;
 import org.springframework.transaction.PlatformTransactionManager;
 
 import javax.sql.DataSource;
-
 import java.util.concurrent.ForkJoinPool;
 
 import static net.javacrumbs.shedlock.provider.jdbctemplate.JdbcTemplateLockProvider.Configuration.builder;
@@ -24,12 +24,11 @@ import static net.javacrumbs.shedlock.provider.jdbctemplate.JdbcTemplateLockProv
 @Configuration
 @EnableScheduling
 @EnableSchedulerLock(defaultLockAtMostFor = "30s")
+@AllArgsConstructor(onConstructor = @__({@Autowired}))
 @Log4j2
 public class SchedulerConfiguration {
 
-    @Autowired
-    private ConfigurationStoredParameters parameters;
-
+    private final ConfigurationStoredParameters parameters;
 
     @Bean
     public ThreadPoolTaskScheduler taskScheduler() {
@@ -61,12 +60,10 @@ public class SchedulerConfiguration {
     @Bean
     public ForkJoinPool forkJoinPool() {
 
-        ForkJoinPool forkJoinPool = new ForkJoinPool(
+        return new ForkJoinPool(
                 parameters.threadPool(),
                 ForkJoinPool.defaultForkJoinWorkerThreadFactory,
                 null,
                 true);
-        log.info("ForkJoinPool thread size = " + forkJoinPool.getPoolSize() + " " + forkJoinPool.getActiveThreadCount());
-        return forkJoinPool;
     }
 }

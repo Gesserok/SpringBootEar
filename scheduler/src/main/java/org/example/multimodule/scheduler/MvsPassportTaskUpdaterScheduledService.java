@@ -1,4 +1,4 @@
-package org.example.multimodule.scheduler.tasks;
+package org.example.multimodule.scheduler;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j2;
@@ -13,7 +13,6 @@ import org.example.multimodule.services.db.ResourceTaskService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.scheduling.annotation.Scheduled;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -48,7 +47,7 @@ public class MvsPassportTaskUpdaterScheduledService {
         List<ResourceTask> savedResourceTasks = resourceTaskService.updateTaskList(newResourceTasks);
         String logAdd = " new resourceTasks saved to DB - MVS-UkrPassports";
         log.debug(Objects.nonNull(savedResourceTasks)
-                ? savedResourceTasks.size()  + logAdd
+                ? savedResourceTasks.size() + logAdd
                 : 0 + logAdd);
     }
 

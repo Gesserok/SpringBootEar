@@ -85,7 +85,7 @@ public class PassportSearcherResponseBuilder {
                 }
             }
             passportSearcherResponse = createPassportSearcherResponseSuccessfully(result);
-        } catch (QueryTimeoutException  e) {
+        } catch (QueryTimeoutException e) {
             passportSearcherResponse = createPassportSearcherResponseWithError(e, "2");
         } catch (Throwable e) {
             passportSearcherResponse = createPassportSearcherResponseWithError(e, "3");
