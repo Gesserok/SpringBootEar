@@ -47,4 +47,14 @@ public interface ConfigurationStoredParameters extends Config {
 
     @Config.Key(value = "threadPool")
     Integer threadPool();
+
+    @Config.Key(value = "lockAtMostFor")
+    Long lockAtMostFor();
+
+    @Config.Key(value = "lockAtLeastFor")
+    Long lockAtLeastFor();
+
+    String lockAtMostChronoUnit();
+
+    String lockAtLeastChronoUnit();
 }

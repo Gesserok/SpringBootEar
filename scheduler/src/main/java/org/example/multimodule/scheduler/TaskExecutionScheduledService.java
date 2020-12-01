@@ -19,7 +19,6 @@ import java.time.Instant;
 import java.time.temporal.ChronoUnit;
 import java.util.List;
 import java.util.concurrent.ForkJoinPool;
-import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
 
 @Service
@@ -49,8 +48,9 @@ public class TaskExecutionScheduledService {
             try {
                 executor.executeWithLock(resourceTaskRunnable,
                         new LockConfiguration(Instant.now(), resourceTaskRunnable.getResourceTask().getName(),
-                                Duration.of(1L, ChronoUnit.HOURS),
-                                Duration.of(1L, ChronoUnit.HOURS)));
+                                Duration.of(parameters.lockAtMostFor(), ChronoUnit.valueOf(parameters.lockAtMostChronoUnit())/*ChronoUnit.HOURS*/),
+                                Duration.of(parameters.lockAtLeastFor(), ChronoUnit.valueOf(parameters.lockAtLeastChronoUnit()))
+                        ));
             } catch (Throwable e) {
                 log.error(resourceTaskRunnable.getResourceTask().getName() + " throws " + e.getClass() + " " + e.getMessage());
             }
