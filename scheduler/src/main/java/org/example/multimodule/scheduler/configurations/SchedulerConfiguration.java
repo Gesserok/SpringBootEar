@@ -27,10 +27,6 @@ import static net.javacrumbs.shedlock.provider.jdbctemplate.JdbcTemplateLockProv
 @Log4j2
 public class SchedulerConfiguration {
 
-    @Autowired
-    private ConfigurationStoredParameters parameters;
-
-
     @Bean
     public ThreadPoolTaskScheduler taskScheduler() {
         ThreadPoolTaskScheduler taskScheduler = new ThreadPoolTaskScheduler();
@@ -58,12 +54,4 @@ public class SchedulerConfiguration {
         return new DefaultLockingTaskExecutor(lockProvider);
     }
 
-    @Bean
-    public ForkJoinPool forkJoinPool() {
-        return new ForkJoinPool(
-                parameters.threadPool(),
-                ForkJoinPool.defaultForkJoinWorkerThreadFactory,
-                null,
-                true);
-    }
 }
