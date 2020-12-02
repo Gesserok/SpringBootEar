@@ -57,6 +57,7 @@ allprojects {
 
 dependencies {
     deploy project(path: ':application', configuration: 'archives')
+    deploy project(path: ':RESTServices', configuration: 'archives')
     deploy project(path: ':version', configuration: 'archives')
     earlib project(':library')
     earlib project(':scheduler')

@@ -16,7 +16,7 @@ public class TestController {
 
     @GetMapping("/servlet")
     public String version() {
-        return "sert";
+        return "servlet";
     }
 
 }

@@ -5,18 +5,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.servlet.ServletContext;
-
 @RestController
 @Log4j2
-public class TestController {
+public class VersionController {
 
-    @Autowired
-    private ServletContext servletContext;
-
-    @GetMapping("/servlet")
+    @GetMapping("/version")
     public String version() {
-        return "sert";
+        return "version";
     }
 
 }
