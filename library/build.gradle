@@ -17,6 +17,9 @@ dependencies {
         exclude group: 'org.springframework.boot', module: 'spring-boot-starter-tomcat'
         exclude group: 'org.springframework.boot', module: 'spring-boot-starter-logging'
     }
+    compileOnly("org.springframework.boot:spring-boot-starter-aop:${springBoot}") {
+        exclude group: 'org.springframework.boot', module: 'spring-boot-starter-logging'
+    }
 
     compileOnly(
             "net.javacrumbs.shedlock:shedlock-spring:${shedlock}",
@@ -24,7 +27,7 @@ dependencies {
     )
 
     compileOnly "org.apache.commons:commons-text:${apacheCommonText}"
-    compileOnly "org.example:config-repo:${configstorage}"
+    compileOnly "org.example:configstorage:${configstorage}"
 
     compileOnly "org.projectlombok:lombok:${lombok}"
     annotationProcessor "org.projectlombok:lombok:${lombok}"

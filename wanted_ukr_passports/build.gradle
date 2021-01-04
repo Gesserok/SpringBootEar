@@ -7,6 +7,8 @@ version '1.0.0.0'
 
 dependencies {
 
+    compileOnly project(":library")
+
     compileOnly("org.springframework.boot:spring-boot-starter-web:${springBoot}") {
         exclude group: 'org.springframework.boot', module: 'spring-boot-starter-tomcat'
         exclude group: 'org.springframework.boot', module: 'spring-boot-starter-logging'
@@ -16,9 +18,7 @@ dependencies {
     }
     compileOnly "org.springframework.boot:spring-boot-starter-log4j2:${springBoot}"
 
-    compileOnly project(":library")
-
-    compileOnly "org.example:config-repo:${configstorage}"
+    compileOnly "org.example:configstorage:${configstorage}"
 
     compileOnly "org.apache.commons:commons-csv:${apacheCsv}"
 

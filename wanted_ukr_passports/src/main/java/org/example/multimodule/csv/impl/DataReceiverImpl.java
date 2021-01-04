@@ -4,7 +4,6 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j2;
-import org.apache.commons.csv.CSVRecord;
 import org.example.multimodule.csv.DataReceiver;
 import org.example.multimodule.exceptions.ODPConnectorException;
 import org.example.multimodule.models.MVSUkrPassport;
@@ -15,9 +14,9 @@ import org.springframework.stereotype.Service;
 import java.io.IOException;
 import java.io.Reader;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 @Service
 @Log4j2
@@ -27,25 +26,12 @@ public class DataReceiverImpl implements DataReceiver {
     private final ObjectMapper objectMapper;
 
     @Override
-    public List<MigrationServiceUrkPassport> getPassports(Iterator<CSVRecord> iterator, Integer batchSize) {
+    public List<MigrationServiceUrkPassport> getPassports(List<String> lines) {
 
-        List<MigrationServiceUrkPassport> passports = new ArrayList<>();
-        while (iterator.hasNext()) {
-            CSVRecord next = iterator.next();
-            MigrationServiceUrkPassport passport = new MigrationServiceUrkPassport(
-                    next.get("nn"),
-                    next.get("status"),
-                    next.get("series"),
-                    next.get("number"),
-                    next.get("date_edit")
-            );
-            passports.add(passport);
-            if (passports.size() == batchSize) {
-                return passports;
-            }
-        }
-
-        return passports;
+        return lines.stream().map(line -> line.split(";"))
+                .map(arr -> new MigrationServiceUrkPassport(
+                        arr[0], arr[1], arr[2], arr[3], arr[4]))
+                .collect(Collectors.toList());
     }
 
     @Override

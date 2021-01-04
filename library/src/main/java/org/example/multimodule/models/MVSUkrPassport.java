@@ -1,13 +1,11 @@
 package org.example.multimodule.models;
 
-import com.fasterxml.jackson.annotation.JsonGetter;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonSetter;
+import com.fasterxml.jackson.annotation.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.example.multimodule.annotations.Cyrillic;
 
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
@@ -67,5 +65,15 @@ public class MVSUkrPassport {
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @Column(name = "theft_data")
     private String theftData;
+
+    @Cyrillic(source = "dNumber")
+    @Column(name = "d_number_transform")
+    @JsonIgnore
+    private String dNumberTransform;
+
+    @Cyrillic(source = "dSeries")
+    @Column(name = "d_series_transform")
+    @JsonIgnore
+    private String dSeriesTransform;
 
 }

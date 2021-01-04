@@ -8,6 +8,7 @@ version '1.0.0.0'
 dependencies {
 
     compileOnly project(":library")
+    compileOnly project(":wanted_ukr_passports")
 
     compileOnly("org.springframework.boot:spring-boot-starter-web:${springBoot}") {
         exclude group: 'org.springframework.boot', module: 'spring-boot-starter-tomcat'
@@ -22,8 +23,7 @@ dependencies {
         exclude group: ' org.springframework', module: 'spring-context'
     }
 
-    compileOnly project(":wanted_ukr_passports")
-    compileOnly "org.example:config-repo:${configstorage}"
+    compileOnly "org.example:configstorage:${configstorage}"
 
     compileOnly ("org.projectlombok:lombok:${lombok}")
     annotationProcessor("org.projectlombok:lombok:${lombok}")

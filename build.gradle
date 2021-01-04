@@ -67,11 +67,24 @@ dependencies {
     earlib("org.springframework.boot:spring-boot-starter-actuator:${springBoot}") {
         exclude group: 'org.springframework.boot', module: 'spring-boot-starter-logging'
     }
-    earlib("com.lmax:disruptor:${comLmax}")
     earlib("org.springframework.boot:spring-boot-starter-web:${springBoot}") {
         exclude group: 'org.springframework.boot', module: 'spring-boot-starter-tomcat'
         exclude group: 'org.springframework.boot', module: 'spring-boot-starter-logging'
     }
+    earlib("org.springframework.boot:spring-boot-starter-aop:${springBoot}") {
+        exclude group: 'org.springframework.boot', module: 'spring-boot-starter-logging'
+    }
+    earlib("org.springframework.boot:spring-boot-starter-data-jpa:${springBoot}") {
+        exclude group: 'org.springframework.boot', module: 'spring-boot-starter-logging'
+    }
+
+    earlib("org.springframework.boot:spring-boot-starter-validation:${springBoot}") {
+        exclude group: 'org.springframework.boot', module: 'spring-boot-starter-logging'
+    }
+
+    earlib "org.springframework.boot:spring-boot-starter-log4j2:${springBoot}"
+
+    earlib("com.lmax:disruptor:${comLmax}")
 
     earlib("net.javacrumbs.shedlock:shedlock-provider-jdbc-template:${shedlock}") {
         exclude group: ' org.springframework', module: 'spring-jdbc'
@@ -80,19 +93,10 @@ dependencies {
         exclude group: ' org.springframework', module: 'spring-context'
     }
 
-    earlib "org.example.spring:spring-boot-starter-binding-soap-interceptor:${bindingSoapInteceptor}"
 
-    earlib "org.springframework.boot:spring-boot-starter-log4j2:${springBoot}"
     earlib "org.apache.commons:commons-text:${apacheCommonText}"
-    earlib "org.example:config-repo:${configstorage}"
-
-    earlib("org.springframework.boot:spring-boot-starter-data-jpa:${springBoot}") {
-        exclude group: 'org.springframework.boot', module: 'spring-boot-starter-logging'
-    }
-
-    earlib("org.springframework.boot:spring-boot-starter-validation:${springBoot}") {
-        exclude group: 'org.springframework.boot', module: 'spring-boot-starter-logging'
-    }
+    earlib "org.example:configstorage:${configstorage}"
+    earlib "org.example.spring:spring-boot-starter-binding-soap-interceptor:${bindingSoapInteceptor}"
 
     earlib "org.apache.commons:commons-csv:${apacheCsv}"
 
